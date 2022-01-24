@@ -16,10 +16,14 @@ import org.texastorque.components.FadeButton;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class DisjointToggles extends Module {
+    Pane panel = new VBox();
+
     private String[] names = null;
     int value = 0;
 
@@ -36,7 +40,7 @@ public class DisjointToggles extends Module {
         final double topMargin = 5;
 
         Label label = new Label(name);
-        panel.setPrefSize(320, 60);
+        panel.setPrefSize(320, 1000);
         panel.getChildren().addAll(label);
         for (String local : names) {
             ToggleSingle toggle = new ToggleSingle(local);
@@ -46,15 +50,28 @@ public class DisjointToggles extends Module {
                         toggles.get(i).getButton().setText("✗");
                         toggles.get(i).getButton().setStyle("-fx-background-color: red;");
                     } else {
-                        toggles.get(i).getButton().setText("✓");
-                        toggles.get(i).getButton().setStyle("-fx-background-color: green;");
+                        if (value - 1 == i) {
+                            toggles.get(i).getButton().setText("✗");
+                            toggles.get(i).getButton().setStyle("-fx-background-color: red;");
+                            value = 0;
+                        } else {
+                            toggles.get(i).getButton().setText("✓");
+                            toggles.get(i).getButton().setStyle("-fx-background-color: green;");
+                            value = i + 1;
+                        }
                     }
-                    value = i;
                 }
+                System.out.println(value);
             });
             toggles.add(toggle);
-            panel.getChildren().add(toggle.getPanel());
         }
+
+
+
+        for (ToggleSingle toggle : toggles) {
+            panel.getChildren().addAll(toggle.getPanel());
+        }
+
     }
 
     @Override

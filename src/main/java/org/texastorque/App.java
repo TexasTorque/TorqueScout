@@ -9,6 +9,7 @@
  */
 package org.texastorque;
 
+import org.texastorque.pages.Main;
 import org.texastorque.pages.Scoring;
 
 import javafx.application.Application;
@@ -34,24 +35,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setTitle("JavaFX and Maven");
+        stage.setTitle("TorqueScout");
         stage.setScene(null);
         this.stage = stage;
         stage.show();
-        System.out.println("Started");
-        switchToScoring();
-
-        //Parent root = FXMLLoader.load(getClass().getResource("scene.fxml"));
-        /* 
-        var p = new Pane();
-        p.getChildren().add(new Label("hello world"));
-        
-        Scene scene = new Scene(p);
-        //scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-        
-        stage.setTitle("JavaFX and Maven");
-        stage.setScene(scene);
-        stage.show();*/
+        switchToMain();
     }
 
     public static void main(String[] args) {
@@ -59,7 +47,11 @@ public class App extends Application {
     }
 
     private void switchToMain() {
-        System.out.println("AHHH!");
+        Main window = new Main();
+        window.getNewReport().setOnAction(e -> {
+            switchToScoring();
+        });
+        switchStageScene(window.getPanel());
     }
 
     private void switchToScoring() {
@@ -67,7 +59,6 @@ public class App extends Application {
         window.getSubmit().setOnAction(e -> {
             switchToMain();
         });
-        System.out.println("Scoring!");
         switchStageScene(window.getPanel());
     }
 
