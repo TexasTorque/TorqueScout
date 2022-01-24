@@ -1,8 +1,9 @@
 /**
- * Copyright (C) 2021-2022 Texas Torque - All Rights Reserved.
- * 
+ * Copyright (C) 2021-2022 TexasTorque - All Rights Reserved.
+ *
  * This file is part of TorqueScout which is proprietary software.
- * See file license.txt or write <jus@gtsbr.org> for full license details.
+ * TorqueScout is not available for modification or distribution without express consent from TexasTorque.
+ * See file ./license.txt or go write <jus@gtsbr.org> for full license details.
  * 
  * @author Justus Languell
  */
