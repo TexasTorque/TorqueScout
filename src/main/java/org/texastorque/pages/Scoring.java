@@ -14,7 +14,9 @@ import org.texastorque.modules.DisjointToggles;
 import org.texastorque.modules.Numeric;
 import org.texastorque.modules.ToggleSingle;
 import org.texastorque.modules.ValueDisplay;
+import org.texastorque.utils.DataUtils;
 import org.texastorque.utils.LayoutUtils;
+import org.texastorque.utils.Report;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -26,7 +28,6 @@ public class Scoring extends Page {
     private ValueDisplay matchNameDisplay = new ValueDisplay("Match Name", "quals-0");
     private ValueDisplay matchNumberDisplay = new ValueDisplay("Match Number", 0);
 
- 
     private ToggleSingle taxi = new ToggleSingle("Auto Taxi");
     private Numeric autoLower = new Numeric("Auto lower shots");
     private Numeric autoUpper = new Numeric("Auto upper shots");
@@ -63,12 +64,30 @@ public class Scoring extends Page {
                         teleopUpper.getPanel(),
                         teleopMissed.getPanel(),
                         teleopIntaken.getPanel(),
-                        climb.getPanel(),
-                        submit
+                        climb.getPanel()
                     ), 
                     new LayoutUtils.Padding(0, 0, 0, 20)
-                )
+                ),
+                submit
             )
+        );
+    }
+
+    public Report generateReport() {
+        return new Report(
+            DataUtils.toInteger(teamNumberDisplay.getValue()),
+            matchNameDisplay.getValue(),
+            DataUtils.toInteger(matchNumberDisplay.getValue()),
+            taxi.getValue(),
+            autoLower.getValue(),
+            autoUpper.getValue(),
+            autoMissed.getValue(),
+            autoIntaken.getValue(),
+            teleopLower.getValue(),
+            teleopUpper.getValue(),
+            teleopMissed.getValue(),
+            teleopIntaken.getValue(),
+            climb.getValue()
         );
     }
 

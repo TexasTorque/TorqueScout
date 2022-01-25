@@ -9,30 +9,54 @@
  */
 package org.texastorque.pages;
 
+import java.util.ArrayList;
+
 import org.texastorque.components.FadeButton;
 import org.texastorque.modules.DisjointToggles;
 import org.texastorque.modules.Numeric;
 import org.texastorque.modules.ToggleSingle;
 import org.texastorque.modules.ValueDisplay;
 import org.texastorque.utils.LayoutUtils;
+import org.texastorque.utils.Report;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 public class Main extends Page {
     protected Pane panel = new Pane();
 
     private Button newReport = new Button("New Report");
 
-    public Main() {
+    ArrayList<Report> reports = null;
+
+    private Pane makeLabelsPane() {
+        Pane p = new VBox();
+        p.setPrefSize(600, 600);
+        if (reports == null) { System.out.println("reports is null");
+            return p;}
+        for (Report report : reports) {
+            Label l = new Label(report.toString());
+            l.setFont(new Font(16));
+            p.getChildren().add(l);
+        }
+        return p;
+    }
+
+    public Main(ArrayList<Report> reports) {
         newReport.setPrefSize(300, 75);
+
+        this.reports = reports;
 
         panel.setPrefSize(1200, 1200);
         panel.getChildren().addAll(
             LayoutUtils.bundleIntoHBox(
                 LayoutUtils.bundleIntoVBox(
                     newReport   
-                )
+                ),
+                makeLabelsPane()
             )
         );
     }

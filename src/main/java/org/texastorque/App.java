@@ -9,8 +9,11 @@
  */
 package org.texastorque;
 
+import java.util.ArrayList;
+
 import org.texastorque.pages.Main;
 import org.texastorque.pages.Scoring;
+import org.texastorque.utils.Report;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +27,8 @@ import javafx.stage.Stage;
 
 public class App extends Application {
     Stage stage;
+
+    ArrayList<Report> reports = new ArrayList<Report>();
 
     private void switchStageScene(Pane page) {
         if (stage.getScene() == null) {
@@ -47,7 +52,7 @@ public class App extends Application {
     }
 
     private void switchToMain() {
-        Main window = new Main();
+        Main window = new Main(reports);
         window.getNewReport().setOnAction(e -> {
             switchToScoring();
         });
@@ -57,6 +62,8 @@ public class App extends Application {
     private void switchToScoring() {
         Scoring window = new Scoring();
         window.getSubmit().setOnAction(e -> {
+            System.out.println(window.generateReport().toString());
+            reports.add(window.generateReport());
             switchToMain();
         });
         switchStageScene(window.getPanel());
