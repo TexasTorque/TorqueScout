@@ -20,6 +20,33 @@ public class LayoutUtils {
     private LayoutUtils() {
     }
 
+    public static class Padding {
+        public double top, right, bottom, left;
+
+        public Padding(double padding) {
+            top = padding;
+            right = padding;
+            bottom = padding;
+            left = padding;
+        }
+
+        public Padding(double top, double right, double bottom, double left) {
+            this.top = top;
+            this.right = right;
+            this.bottom = bottom;
+            this.left = left;
+        }
+    }
+
+    public static Pane insertPadding(Pane panel, Padding padding) {
+        panel.setPadding(new javafx.geometry.Insets(padding.top, 
+                                                    padding.right, 
+                                                    padding.bottom, 
+                                                    padding.left
+                                                    ));
+        return panel;
+    }
+    
     public static Pane bundleIntoVBox(Node... nodes) {
         Pane pane = new VBox();
         for (Node o : nodes) {

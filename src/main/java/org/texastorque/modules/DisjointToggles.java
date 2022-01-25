@@ -37,9 +37,13 @@ public class DisjointToggles extends Module {
 
     @Override
     protected void init() {
-        final double topMargin = 5;
-
         Label label = new Label(name);
+        label.setFont(new Font(18));
+        label.setPrefSize(350, 50);
+        label.setLayoutX(50);
+        label.setLayoutY(5);
+        label.setPadding(new javafx.geometry.Insets(0, 0, 0, 180));
+
         panel.setPrefSize(320, 1000);
         panel.getChildren().addAll(label);
         for (String local : names) {

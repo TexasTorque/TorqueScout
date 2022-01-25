@@ -57,13 +57,16 @@ public class Scoring extends Page {
                     autoMissed.getPanel(),
                     autoIntaken.getPanel()
                 ),
-                LayoutUtils.bundleIntoVBox(
-                    teleopLower.getPanel(),
-                    teleopUpper.getPanel(),
-                    teleopMissed.getPanel(),
-                    teleopIntaken.getPanel(),
-                    climb.getPanel(),
-                    submit
+                LayoutUtils.insertPadding(
+                    LayoutUtils.bundleIntoVBox(
+                        teleopLower.getPanel(),
+                        teleopUpper.getPanel(),
+                        teleopMissed.getPanel(),
+                        teleopIntaken.getPanel(),
+                        climb.getPanel(),
+                        submit
+                    ), 
+                    new LayoutUtils.Padding(0, 0, 0, 20)
                 )
             )
         );

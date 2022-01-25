@@ -38,6 +38,7 @@ public class ToggleSingle extends Module {
 
         panel.setPrefSize(320, 60);
 
+        label.setText(name);
         label.setPrefSize(130, 50);
         label.setLayoutX(10);
         label.setFont(new Font(18));
