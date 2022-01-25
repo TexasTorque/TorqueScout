@@ -17,8 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class LayoutUtils {
-    private LayoutUtils() {
-    }
+    private LayoutUtils() {}
 
     public static class Padding {
         public double top, right, bottom, left;
@@ -69,4 +68,11 @@ public class LayoutUtils {
         return label;
     }
 
+    public static Pane wrapInPane(Node... nodes) {
+        Pane pane = new Pane();
+        for (Node o : nodes) {
+            pane.getChildren().add(o);
+        }
+        return pane;
+    }
 }

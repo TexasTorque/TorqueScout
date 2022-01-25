@@ -47,17 +47,23 @@ public class Main extends Page {
 
     public Main(ArrayList<Report> reports) {
         newReport.setPrefSize(300, 75);
+        newReport.setLayoutX(20);
+        newReport.setLayoutY(20);
 
         this.reports = reports;
 
         panel.setPrefSize(1200, 1200);
         panel.getChildren().addAll(
-            LayoutUtils.bundleIntoHBox(
                 LayoutUtils.bundleIntoVBox(
-                    newReport   
-                ),
-                makeLabelsPane()
-            )
+                        LayoutUtils.insertPadding(
+                                LayoutUtils.wrapInPane(newReport),
+                                new LayoutUtils.Padding(0, 0, 0, 0)
+                        ),
+                        LayoutUtils.insertPadding(
+                                makeLabelsPane(),
+                                new LayoutUtils.Padding(20, 20, 00, 20)
+                        )
+                )
         );
     }
 

@@ -44,6 +44,8 @@ public class Scoring extends Page {
 
     public Scoring() {
         submit.setPrefSize(300, 75);
+        submit.setLayoutX(20);
+        submit.setLayoutY(5);
 
         panel.setPrefSize(1200, 1200);
         panel.getChildren().addAll(
@@ -68,7 +70,7 @@ public class Scoring extends Page {
                     ), 
                     new LayoutUtils.Padding(0, 0, 0, 20)
                 ),
-                submit
+                LayoutUtils.wrapInPane(submit)
             )
         );
     }
