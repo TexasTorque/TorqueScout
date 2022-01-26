@@ -23,6 +23,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 public class Scoring extends Page {
+    private boolean checked = false;
+
     protected Pane panel = new Pane();
 
     private ValueDisplay teamNumberDisplay = new ValueDisplay("Team Number", 0000);
@@ -77,6 +79,13 @@ public class Scoring extends Page {
     }
 
     public Report generateReport() {
+        if (!checked) {
+            ErrorUtils.displayError("Double Check Entries!", "Submitting is permanent, "
+                    + "please double check your entries at least once before you submit.");
+            checked = true;
+            return null;
+        }
+
         int teamNumber = DataUtils.toInteger(teamNumberDisplay.getValue());
         int matchNumber = DataUtils.toInteger(matchNumberDisplay.getValue());
 
