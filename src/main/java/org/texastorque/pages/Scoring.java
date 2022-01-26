@@ -12,6 +12,7 @@ package org.texastorque.pages;
 import org.texastorque.components.FadeButton;
 import org.texastorque.modules.DisjointToggles;
 import org.texastorque.modules.Numeric;
+import org.texastorque.modules.TextBox;
 import org.texastorque.modules.ToggleSingle;
 import org.texastorque.modules.ValueDisplay;
 import org.texastorque.utils.DataUtils;
@@ -32,23 +33,25 @@ public class Scoring extends Page {
     private ValueDisplay matchNumberDisplay = new ValueDisplay("Match Number", 0);
 
     private ToggleSingle taxi = new ToggleSingle("Auto Taxi");
-    private Numeric autoLower = new Numeric("Auto lower shots");
-    private Numeric autoUpper = new Numeric("Auto upper shots");
-    private Numeric autoMissed = new Numeric("Auto missed shots");
-    private Numeric autoIntaken = new Numeric("Auto intaken balls");
+    private Numeric autoLower = new Numeric("Auto lower");
+    private Numeric autoUpper = new Numeric("Auto upper");
+    private Numeric autoMissed = new Numeric("Auto missed");
+    private Numeric autoIntaken = new Numeric("Auto intaken");
 
-    private Numeric teleopLower = new Numeric("Teleop lower shots");
-    private Numeric teleopUpper = new Numeric("Teleop upper shots");
-    private Numeric teleopMissed = new Numeric("Teleop missed shots");
-    private Numeric teleopIntaken = new Numeric("Teleop intaken balls");
+    private Numeric teleopLower = new Numeric("Teleop lower");
+    private Numeric teleopUpper = new Numeric("Teleop upper");
+    private Numeric teleopMissed = new Numeric("Teleop missed");
+    private Numeric teleopIntaken = new Numeric("Teleop intaken");
     private DisjointToggles climb = new DisjointToggles("Climb level", "Low", "Mid", "High", "Transversal");
+
+    private TextBox comments = new TextBox("Comments", "");
 
     private Button submit = new Button("Submit");
 
     public Scoring() {
         submit.setPrefSize(300, 75);
         submit.setLayoutX(20);
-        submit.setLayoutY(5);
+        submit.setLayoutY(15);
 
         panel.setPrefSize(1200, 1200);
         panel.getChildren().addAll(
@@ -61,7 +64,8 @@ public class Scoring extends Page {
                     autoLower.getPanel(),
                     autoUpper.getPanel(),
                     autoMissed.getPanel(),
-                    autoIntaken.getPanel()
+                    autoIntaken.getPanel(),
+                    comments.getPanel()
                 ),
                 LayoutUtils.insertPadding(
                     LayoutUtils.bundleIntoVBox(
@@ -69,18 +73,18 @@ public class Scoring extends Page {
                         teleopUpper.getPanel(),
                         teleopMissed.getPanel(),
                         teleopIntaken.getPanel(),
-                        climb.getPanel()
+                        climb.getPanel(),
+                        LayoutUtils.wrapInPane(submit)
                     ), 
-                    new LayoutUtils.Padding(0, 0, 0, 20)
-                ),
-                LayoutUtils.wrapInPane(submit)
+                    new LayoutUtils.Padding(0, 0, 0, 40)
+                )
             )
         );
     }
 
     public Report generateReport() {
         if (!checked) {
-            NoticeUtils.displayInfo("Double Check Entries!", "Submitting is permanent, "
+            NoticeUtils.displayInfo("Double Check Entries", "Submitting is permanent, "
                     + "please double check your entries at least once before you submit.");
             checked = true;
             return null;
@@ -107,7 +111,8 @@ public class Scoring extends Page {
             teleopUpper.getValue(),
             teleopMissed.getValue(),
             teleopIntaken.getValue(),
-            climb.getValue()
+            climb.getValue(),
+            comments.getValue()
         );
     }
 

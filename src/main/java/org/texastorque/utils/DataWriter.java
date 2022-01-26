@@ -30,7 +30,7 @@ public class DataWriter {
     }
 
     private void appendString(String s) throws IOException {
-        Files.write(Path.of(path), (s.replace("\n", "") + "\n").getBytes(), StandardOpenOption.APPEND); 
+        Files.write(Path.of(path), (s.replace("\n", " ") + "\n").getBytes(), StandardOpenOption.APPEND); 
     }
 
     public boolean writeReport(Report report) {

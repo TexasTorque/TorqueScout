@@ -15,7 +15,7 @@ import org.texastorque.components.FadeButton;
 import org.texastorque.modules.DisjointToggles;
 import org.texastorque.modules.Numeric;
 import org.texastorque.modules.ToggleSingle;
-import org.texastorque.modules.ValueDisplay;
+import org.texastorque.modules.TextBox;
 import org.texastorque.utils.LayoutUtils;
 import org.texastorque.utils.Report;
 
@@ -68,9 +68,27 @@ public class Main extends Page {
     // }
 
     public Main(ArrayList<Report> reports) {
+        Label title = new Label("TorqueScout Client");
+        title.setFont(new Font(36));
+        title.setPrefSize(600, 50);
+        title.setLayoutX(20);
+        title.setLayoutY(20);
+
+        Label description = new Label(
+            "TorqueScout Client is a program to collect match\n" +
+            "information for scouting analysis. The client\n" +
+            "provides a dashboard to collect match data, and\n" +
+            "exports a single CSV file, designed to be used in\n" +
+            "TorqueScout Hub, which is used to perform\n" +
+            "data analysis and inform scouting decisions."
+        );
+        description.setFont(new Font(14));
+        description.setPrefSize(600, 150);
+        description.setLayoutX(20);
+
         newReport.setPrefSize(300, 75);
         newReport.setLayoutX(20);
-        newReport.setLayoutY(20);
+        newReport.setLayoutY(40);
 
         exportReports.setPrefSize(300, 75);
         exportReports.setLayoutX(20);
@@ -78,9 +96,17 @@ public class Main extends Page {
 
         this.reports = reports;
 
-        panel.setPrefSize(1200, 1200);
+        panel.setPrefSize(350, 1200);
         panel.getChildren().addAll(
                 LayoutUtils.bundleIntoVBox(
+                        LayoutUtils.insertPadding(
+                                LayoutUtils.wrapInPane(title),
+                                new LayoutUtils.Padding(0, 0, 0, 40)
+                        ),
+                        LayoutUtils.insertPadding(
+                                LayoutUtils.wrapInPane(description),
+                                new LayoutUtils.Padding(0, 0, 0, 40)
+                        ),
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(newReport),
                                 new LayoutUtils.Padding(0, 0, 0, 0)

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import org.texastorque.pages.Main;
 import org.texastorque.pages.Scoring;
 import org.texastorque.utils.DataWriter;
+import org.texastorque.utils.NoticeUtils;
 import org.texastorque.utils.Report;
 
 import javafx.application.Application;
@@ -34,7 +35,7 @@ public class App extends Application {
 
     private void switchStageScene(Pane page) {
         if (stage.getScene() == null) {
-            stage.setScene(new Scene(page, 1200, 1200));
+            stage.setScene(new Scene(page, 0, 0));
         } else {
             stage.getScene().setRoot(page);
         }
@@ -62,6 +63,7 @@ public class App extends Application {
             dataWriter.export(stage);
         });
         switchStageScene(window.getPanel());
+        setStageSize(350, 600);
     }
 
     private void switchToScoring() {
@@ -72,9 +74,17 @@ public class App extends Application {
 
             if (!dataWriter.writeReport(report)) return;
 
+            NoticeUtils.displayInfo("Report Success", "Report successfully logged.");
+
             switchToMain();
         });
         switchStageScene(window.getPanel());
+        setStageSize(800, 700); 
+    }
+
+    private void setStageSize(int w, int h) {
+        stage.setWidth(w);
+        stage.setHeight(h);
     }
 
 }

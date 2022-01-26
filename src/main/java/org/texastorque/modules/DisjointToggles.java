@@ -44,7 +44,6 @@ public class DisjointToggles extends Module {
         label.setLayoutY(5);
         label.setPadding(new javafx.geometry.Insets(0, 0, 0, 180));
 
-        panel.setPrefSize(320, 1000);
         panel.getChildren().addAll(label);
         for (String local : names) {
             ToggleSingle toggle = new ToggleSingle(local);

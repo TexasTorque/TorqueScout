@@ -15,9 +15,9 @@ import java.time.format.DateTimeFormatter;
 
 public class Report {
 
-    public static final String header = "dateTime,teamNumber,matchName,"
+    public static final String header = "dateTime,teamNumber,matchName,matchNumber,"
             + "taxi,autoLower,autoUpper,autoMissed,autoIntaken,"
-            + "teleopLower,teleopUpper,teleopMissed,teleopIntaken,climb,";
+            + "teleopLower,teleopUpper,teleopMissed,teleopIntaken,climb,comment";
 
 
     public static enum Climb {
@@ -46,6 +46,8 @@ public class Report {
 
     public final int climb;
 
+    public final String comment;
+
     public final LocalDateTime date;
 
     public Report(
@@ -61,7 +63,8 @@ public class Report {
             int teleopUpper,
             int teleopMissed,
             int teleopIntaken,
-            int climb
+            int climb,
+            String comment
     ) {
         this.teamNumber = teamNumber;
         this.matchName = matchName;
@@ -76,6 +79,7 @@ public class Report {
         this.teleopMissed = teleopMissed;
         this.teleopIntaken = teleopIntaken;
         this.climb = climb;
+        this.comment = comment;
         this.date = LocalDateTime.now();
     }
 
@@ -95,10 +99,10 @@ public class Report {
     }
 
     public String toCSV() {
-        return String.format("%s,%d,%s,%d,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,",
+        return String.format("%s,%d,%s,%d,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s",
                 getDateTimeString(), teamNumber, matchName, matchNumber, taxi,
                 autoLower, autoUpper, autoMissed, autoIntaken,
                 teleopLower, teleopUpper, teleopMissed, teleopIntaken,
-                climb);
+                climb, comment);
     }
 }

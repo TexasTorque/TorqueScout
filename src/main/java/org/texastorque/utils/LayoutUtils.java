@@ -45,12 +45,20 @@ public class LayoutUtils {
                                                     ));
         return panel;
     }
-    
+
+    public static Pane bundleIntoVBox(int w, int h, Node... nodes) {
+        Pane pane = new VBox();
+        for (Node o : nodes)
+            pane.getChildren().add(o);
+        pane.setPrefWidth(w);
+        pane.setPrefHeight(h);
+        return pane;
+    }
+
     public static Pane bundleIntoVBox(Node... nodes) {
         Pane pane = new VBox();
-        for (Node o : nodes) {
+        for (Node o : nodes)
             pane.getChildren().add(o);
-        }
         return pane;
     }
 
