@@ -58,6 +58,9 @@ public class App extends Application {
         window.getNewReport().setOnAction(e -> {
             switchToScoring();
         });
+        window.getExportReports().setOnAction(e -> {
+            dataWriter.export(stage);
+        });
         switchStageScene(window.getPanel());
     }
 
@@ -66,8 +69,6 @@ public class App extends Application {
         window.getSubmit().setOnAction(e -> {
             Report report = window.generateReport();
             if (report == null) return;
-
-            //report.toCSV();
 
             if (!dataWriter.writeReport(report)) return;
 

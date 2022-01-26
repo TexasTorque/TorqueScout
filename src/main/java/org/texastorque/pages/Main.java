@@ -31,45 +31,50 @@ public class Main extends Page {
     protected Pane panel = new Pane();
 
     private Button newReport = new Button("New Report");
+    private Button exportReports = new Button("Export Reports");
 
     ArrayList<Report> reports = null;
 
-    private TableView table = new TableView();
+    // private TableView table = new TableView();
+    
+    // public Pane makeLabelsPane() {
+    //     Pane p = new VBox();
+    //     p.setPrefSize(600, 600);
+    //     if (reports == null) { System.out.println("reports is null");
+    //         return p;}
+    //     for (Report report : reports) {
+    //         Label l = new Label(report.titleString());
+    //         l.setFont(new Font(16));
+    //         p.getChildren().add(l);
+    //     }
+    //     return p;
+    // }
 
-    public Pane makeLabelsPane() {
-        Pane p = new VBox();
-        p.setPrefSize(600, 600);
-        if (reports == null) { System.out.println("reports is null");
-            return p;}
-        for (Report report : reports) {
-            Label l = new Label(report.titleString());
-            l.setFont(new Font(16));
-            p.getChildren().add(l);
-        }
-        return p;
-    }
-
-    public Pane makeTablesPane() {
-        table.setEditable(true);
+    // public Pane makeTablesPane() {
+    //     table.setEditable(true);
         
-        TableColumn dateTimeCol = new TableColumn("Date&Time");
-        TableColumn teamNumberCol = new TableColumn("Team Number");
-        TableColumn matchNameCol = new TableColumn("Match Name");
-        TableColumn matchNumberCol = new TableColumn("Match Number");
+    //     TableColumn dateTimeCol = new TableColumn("Date&Time");
+    //     TableColumn teamNumberCol = new TableColumn("Team Number");
+    //     TableColumn matchNameCol = new TableColumn("Match Name");
+    //     TableColumn matchNumberCol = new TableColumn("Match Number");
         
-        table.getColumns().addAll(dateTimeCol, teamNumberCol, matchNameCol, matchNumberCol);
+    //     table.getColumns().addAll(dateTimeCol, teamNumberCol, matchNameCol, matchNumberCol);
  
-        final VBox vbox = new VBox();
-        vbox.setSpacing(5);
-        vbox.setPrefSize(600, 600);
-        vbox.getChildren().addAll(table);
-        return vbox;
-    }
+    //     final VBox vbox = new VBox();
+    //     vbox.setSpacing(5);
+    //     vbox.setPrefSize(600, 600);
+    //     vbox.getChildren().addAll(table);
+    //     return vbox;
+    // }
 
     public Main(ArrayList<Report> reports) {
         newReport.setPrefSize(300, 75);
         newReport.setLayoutX(20);
         newReport.setLayoutY(20);
+
+        exportReports.setPrefSize(300, 75);
+        exportReports.setLayoutX(20);
+        exportReports.setLayoutY(60);
 
         this.reports = reports;
 
@@ -81,8 +86,9 @@ public class Main extends Page {
                                 new LayoutUtils.Padding(0, 0, 0, 0)
                         ),
                         LayoutUtils.insertPadding(
-                                makeLabelsPane(),
+                                //makeLabelsPane(),
                                 //makeTablesPane(),
+                                LayoutUtils.wrapInPane(exportReports),
                                 new LayoutUtils.Padding(20, 20, 00, 20)
                         )
                 )
@@ -91,6 +97,10 @@ public class Main extends Page {
 
     public Button getNewReport() {
         return newReport;
+    }
+
+    public Button getExportReports() {
+        return exportReports;
     }
 
     @Override

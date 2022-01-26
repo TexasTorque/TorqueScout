@@ -12,14 +12,21 @@ package org.texastorque.utils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-public class ErrorUtils {
+public class NoticeUtils {
     
-    private ErrorUtils() {}
+    private NoticeUtils() {}
 
     public static void displayError(String header, String content) {
-        Alert errorAlert = new Alert(AlertType.ERROR);
-        errorAlert.setHeaderText(header);
-        errorAlert.setContentText(content);
-        errorAlert.showAndWait();
+        Alert notice = new Alert(AlertType.ERROR);
+        notice.setHeaderText(header);
+        notice.setContentText(content);
+        notice.showAndWait();
+    }
+
+    public static void displayInfo(String header, String content) {
+        Alert notice = new Alert(AlertType.INFORMATION);
+        notice.setHeaderText(header);
+        notice.setContentText(content);
+        notice.showAndWait();
     }
 }

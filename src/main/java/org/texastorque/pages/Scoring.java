@@ -15,7 +15,7 @@ import org.texastorque.modules.Numeric;
 import org.texastorque.modules.ToggleSingle;
 import org.texastorque.modules.ValueDisplay;
 import org.texastorque.utils.DataUtils;
-import org.texastorque.utils.ErrorUtils;
+import org.texastorque.utils.NoticeUtils;
 import org.texastorque.utils.LayoutUtils;
 import org.texastorque.utils.Report;
 
@@ -80,7 +80,7 @@ public class Scoring extends Page {
 
     public Report generateReport() {
         if (!checked) {
-            ErrorUtils.displayError("Double Check Entries!", "Submitting is permanent, "
+            NoticeUtils.displayInfo("Double Check Entries!", "Submitting is permanent, "
                     + "please double check your entries at least once before you submit.");
             checked = true;
             return null;
@@ -90,7 +90,7 @@ public class Scoring extends Page {
         int matchNumber = DataUtils.toInteger(matchNumberDisplay.getValue());
 
         if (teamNumber == -1 || matchNumber == -1) {
-            ErrorUtils.displayError("Error Reading Entry", "Invalid team number or match number");
+            NoticeUtils.displayError("Error Reading Entry", "Invalid team number or match number");
             return null;
         }
 

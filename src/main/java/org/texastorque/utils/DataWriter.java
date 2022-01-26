@@ -9,32 +9,53 @@
  */
 package org.texastorque.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 
 public class DataWriter {
     String path;
 
+    DirectoryChooser directoryChooser = new DirectoryChooser();
+
     public DataWriter() {
         path = System.getProperty("user.home") + "/.scouting-database";
+        directoryChooser.setInitialDirectory(new File(System.getProperty("user.home")));
     }
 
     private void appendString(String s) throws IOException {
-        Files.write(Paths.get(path), (s.replace("\n", "") + "\n").getBytes(), StandardOpenOption.APPEND); 
+        Files.write(Path.of(path), (s.replace("\n", "") + "\n").getBytes(), StandardOpenOption.APPEND); 
     }
 
     public boolean writeReport(Report report) {
         try {
-            if (!Files.exists(Paths.get(path))) {
-                Files.createFile(Paths.get(path));
+            if (!Files.exists(Path.of(path))) {
+                Files.createFile(Path.of(path));
                 appendString(Report.header); 
             }
             appendString(report.toCSV());
             return true;
         } catch (IOException e) {
-            ErrorUtils.displayError("Data Writer Error", "Could not write entry to local database");
+            NoticeUtils.displayError("Data Writer Error", "Could not write entry to local database");
+            return false;
+        }    }
+
+    public boolean export(Stage s) {
+        try {
+            String content = Files.readString(Path.of(path));
+            File selectedDirectory = directoryChooser.showDialog(s);
+            Path exportPath = Path.of(selectedDirectory.getAbsolutePath() + "/" + "scouting-data.csv");
+            Files.writeString(exportPath, content);
+            NoticeUtils.displayInfo("Data Exported Success", "Successfully exported scouting report");
+            return true;
+        } catch (IOException e) {
+            NoticeUtils.displayError("Data Exporter Error", "Could not export data");
             return false;
         }
     }
