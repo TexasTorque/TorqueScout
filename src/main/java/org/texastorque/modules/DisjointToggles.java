@@ -65,7 +65,7 @@ public class DisjointToggles extends Module {
                         }
                     }
                 }
-                System.out.println(value);
+                //System.out.println(value);
             });
             toggles.add(toggle);
         }

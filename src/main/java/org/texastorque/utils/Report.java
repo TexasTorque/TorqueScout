@@ -15,6 +15,11 @@ import java.time.format.DateTimeFormatter;
 
 public class Report {
 
+    public static final String header = "dateTime,teamNumber,matchName,"
+            + "taxi,autoLower,autoUpper,autoMissed,autoIntaken,"
+            + "teleopLower,teleopUpper,teleopMissed,teleopIntaken,climb,";
+
+
     public static enum Climb {
         NONE,
         LOW,
@@ -42,8 +47,6 @@ public class Report {
     public final int climb;
 
     public final LocalDateTime date;
-
-    boolean synced = false;
 
     public Report(
             int teamNumber,
