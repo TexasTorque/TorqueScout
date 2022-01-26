@@ -62,7 +62,7 @@ public class App extends Application {
     private void switchToScoring() {
         Scoring window = new Scoring();
         window.getSubmit().setOnAction(e -> {
-            System.out.println(window.generateReport().toString());
+            System.out.println(window.generateReport().toCSV());
             reports.add(window.generateReport());
             switchToMain();
         });

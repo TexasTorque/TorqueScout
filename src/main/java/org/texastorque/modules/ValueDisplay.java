@@ -76,6 +76,8 @@ public class ValueDisplay extends Module {
     }
 
     public String getValue() {
+        if (display.isEditable())
+            value = display.getText();
         return value;
     }
 }

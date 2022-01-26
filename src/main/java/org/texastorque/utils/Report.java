@@ -43,6 +43,8 @@ public class Report {
 
     public final LocalDateTime date;
 
+    boolean synced = false;
+
     public Report(
             int teamNumber,
             String matchName,
@@ -74,10 +76,26 @@ public class Report {
         this.date = LocalDateTime.now();
     }
 
-    public String toString() {
+    public String getDateTimeString() {
+        return getDateTimeString("yyyy-MM-dd HH:mm:ss");
+    }
+
+    public String getDateTimeString(String formatString) {
+        return date.format(DateTimeFormatter.ofPattern(formatString));
+    }
+
+    public String titleString() {
         return String.format("%s: %d in %s(%d)", 
                 //new SimpleDateFormat("yyyy-MM-dd").format(date), 
                 date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 teamNumber, matchName, matchNumber);
+    }
+
+    public String toCSV() {
+        return String.format("[%d,%s,%d,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d]",
+                teamNumber, matchName, matchNumber, taxi,
+                autoLower, autoUpper, autoMissed, autoIntaken,
+                teleopLower, teleopUpper, teleopMissed, teleopIntaken,
+                climb);
     }
 }

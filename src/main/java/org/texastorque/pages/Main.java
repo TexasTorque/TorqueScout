@@ -21,6 +21,8 @@ import org.texastorque.utils.Report;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -32,17 +34,37 @@ public class Main extends Page {
 
     ArrayList<Report> reports = null;
 
+    private TableView table = new TableView();
+
+
     private Pane makeLabelsPane() {
         Pane p = new VBox();
         p.setPrefSize(600, 600);
         if (reports == null) { System.out.println("reports is null");
             return p;}
         for (Report report : reports) {
-            Label l = new Label(report.toString());
+            Label l = new Label(report.titleString());
             l.setFont(new Font(16));
             p.getChildren().add(l);
         }
         return p;
+    }
+
+    private Pane makeTablesPane() {
+        table.setEditable(true);
+        
+        TableColumn dateTimeCol = new TableColumn("Date&Time");
+        TableColumn teamNumberCol = new TableColumn("Team Number");
+        TableColumn matchNameCol = new TableColumn("Match Name");
+        TableColumn matchNumberCol = new TableColumn("Match Number");
+        
+        table.getColumns().addAll(dateTimeCol, teamNumberCol, matchNameCol, matchNumberCol);
+ 
+        final VBox vbox = new VBox();
+        vbox.setSpacing(5);
+        vbox.setPrefSize(600, 600);
+        vbox.getChildren().addAll(table);
+        return vbox;
     }
 
     public Main(ArrayList<Report> reports) {
@@ -61,6 +83,7 @@ public class Main extends Page {
                         ),
                         LayoutUtils.insertPadding(
                                 makeLabelsPane(),
+                                //makeTablesPane(),
                                 new LayoutUtils.Padding(20, 20, 00, 20)
                         )
                 )
