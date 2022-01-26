@@ -92,8 +92,8 @@ public class Report {
     }
 
     public String toCSV() {
-        return String.format("[%d,%s,%d,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d]",
-                teamNumber, matchName, matchNumber, taxi,
+        return String.format("%s,%d,%s,%d,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,",
+                getDateTimeString(), teamNumber, matchName, matchNumber, taxi,
                 autoLower, autoUpper, autoMissed, autoIntaken,
                 teleopLower, teleopUpper, teleopMissed, teleopIntaken,
                 climb);

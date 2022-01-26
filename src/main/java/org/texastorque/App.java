@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import org.texastorque.pages.Main;
 import org.texastorque.pages.Scoring;
+import org.texastorque.utils.DataWriter;
 import org.texastorque.utils.Report;
 
 import javafx.application.Application;
@@ -29,6 +30,7 @@ public class App extends Application {
     Stage stage;
 
     ArrayList<Report> reports = new ArrayList<Report>();
+    DataWriter dataWriter = new DataWriter();
 
     private void switchStageScene(Pane page) {
         if (stage.getScene() == null) {
@@ -62,8 +64,13 @@ public class App extends Application {
     private void switchToScoring() {
         Scoring window = new Scoring();
         window.getSubmit().setOnAction(e -> {
-            System.out.println(window.generateReport().toCSV());
-            reports.add(window.generateReport());
+            Report report = window.generateReport();
+            if (report == null) return;
+
+            //report.toCSV();
+
+            if (!dataWriter.writeReport(report)) return;
+
             switchToMain();
         });
         switchStageScene(window.getPanel());

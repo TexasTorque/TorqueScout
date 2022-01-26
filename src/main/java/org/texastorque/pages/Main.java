@@ -36,8 +36,7 @@ public class Main extends Page {
 
     private TableView table = new TableView();
 
-
-    private Pane makeLabelsPane() {
+    public Pane makeLabelsPane() {
         Pane p = new VBox();
         p.setPrefSize(600, 600);
         if (reports == null) { System.out.println("reports is null");
@@ -50,7 +49,7 @@ public class Main extends Page {
         return p;
     }
 
-    private Pane makeTablesPane() {
+    public Pane makeTablesPane() {
         table.setEditable(true);
         
         TableColumn dateTimeCol = new TableColumn("Date&Time");

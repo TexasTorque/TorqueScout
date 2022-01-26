@@ -15,6 +15,7 @@ import org.texastorque.modules.Numeric;
 import org.texastorque.modules.ToggleSingle;
 import org.texastorque.modules.ValueDisplay;
 import org.texastorque.utils.DataUtils;
+import org.texastorque.utils.ErrorUtils;
 import org.texastorque.utils.LayoutUtils;
 import org.texastorque.utils.Report;
 
@@ -76,10 +77,18 @@ public class Scoring extends Page {
     }
 
     public Report generateReport() {
+        int teamNumber = DataUtils.toInteger(teamNumberDisplay.getValue());
+        int matchNumber = DataUtils.toInteger(matchNumberDisplay.getValue());
+
+        if (teamNumber == -1 || matchNumber == -1) {
+            ErrorUtils.displayError("Error Reading Entry", "Invalid team number or match number");
+            return null;
+        }
+
         return new Report(
-            DataUtils.toInteger(teamNumberDisplay.getValue()),
+            teamNumber,
             matchNameDisplay.getValue(),
-            DataUtils.toInteger(matchNumberDisplay.getValue()),
+            matchNumber,
             taxi.getValue(),
             autoLower.getValue(),
             autoUpper.getValue(),
