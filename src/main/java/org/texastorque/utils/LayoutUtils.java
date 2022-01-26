@@ -17,7 +17,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class LayoutUtils {
-    private LayoutUtils() {}
+    private LayoutUtils() {
+    }
 
     public static class Padding {
         public double top, right, bottom, left;
@@ -38,11 +39,10 @@ public class LayoutUtils {
     }
 
     public static Pane insertPadding(Pane panel, Padding padding) {
-        panel.setPadding(new javafx.geometry.Insets(padding.top, 
-                                                    padding.right, 
-                                                    padding.bottom, 
-                                                    padding.left
-                                                    ));
+        panel.setPadding(new javafx.geometry.Insets(padding.top,
+                padding.right,
+                padding.bottom,
+                padding.left));
         return panel;
     }
 

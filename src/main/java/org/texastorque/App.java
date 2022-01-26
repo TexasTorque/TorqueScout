@@ -26,7 +26,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-
 public class App extends Application {
     Stage stage;
 
@@ -70,16 +69,18 @@ public class App extends Application {
         Scoring window = new Scoring();
         window.getSubmit().setOnAction(e -> {
             Report report = window.generateReport();
-            if (report == null) return;
+            if (report == null)
+                return;
 
-            if (!dataWriter.writeReport(report)) return;
+            if (!dataWriter.writeReport(report))
+                return;
 
             NoticeUtils.displayInfo("Report Success", "Report successfully logged.");
 
             switchToMain();
         });
         switchStageScene(window.getPanel());
-        setStageSize(800, 700); 
+        setStageSize(800, 700);
     }
 
     private void setStageSize(int w, int h) {

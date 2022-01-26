@@ -11,7 +11,8 @@ package org.texastorque.utils;
 
 public class DataUtils {
 
-    private DataUtils() {}
+    private DataUtils() {
+    }
 
     public static int toInteger(String s) {
         try {
@@ -28,5 +29,5 @@ public class DataUtils {
             return -1;
         }
     }
- 
+
 }

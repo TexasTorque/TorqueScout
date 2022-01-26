@@ -30,21 +30,22 @@ public class DataWriter {
     }
 
     private void appendString(String s) throws IOException {
-        Files.write(Path.of(path), (s.replace("\n", " ") + "\n").getBytes(), StandardOpenOption.APPEND); 
+        Files.write(Path.of(path), (s.replace("\n", " ") + "\n").getBytes(), StandardOpenOption.APPEND);
     }
 
     public boolean writeReport(Report report) {
         try {
             if (!Files.exists(Path.of(path))) {
                 Files.createFile(Path.of(path));
-                appendString(Report.header); 
+                appendString(Report.header);
             }
             appendString(report.toCSV());
             return true;
         } catch (IOException e) {
             NoticeUtils.displayError("Data Writer Error", "Could not write entry to local database");
             return false;
-        }    }
+        }
+    }
 
     public boolean export(Stage s) {
         try {
@@ -59,5 +60,5 @@ public class DataWriter {
             return false;
         }
     }
-    
+
 }

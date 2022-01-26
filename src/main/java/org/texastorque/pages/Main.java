@@ -36,35 +36,36 @@ public class Main extends Page {
     ArrayList<Report> reports = null;
 
     // private TableView table = new TableView();
-    
+
     // public Pane makeLabelsPane() {
-    //     Pane p = new VBox();
-    //     p.setPrefSize(600, 600);
-    //     if (reports == null) { System.out.println("reports is null");
-    //         return p;}
-    //     for (Report report : reports) {
-    //         Label l = new Label(report.titleString());
-    //         l.setFont(new Font(16));
-    //         p.getChildren().add(l);
-    //     }
-    //     return p;
+    // Pane p = new VBox();
+    // p.setPrefSize(600, 600);
+    // if (reports == null) { System.out.println("reports is null");
+    // return p;}
+    // for (Report report : reports) {
+    // Label l = new Label(report.titleString());
+    // l.setFont(new Font(16));
+    // p.getChildren().add(l);
+    // }
+    // return p;
     // }
 
     // public Pane makeTablesPane() {
-    //     table.setEditable(true);
-        
-    //     TableColumn dateTimeCol = new TableColumn("Date&Time");
-    //     TableColumn teamNumberCol = new TableColumn("Team Number");
-    //     TableColumn matchNameCol = new TableColumn("Match Name");
-    //     TableColumn matchNumberCol = new TableColumn("Match Number");
-        
-    //     table.getColumns().addAll(dateTimeCol, teamNumberCol, matchNameCol, matchNumberCol);
- 
-    //     final VBox vbox = new VBox();
-    //     vbox.setSpacing(5);
-    //     vbox.setPrefSize(600, 600);
-    //     vbox.getChildren().addAll(table);
-    //     return vbox;
+    // table.setEditable(true);
+
+    // TableColumn dateTimeCol = new TableColumn("Date&Time");
+    // TableColumn teamNumberCol = new TableColumn("Team Number");
+    // TableColumn matchNameCol = new TableColumn("Match Name");
+    // TableColumn matchNumberCol = new TableColumn("Match Number");
+
+    // table.getColumns().addAll(dateTimeCol, teamNumberCol, matchNameCol,
+    // matchNumberCol);
+
+    // final VBox vbox = new VBox();
+    // vbox.setSpacing(5);
+    // vbox.setPrefSize(600, 600);
+    // vbox.getChildren().addAll(table);
+    // return vbox;
     // }
 
     public Main(ArrayList<Report> reports) {
@@ -75,13 +76,12 @@ public class Main extends Page {
         title.setLayoutY(20);
 
         Label description = new Label(
-            "TorqueScout Client is a program to collect match\n" +
-            "information for scouting analysis. The client\n" +
-            "provides a dashboard to collect match data, and\n" +
-            "exports a single CSV file, designed to be used in\n" +
-            "TorqueScout Hub, which is used to perform\n" +
-            "data analysis and inform scouting decisions."
-        );
+                "TorqueScout Client is a program to collect match\n" +
+                        "information for scouting analysis. The client\n" +
+                        "provides a dashboard to collect match data, and\n" +
+                        "exports a single CSV file, designed to be used in\n" +
+                        "TorqueScout Hub, which is used to perform\n" +
+                        "data analysis and inform scouting decisions.");
         description.setFont(new Font(14));
         description.setPrefSize(600, 150);
         description.setLayoutX(20);
@@ -101,24 +101,18 @@ public class Main extends Page {
                 LayoutUtils.bundleIntoVBox(
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(title),
-                                new LayoutUtils.Padding(0, 0, 0, 40)
-                        ),
+                                new LayoutUtils.Padding(0, 0, 0, 40)),
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(description),
-                                new LayoutUtils.Padding(0, 0, 0, 40)
-                        ),
+                                new LayoutUtils.Padding(0, 0, 0, 40)),
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(newReport),
-                                new LayoutUtils.Padding(0, 0, 0, 0)
-                        ),
+                                new LayoutUtils.Padding(0, 0, 0, 0)),
                         LayoutUtils.insertPadding(
-                                //makeLabelsPane(),
-                                //makeTablesPane(),
+                                // makeLabelsPane(),
+                                // makeTablesPane(),
                                 LayoutUtils.wrapInPane(exportReports),
-                                new LayoutUtils.Padding(20, 20, 00, 20)
-                        )
-                )
-        );
+                                new LayoutUtils.Padding(20, 20, 00, 20))));
     }
 
     public Button getNewReport() {
@@ -133,5 +127,5 @@ public class Main extends Page {
     public Pane getPanel() {
         return panel;
     }
-    
+
 }

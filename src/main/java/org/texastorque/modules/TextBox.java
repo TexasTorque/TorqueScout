@@ -42,7 +42,7 @@ public class TextBox extends Module {
         textArea.setPrefSize(320, 160);
         textArea.setFont(new Font(14));
         textArea.setLayoutX(10);
-        //textArea.setLayoutY(50);
+        // textArea.setLayoutY(50);
         textArea.setLayoutY(10);
         textArea.wrapTextProperty().set(true);
 

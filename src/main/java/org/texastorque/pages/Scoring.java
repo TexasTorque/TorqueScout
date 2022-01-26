@@ -55,31 +55,26 @@ public class Scoring extends Page {
 
         panel.setPrefSize(1200, 1200);
         panel.getChildren().addAll(
-            LayoutUtils.bundleIntoHBox(
-                LayoutUtils.bundleIntoVBox(
-                    teamNumberDisplay.getPanel(),
-                    matchNameDisplay.getPanel(),
-                    matchNumberDisplay.getPanel(),
-                    taxi.getPanel(),
-                    autoLower.getPanel(),
-                    autoUpper.getPanel(),
-                    autoMissed.getPanel(),
-                    autoIntaken.getPanel(),
-                    comments.getPanel()
-                ),
-                LayoutUtils.insertPadding(
-                    LayoutUtils.bundleIntoVBox(
-                        teleopLower.getPanel(),
-                        teleopUpper.getPanel(),
-                        teleopMissed.getPanel(),
-                        teleopIntaken.getPanel(),
-                        climb.getPanel(),
-                        LayoutUtils.wrapInPane(submit)
-                    ), 
-                    new LayoutUtils.Padding(0, 0, 0, 40)
-                )
-            )
-        );
+                LayoutUtils.bundleIntoHBox(
+                        LayoutUtils.bundleIntoVBox(
+                                teamNumberDisplay.getPanel(),
+                                matchNameDisplay.getPanel(),
+                                matchNumberDisplay.getPanel(),
+                                taxi.getPanel(),
+                                autoLower.getPanel(),
+                                autoUpper.getPanel(),
+                                autoMissed.getPanel(),
+                                autoIntaken.getPanel(),
+                                comments.getPanel()),
+                        LayoutUtils.insertPadding(
+                                LayoutUtils.bundleIntoVBox(
+                                        teleopLower.getPanel(),
+                                        teleopUpper.getPanel(),
+                                        teleopMissed.getPanel(),
+                                        teleopIntaken.getPanel(),
+                                        climb.getPanel(),
+                                        LayoutUtils.wrapInPane(submit)),
+                                new LayoutUtils.Padding(0, 0, 0, 40))));
     }
 
     public Report generateReport() {
@@ -99,21 +94,20 @@ public class Scoring extends Page {
         }
 
         return new Report(
-            teamNumber,
-            matchNameDisplay.getValue(),
-            matchNumber,
-            taxi.getValue(),
-            autoLower.getValue(),
-            autoUpper.getValue(),
-            autoMissed.getValue(),
-            autoIntaken.getValue(),
-            teleopLower.getValue(),
-            teleopUpper.getValue(),
-            teleopMissed.getValue(),
-            teleopIntaken.getValue(),
-            climb.getValue(),
-            comments.getValue()
-        );
+                teamNumber,
+                matchNameDisplay.getValue(),
+                matchNumber,
+                taxi.getValue(),
+                autoLower.getValue(),
+                autoUpper.getValue(),
+                autoMissed.getValue(),
+                autoIntaken.getValue(),
+                teleopLower.getValue(),
+                teleopUpper.getValue(),
+                teleopMissed.getValue(),
+                teleopIntaken.getValue(),
+                climb.getValue(),
+                comments.getValue());
     }
 
     public Button getSubmit() {
@@ -124,5 +118,5 @@ public class Scoring extends Page {
     public Pane getPanel() {
         return panel;
     }
-    
+
 }

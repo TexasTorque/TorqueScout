@@ -19,7 +19,6 @@ public class Report {
             + "taxi,autoLower,autoUpper,autoMissed,autoIntaken,"
             + "teleopLower,teleopUpper,teleopMissed,teleopIntaken,climb,comment";
 
-
     public static enum Climb {
         NONE,
         LOW,
@@ -64,8 +63,7 @@ public class Report {
             int teleopMissed,
             int teleopIntaken,
             int climb,
-            String comment
-    ) {
+            String comment) {
         this.teamNumber = teamNumber;
         this.matchName = matchName;
         this.matchNumber = matchNumber;
@@ -92,8 +90,8 @@ public class Report {
     }
 
     public String titleString() {
-        return String.format("%s: %d in %s(%d)", 
-                //new SimpleDateFormat("yyyy-MM-dd").format(date), 
+        return String.format("%s: %d in %s(%d)",
+                // new SimpleDateFormat("yyyy-MM-dd").format(date),
                 date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 teamNumber, matchName, matchNumber);
     }

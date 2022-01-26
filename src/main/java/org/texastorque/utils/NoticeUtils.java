@@ -13,8 +13,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class NoticeUtils {
-    
-    private NoticeUtils() {}
+
+    private NoticeUtils() {
+    }
 
     public static void displayError(String header, String content) {
         Alert notice = new Alert(AlertType.ERROR);
