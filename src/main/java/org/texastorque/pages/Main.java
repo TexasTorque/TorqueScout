@@ -32,6 +32,7 @@ public class Main extends Page {
 
     private Button newReport = new Button("New Report");
     private Button exportReports = new Button("Export Reports");
+    private Button launchHub = new Button("Launch Hub");
 
     ArrayList<Report> reports = null;
 
@@ -94,9 +95,13 @@ public class Main extends Page {
         exportReports.setLayoutX(20);
         exportReports.setLayoutY(60);
 
+        launchHub.setPrefSize(300, 75);
+        launchHub.setLayoutX(20);
+        launchHub.setLayoutY(60);
+
         this.reports = reports;
 
-        panel.setPrefSize(350, 1200);
+        //panel.setPrefSize(350, 1200);
         panel.getChildren().addAll(
                 LayoutUtils.bundleIntoVBox(
                         LayoutUtils.insertPadding(
@@ -109,10 +114,13 @@ public class Main extends Page {
                                 LayoutUtils.wrapInPane(newReport),
                                 new LayoutUtils.Padding(0, 0, 0, 0)),
                         LayoutUtils.insertPadding(
-                                // makeLabelsPane(),
-                                // makeTablesPane(),
                                 LayoutUtils.wrapInPane(exportReports),
-                                new LayoutUtils.Padding(20, 20, 00, 20))));
+                                new LayoutUtils.Padding(20, 20, 00, 20)),
+                        LayoutUtils.insertPadding(
+                                LayoutUtils.wrapInPane(launchHub),
+                                new LayoutUtils.Padding(00, 20, 00, 20))
+                                
+                ));
     }
 
     public Button getNewReport() {
@@ -121,6 +129,10 @@ public class Main extends Page {
 
     public Button getExportReports() {
         return exportReports;
+    }
+
+    public Button getLaunchHub() {
+        return launchHub;
     }
 
     @Override

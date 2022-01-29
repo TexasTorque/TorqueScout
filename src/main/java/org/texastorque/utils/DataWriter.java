@@ -51,7 +51,8 @@ public class DataWriter {
         try {
             String content = Files.readString(Path.of(path));
             File selectedDirectory = directoryChooser.showDialog(s);
-            Path exportPath = Path.of(selectedDirectory.getAbsolutePath() + "/" + "scouting-data.csv");
+            Path exportPath = Path.of(selectedDirectory.getAbsolutePath() + "/" + "scouting-data-" 
+                    + System.getProperty("user.name") + ".csv");
             Files.writeString(exportPath, content);
             NoticeUtils.displayInfo("Data Exported Success", "Successfully exported scouting report");
             return true;

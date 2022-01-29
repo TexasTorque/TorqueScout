@@ -11,8 +11,10 @@ package org.texastorque;
 
 import java.util.ArrayList;
 
+import org.texastorque.pages.Hub;
 import org.texastorque.pages.Main;
 import org.texastorque.pages.Scoring;
+import org.texastorque.utils.DataReader;
 import org.texastorque.utils.DataWriter;
 import org.texastorque.utils.NoticeUtils;
 import org.texastorque.utils.Report;
@@ -31,6 +33,7 @@ public class App extends Application {
 
     ArrayList<Report> reports = new ArrayList<Report>();
     DataWriter dataWriter = new DataWriter();
+    DataReader dataReader = new DataReader();
 
     private void switchStageScene(Pane page) {
         if (stage.getScene() == null) {
@@ -61,8 +64,11 @@ public class App extends Application {
         window.getExportReports().setOnAction(e -> {
             dataWriter.export(stage);
         });
+        window.getLaunchHub().setOnAction(e -> {
+            switchToHub();
+        });
         switchStageScene(window.getPanel());
-        setStageSize(350, 600);
+        setStageSize(350, 700);
     }
 
     private void switchToScoring() {
@@ -81,6 +87,15 @@ public class App extends Application {
         });
         switchStageScene(window.getPanel());
         setStageSize(800, 700);
+    }
+
+    private void switchToHub() {
+        Hub window = new Hub();
+        
+        dataReader.getDataSet(stage);
+
+        switchStageScene(window.getPanel());
+        setStageSize(1200, 1200);
     }
 
     private void setStageSize(int w, int h) {
