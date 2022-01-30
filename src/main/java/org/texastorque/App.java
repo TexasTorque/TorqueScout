@@ -97,9 +97,19 @@ public class App extends Application {
 
         ObservableList<Entry> sampleData = FXCollections.observableArrayList();
         sampleData.add(new Entry(1477,"quals-1",1,true,0,5,0,4,0,11,1,12,4,"Texas Torque is the best",LocalDateTime.now()));
-        sampleData.add(new Entry(7492,"quals-1",1,false,0,1,2,2,1,3,2,6,1,"Cavbots is not the best",LocalDateTime.now()));
-        sampleData.add(new Entry(148,"quals-1",1,true,0,4,1,4,1,9,2,12,4,"Robowrangle dez nuts",LocalDateTime.now()));
-        sampleData.add(new Entry(3310,"quals-1",1,true,0,4,0,3,0,5,2,7,4,"3310 intake (:",LocalDateTime.now()));
+        sampleData.add(new Entry(7492,"quals-2",2,false,0,1,2,2,1,3,2,6,3,"",LocalDateTime.now()));
+        sampleData.add(new Entry(148,"quals-3",3,true,0,4,1,4,1,9,2,12,4,"Robowrangle dez nuts",LocalDateTime.now()));
+        sampleData.add(new Entry(3310,"quals-4",4,true,0,4,0,3,0,5,2,7,4,"",LocalDateTime.now()));
+        sampleData.add(new Entry(118,"quals-5",5,true,1,0,0,0,6,0,0,6,2,"Everybot",LocalDateTime.now()));
+        sampleData.add(new Entry(8769,"quals-6",6,false,0,0,0,0,3,0,0,3,1,"SparkMax & CIM?",LocalDateTime.now()));
+        sampleData.add(new Entry(624,"quals-7",7,true,0,4,0,3,1,8,0,9,3,"KRYPTO-NITE SEASON 22",LocalDateTime.now()));
+        sampleData.add(new Entry(1477,"quals-10",10,true,0,5,0,4,0,11,1,12,4,"",LocalDateTime.now()));
+        sampleData.add(new Entry(7492,"quals-9",9,false,0,3,0,2,1,3,2,6,2,"!!BOOMIE!!",LocalDateTime.now()));
+        sampleData.add(new Entry(148,"quals-8",8,true,0,4,1,4,1,12,0,12,4,"",LocalDateTime.now()));
+        sampleData.add(new Entry(3310,"quals-14",14,true,0,4,0,3,0,5,2,7,4,"",LocalDateTime.now()));
+        sampleData.add(new Entry(118,"quals-12",12,true,1,0,0,0,6,0,0,6,2,"Not Everybot",LocalDateTime.now()));
+        sampleData.add(new Entry(8769,"quals-13",13,true,0,0,0,0,3,0,0,4,1,"",LocalDateTime.now()));
+        sampleData.add(new Entry(624,"quals-11",11,true,0,3,0,3,1,8,0,10,4,"",LocalDateTime.now()));
         
         Hub window = new Hub(sampleData);
 

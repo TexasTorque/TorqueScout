@@ -3,12 +3,20 @@ package org.texastorque.utils;
 import java.net.Authenticator;
 import java.time.LocalDateTime;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Entry {
     public final static Integer[] climbScores = {0, 4, 6, 10, 15};
-    public final static String[] climbNames = {"None", "Low", "Medium", "High", "Transversal"};
+    public final static String[] climbNames = {"None", "Low", "Mid", "High", "Transversal"};
+
+    public static int valueOfClimb(String climb) {
+        for (int i = 0; i < climbNames.length; i++) 
+            if (climbNames[i].equals(climb)) 
+                return climbScores[i];
+        return 0;
+    }
 
     public final Integer teamNumber;
     public final String matchName;

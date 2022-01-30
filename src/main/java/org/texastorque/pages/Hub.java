@@ -10,6 +10,7 @@
 package org.texastorque.pages;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import org.texastorque.components.FadeButton;
 import org.texastorque.modules.DisjointToggles;
@@ -53,10 +54,46 @@ public class Hub extends Page {
 
         //table.setItems(entries);
         table.getItems().addAll(entries);
+
+        TableColumn<Entry, String> taxiColumn = (TableColumn<Entry, String>) Entry.createColumn("taxi");
+        taxiColumn.setComparator((String v1, String v2) -> {
+            return v1.length() >= v2.length() ? 1 : -1;
+        });
+
+
+        TableColumn<Entry, String> autoAccuracyColumn = (TableColumn<Entry, String>) 
+                Entry.createColumn("autoAccuracy", "A Accuracy");
+
+        autoAccuracyColumn.setComparator((String v1, String v2) -> {
+            try {
+                return Integer.parseInt(v1.replace("%", "")) >= Integer.parseInt(v2.replace("%", "")) ? 1 : -1;
+            } catch (Exception e) {
+                return 0;
+            }
+        });
+
+        TableColumn<Entry, String> teleopAccuracyColumn = (TableColumn<Entry, String>) 
+                Entry.createColumn("teleopAccuracy", "T Accuracy");
+
+
+        teleopAccuracyColumn.setComparator((String v1, String v2) -> {
+            try {
+                return Integer.parseInt(v1.replace("%", "")) >= Integer.parseInt(v2.replace("%", "")) ? 1 : -1;
+            } catch (Exception e) {
+                return 0;
+            }
+        });
+
+        TableColumn<Entry, String> climbColumn = (TableColumn<Entry, String>) Entry.createColumn("climb");
+
+        climbColumn.setComparator((String v1, String v2) -> {
+            return Entry.valueOfClimb(v1) >= Entry.valueOfClimb(v2) ? 1 : -1;
+        });
+
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
                 Entry.createColumn("matchNumber", "Match #"),
-                Entry.createColumn("taxi"),
+                taxiColumn,
 
                 Entry.createColumn("autoLower", "A Lower"),
                 Entry.createColumn("autoUpper", "A Upper"),
@@ -64,7 +101,7 @@ public class Hub extends Page {
                 Entry.createColumn("autoIntaken", "A Intaken"),
 
                 Entry.createColumn("autoScore", "A Score"),
-                Entry.createColumn("autoAccuracy", "A Accuracy"),
+                autoAccuracyColumn,
 
                 Entry.createColumn("teleopLower", "T Lower"),
                 Entry.createColumn("teleopUpper", "T Upper"),
@@ -72,15 +109,21 @@ public class Hub extends Page {
                 Entry.createColumn("teleopIntaken", "T Intaken"),
 
                 Entry.createColumn("teleopScore", "T Score"),
-                Entry.createColumn("teleopAccuracy", "T Accuracy"),
+                teleopAccuracyColumn,
 
-                Entry.createColumn("climb")
+                climbColumn,
+                Entry.createColumn("totalScore"),
+                Entry.createColumn("comment")
         );
 
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
         vbox.getChildren().addAll(label, table);
+
+        TableColumn<Entry, ?> scoreColumn = table.getColumns().get(16);
+        scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
+        table.getSortOrder().add(scoreColumn);
 
         panel.getChildren().add(vbox);
 
