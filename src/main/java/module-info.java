@@ -10,7 +10,9 @@
 module TorqueScout {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.graphics;
+    requires javafx.base;
 
-    opens org.texastorque to javafx.fxml;
+    opens org.texastorque.utils to javafx.base;
     exports org.texastorque;
 }

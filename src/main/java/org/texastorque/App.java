@@ -95,12 +95,13 @@ public class App extends Application {
 
     private void switchToHub() {
 
-        ObservableList<Entry> matchstats = FXCollections.observableArrayList();
-
-        matchstats.add(
-                new Entry(7492, "quals-2", 34, true, 3, 6, 7, 16, 5, 3, 6, 14, 3, "they sucked", LocalDateTime.now()));
-
-        Hub window = new Hub(matchstats);
+        ObservableList<Entry> sampleData = FXCollections.observableArrayList();
+        sampleData.add(new Entry(1477,"quals-1",1,true,0,5,0,4,0,11,1,12,4,"Texas Torque is the best",LocalDateTime.now()));
+        sampleData.add(new Entry(7492,"quals-1",1,false,0,1,2,2,1,3,2,6,1,"Cavbots is not the best",LocalDateTime.now()));
+        sampleData.add(new Entry(148,"quals-1",1,true,0,4,1,4,1,9,2,12,4,"Robowrangle dez nuts",LocalDateTime.now()));
+        sampleData.add(new Entry(3310,"quals-1",1,true,0,4,0,3,0,5,2,7,4,"3310 intake (:",LocalDateTime.now()));
+        
+        Hub window = new Hub(sampleData);
 
         switchStageScene(window.getPanel());
         setStageSize(1200, 1200);

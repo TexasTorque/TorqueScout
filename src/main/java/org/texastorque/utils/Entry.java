@@ -3,81 +3,54 @@ package org.texastorque.utils;
 import java.net.Authenticator;
 import java.time.LocalDateTime;
 
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 public class Entry {
+    public final static Integer[] climbScores = {0, 4, 6, 10, 15};
 
-    public int calcAutoScore(boolean taxi, int autoLower, int autoUpper) {
-        int score = 0;
-        score += (taxi == true) ? 2 : 0;
-        score += autoLower * 2;
-        score += autoUpper * 4;
-        return score;
-    }
-
-    public int calcTeleopScore(int teleopLower, int teleopUpper, int climb) {
-        int score = 0;
-        score += teleopLower * 1;
-        score += teleopUpper * 2;
-        switch (climb) {
-            case 0:
-                score += 0;
-                break;
-            case 1:
-                score += 4;
-                break;
-            case 2:
-                score += 6;
-                break;
-            case 3:
-                score += 10;
-                break;
-            case 4:
-                score += 15;
-                break;
-        }
-        return score;
-    }
-
-    public final int teamNumber;
+    public final Integer teamNumber;
     public final String matchName;
-    public final int matchNumber;
-    public final int climb;
+    public final Integer matchNumber;
+    public final Integer climb;
 
     public final boolean taxi;
 
-    public final int autoLower;
-    public final int autoUpper;
-    public final int autoMissed;
-    public final int autoIntaken;
+    public final Integer autoLower;
+    public final Integer autoUpper;
+    public final Integer autoMissed;
+    public final Integer autoIntaken;
 
-    public final int teleopLower;
-    public final int teleopUpper;
-    public final int teleopMissed;
-    public final int teleopIntaken;
+    public final Integer teleopLower;
+    public final Integer teleopUpper;
+    public final Integer teleopMissed;
+    public final Integer teleopIntaken;
 
     public final String comment;
 
     public final LocalDateTime date;
 
-    public final int autoScore;
-    public final int teleopScore;
-    public final int totalScore;
-    public final double autoShootingAccuracy;
-    public final double teleopShootingAccuracy;
-    public final double totalShootingAccuracy;
+    public final Integer autoScore;
+    public final Integer teleopScore;
+    public final Integer totalScore;
 
-    public Entry(int teamNumber,
+    public final Integer autoShootingAccuracy;
+    public final Integer teleopShootingAccuracy;
+    public final Integer totalShootingAccuracy;
+
+    public Entry(Integer teamNumber,
             String matchName,
-            int matchNumber,
+            Integer matchNumber,
             boolean taxi,
-            int autoLower,
-            int autoUpper,
-            int autoMissed,
-            int autoIntaken,
-            int teleopLower,
-            int teleopUpper,
-            int teleopMissed,
-            int teleopIntaken,
-            int climb,
+            Integer autoLower,
+            Integer autoUpper,
+            Integer autoMissed,
+            Integer autoIntaken,
+            Integer teleopLower,
+            Integer teleopUpper,
+            Integer teleopMissed,
+            Integer teleopIntaken,
+            Integer climb,
             String comment,
             LocalDateTime date) {
         this.teamNumber = teamNumber;
@@ -95,17 +68,25 @@ public class Entry {
         this.climb = climb;
         this.comment = comment;
         this.date = date;
-        this.autoScore = calcAutoScore(taxi, autoLower, autoUpper);
-        this.teleopScore = calcTeleopScore(teleopLower, teleopUpper, climb);
+
+        this.autoScore = (taxi ? 2 : 0) + autoLower * 2 + autoUpper * 4; 
+        this.teleopScore = climbScores[climb] + teleopLower + teleopUpper * 2;
         this.totalScore = this.autoScore + this.teleopScore;
-        this.autoShootingAccuracy = (this.autoLower + this.autoUpper + 0.)
-                / (this.autoLower + this.autoUpper + this.autoMissed);
-        this.teleopShootingAccuracy = (this.teleopLower + this.teleopUpper + 0.)
-                / (this.teleopLower + this.teleopUpper + this.teleopMissed);
-        this.totalShootingAccuracy = (this.autoShootingAccuracy + this.teleopShootingAccuracy) / 2.;
+
+        this.autoShootingAccuracy = Math.min(100, Math.max(0, 
+                (this.autoLower + this.autoUpper)
+                / (this.autoLower + this.autoUpper + this.autoMissed) 
+                * 100));
+                
+        this.teleopShootingAccuracy = Math.min(100, Math.max(0, 
+                (this.teleopLower + this.teleopUpper)
+                / (this.teleopLower + this.teleopUpper + this.teleopMissed) 
+                * 100));
+
+        this.totalShootingAccuracy = (this.autoShootingAccuracy + this.teleopShootingAccuracy) / 2;
     }
 
-    public int getTeamNumber() {
+    public Integer getTeamNumber() {
         return teamNumber;
     }
 
@@ -113,43 +94,47 @@ public class Entry {
         return matchName;
     }
 
-    public boolean getTaxi() {
-        return taxi;
+    public Integer getMatchNumber() {
+        return matchNumber;
     }
 
-    public int getAutoLower() {
+    public String getTaxi() {
+        return taxi ? "Yes" : "No";
+    }
+
+    public Integer getAutoLower() {
         return autoLower;
     }
 
-    public int getautoUpper() {
+    public Integer getautoUpper() {
         return autoUpper;
     }
 
-    public int getautoMissed() {
+    public Integer getautoMissed() {
         return autoMissed;
     }
 
-    public int getautoIntaken() {
+    public Integer getautoIntaken() {
         return autoIntaken;
     }
 
-    public int getTeleopLower() {
+    public Integer getTeleopLower() {
         return teleopLower;
     }
 
-    public int getTeleopUpper() {
+    public Integer getTeleopUpper() {
         return teleopUpper;
     }
 
-    public int getTeleopMissed() {
+    public Integer getTeleopMissed() {
         return teleopMissed;
     }
 
-    public int getTeleopIntaken() {
+    public Integer getTeleopIntaken() {
         return teleopIntaken;
     }
 
-    public int getClimb() {
+    public Integer getClimb() {
         return teamNumber;
     }
 
@@ -161,27 +146,39 @@ public class Entry {
         return date;
     }
 
-    public int getAutoScore() {
+    public Integer getAutoScore() {
         return autoScore;
     }
 
-    public int getTeleopScore() {
+    public Integer getTeleopScore() {
         return teleopScore;
     }
 
-    public int getTotalScore() {
+    public Integer getTotalScore() {
         return totalScore;
     }
 
-    public double getAutoShootingAccuracy() {
+    public Integer getAutoShootingAccuracy() {
         return autoShootingAccuracy;
     }
 
-    public double getTeleopShootingAccuracy() {
+    public Integer getTeleopShootingAccuracy() {
         return teleopShootingAccuracy;
     }
 
-    public double getTotalShootingAccuracy() {
+    public Integer getTotalShootingAccuracy() {
         return totalShootingAccuracy;
+    }
+
+    public static TableColumn<Entry, Integer> createTeamNumberColumn() {
+        TableColumn<Entry, Integer> teamNumberCol = new TableColumn<>("Team Number");
+        teamNumberCol.setCellValueFactory(new PropertyValueFactory<>("teamNumber"));
+        return teamNumberCol;
+    }
+
+    public static TableColumn<Entry, Integer> createMatchNumberColumn() {
+        TableColumn<Entry, Integer> teamNumberCol = new TableColumn<>("Match Number");
+        teamNumberCol.setCellValueFactory(new PropertyValueFactory<>("matchNumber"));
+        return teamNumberCol;
     }
 }

@@ -48,24 +48,15 @@ public class Hub extends Page {
 
     public Hub(ObservableList<Entry> entries) {
         label.setFont(new Font("Arial", 50));
-        table.setEditable(true);
-        TableColumn teamNumber = new TableColumn("Team Number");
-        teamNumber.setMinWidth(400);
+        table.setEditable(false);
+        
 
-        teamNumber.setCellValueFactory(
-                new PropertyValueFactory<Entry, String>("teamNumber"));
-        TableColumn matchName = new TableColumn("Match Name");
-        matchName.setMinWidth(400);
-        matchName.setCellValueFactory(
-                new PropertyValueFactory<Entry, String>("matchName"));
-
-        TableColumn score = new TableColumn("Score");
-        score.setMinWidth(360);
-        score.setCellValueFactory(
-                new PropertyValueFactory<Entry, String>("score"));
-
-        table.setItems(entries);
-        table.getColumns().addAll(teamNumber, matchName, score);
+        //table.setItems(entries);
+        table.getItems().addAll(entries);
+        table.getColumns().addAll(
+                Entry.createTeamNumberColumn(),
+                Entry.createMatchNumberColumn()
+        );
 
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
