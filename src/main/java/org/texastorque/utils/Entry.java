@@ -8,6 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Entry {
     public final static Integer[] climbScores = {0, 4, 6, 10, 15};
+    public final static String[] climbNames = {"None", "Low", "Medium", "High", "Transversal"};
 
     public final Integer teamNumber;
     public final String matchName;
@@ -34,9 +35,9 @@ public class Entry {
     public final Integer teleopScore;
     public final Integer totalScore;
 
-    public final Integer autoShootingAccuracy;
-    public final Integer teleopShootingAccuracy;
-    public final Integer totalShootingAccuracy;
+    public final Long autoAccuracy;
+    public final Long teleopAccuracy;
+    public final Long totalAccuracy;
 
     public Entry(Integer teamNumber,
             String matchName,
@@ -73,17 +74,17 @@ public class Entry {
         this.teleopScore = climbScores[climb] + teleopLower + teleopUpper * 2;
         this.totalScore = this.autoScore + this.teleopScore;
 
-        this.autoShootingAccuracy = Math.min(100, Math.max(0, 
-                (this.autoLower + this.autoUpper)
+        this.autoAccuracy = Math.min(100, Math.max(0, Math.round(
+                (this.autoLower + this.autoUpper + 0.)
                 / (this.autoLower + this.autoUpper + this.autoMissed) 
-                * 100));
+                * 100)));
                 
-        this.teleopShootingAccuracy = Math.min(100, Math.max(0, 
-                (this.teleopLower + this.teleopUpper)
+        this.teleopAccuracy = Math.min(100, Math.max(0, Math.round(
+                (this.teleopLower + this.teleopUpper + 0.)
                 / (this.teleopLower + this.teleopUpper + this.teleopMissed) 
-                * 100));
+                * 100)));
 
-        this.totalShootingAccuracy = (this.autoShootingAccuracy + this.teleopShootingAccuracy) / 2;
+        this.totalAccuracy = (this.autoAccuracy + this.teleopAccuracy) / 2;
     }
 
     public Integer getTeamNumber() {
@@ -106,15 +107,15 @@ public class Entry {
         return autoLower;
     }
 
-    public Integer getautoUpper() {
+    public Integer getAutoUpper() {
         return autoUpper;
     }
 
-    public Integer getautoMissed() {
+    public Integer getAutoMissed() {
         return autoMissed;
     }
 
-    public Integer getautoIntaken() {
+    public Integer getAutoIntaken() {
         return autoIntaken;
     }
 
@@ -134,8 +135,8 @@ public class Entry {
         return teleopIntaken;
     }
 
-    public Integer getClimb() {
-        return teamNumber;
+    public String getClimb() {
+        return climbNames[climb];
     }
 
     public String getComment() {
@@ -158,27 +159,26 @@ public class Entry {
         return totalScore;
     }
 
-    public Integer getAutoShootingAccuracy() {
-        return autoShootingAccuracy;
+    public String getAutoAccuracy() {
+        return autoAccuracy + "%";
     }
 
-    public Integer getTeleopShootingAccuracy() {
-        return teleopShootingAccuracy;
+    public String getTeleopAccuracy() {
+        return teleopAccuracy + "%";
     }
 
-    public Integer getTotalShootingAccuracy() {
-        return totalShootingAccuracy;
+    public String getTotalAccuracy() {
+        return totalAccuracy + "%";
     }
 
-    public static TableColumn<Entry, Integer> createTeamNumberColumn() {
-        TableColumn<Entry, Integer> teamNumberCol = new TableColumn<>("Team Number");
-        teamNumberCol.setCellValueFactory(new PropertyValueFactory<>("teamNumber"));
-        return teamNumberCol;
+    public static TableColumn<Entry, ?> createColumn(String property) {
+        return createColumn(property, DataUtils.titleCase(
+                DataUtils.splitCamelCase(property)));
     }
 
-    public static TableColumn<Entry, Integer> createMatchNumberColumn() {
-        TableColumn<Entry, Integer> teamNumberCol = new TableColumn<>("Match Number");
-        teamNumberCol.setCellValueFactory(new PropertyValueFactory<>("matchNumber"));
-        return teamNumberCol;
+    public static TableColumn<Entry, ?> createColumn(String property, String name) {
+        TableColumn<Entry, ?> column = new TableColumn<>(name);
+        column.setCellValueFactory(new PropertyValueFactory<>(property));
+        return column;
     }
 }

@@ -104,7 +104,8 @@ public class App extends Application {
         Hub window = new Hub(sampleData);
 
         switchStageScene(window.getPanel());
-        setStageSize(1200, 1200);
+        //setStageSize(1200, 1200);
+        stage.setMaximized(true);
     }
 
     private void setStageSize(int w, int h) {

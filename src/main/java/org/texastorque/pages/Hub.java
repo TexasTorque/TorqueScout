@@ -54,8 +54,27 @@ public class Hub extends Page {
         //table.setItems(entries);
         table.getItems().addAll(entries);
         table.getColumns().addAll(
-                Entry.createTeamNumberColumn(),
-                Entry.createMatchNumberColumn()
+                Entry.createColumn("teamNumber", "Team #"),
+                Entry.createColumn("matchNumber", "Match #"),
+                Entry.createColumn("taxi"),
+
+                Entry.createColumn("autoLower", "A Lower"),
+                Entry.createColumn("autoUpper", "A Upper"),
+                Entry.createColumn("autoMissed", "A Missed"),
+                Entry.createColumn("autoIntaken", "A Intaken"),
+
+                Entry.createColumn("autoScore", "A Score"),
+                Entry.createColumn("autoAccuracy", "A Accuracy"),
+
+                Entry.createColumn("teleopLower", "T Lower"),
+                Entry.createColumn("teleopUpper", "T Upper"),
+                Entry.createColumn("teleopMissed", "T Missed"),
+                Entry.createColumn("teleopIntaken", "T Intaken"),
+
+                Entry.createColumn("teleopScore", "T Score"),
+                Entry.createColumn("teleopAccuracy", "T Accuracy"),
+
+                Entry.createColumn("climb")
         );
 
         final VBox vbox = new VBox();

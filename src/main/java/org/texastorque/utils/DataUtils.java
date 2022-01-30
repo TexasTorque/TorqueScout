@@ -9,6 +9,9 @@
  */
 package org.texastorque.utils;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class DataUtils {
 
     private DataUtils() {
@@ -28,6 +31,32 @@ public class DataUtils {
         } catch (NumberFormatException e) {
             return -1;
         }
+    }
+
+    public static String splitCamelCase(String s) {
+        if (s == null || s.isEmpty()) return s;
+
+        return s.replaceAll(
+           String.format("%s|%s|%s",
+              "(?<=[A-Z])(?=[A-Z][a-z])",
+              "(?<=[^A-Z])(?=[A-Z])",
+              "(?<=[A-Za-z])(?=[^A-Za-z])"
+           ),
+           " "
+        );
+    }
+
+    public static String titleCase(String s) {
+        if (s == null || s.isEmpty()) return s;
+
+        return Arrays
+            .stream(s.split(" "))
+            .map(word -> word.isEmpty()
+                ? word
+                : Character.toTitleCase(word.charAt(0)) + word
+                .substring(1)
+                .toLowerCase())
+            .collect(Collectors.joining(" "));
     }
 
 }
