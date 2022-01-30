@@ -1,5 +1,6 @@
 package org.texastorque.utils;
 
+import java.net.Authenticator;
 import java.time.LocalDateTime;
 
 public class Entry {
@@ -172,9 +173,15 @@ public class Entry {
         return totalScore;
     }
 
-    public static void main(String[] args) {
-        LocalDateTime now = LocalDateTime.now();
-        Entry cavbotsReport = new Entry(7492, "quals-2", 34, true, 3, 6, 7, 16, 5, 3, 6, 14, 3, "they sucked", now);
-        System.out.println(cavbotsReport.totalShootingAccuracy);
+    public double getAutoShootingAccuracy() {
+        return autoShootingAccuracy;
+    }
+
+    public double getTeleopShootingAccuracy() {
+        return teleopShootingAccuracy;
+    }
+
+    public double getTotalShootingAccuracy() {
+        return totalShootingAccuracy;
     }
 }
