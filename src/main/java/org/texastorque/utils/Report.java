@@ -107,8 +107,8 @@ public class Report {
      */
 
     public String toCSV() {
-        return String.format("%s,%d,%s,%d,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s",
-                getDateTimeString(), teamNumber, matchName, matchNumber, taxi,
+        return String.format("%s,%d,%s,%d,%s,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s",
+                getDateTimeString(), teamNumber, matchName, matchNumber, alliance, taxi,
                 autoLower, autoUpper, autoMissed, autoIntaken,
                 teleopLower, teleopUpper, teleopMissed, teleopIntaken,
                 climb, comment);

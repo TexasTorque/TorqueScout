@@ -94,7 +94,7 @@ public class Hub extends Page {
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
                 Entry.createColumn("matchNumber", "Match #"),
-                // Entry.createColumn("alliance", "Alliance"),
+                Entry.createColumn("alliance", "Alliance"),
                 taxiColumn,
 
                 Entry.createColumn("autoLower", "A Lower"),
