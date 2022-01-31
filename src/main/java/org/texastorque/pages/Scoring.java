@@ -13,6 +13,7 @@ import org.texastorque.components.FadeButton;
 import org.texastorque.modules.DisjointToggles;
 import org.texastorque.modules.Numeric;
 import org.texastorque.modules.TextBox;
+import org.texastorque.modules.ToggleDouble;
 import org.texastorque.modules.ToggleSingle;
 import org.texastorque.modules.ValueDisplay;
 import org.texastorque.utils.DataUtils;
@@ -31,6 +32,7 @@ public class Scoring extends Page {
     private ValueDisplay teamNumberDisplay = new ValueDisplay("Team Number", 0000);
     private ValueDisplay matchNameDisplay = new ValueDisplay("Match Name", "quals-0");
     private ValueDisplay matchNumberDisplay = new ValueDisplay("Match Number", 0);
+    private ToggleDouble allianceSelector = new ToggleDouble("Alliance");
 
     private ToggleSingle taxi = new ToggleSingle("Auto Taxi");
     private Numeric autoLower = new Numeric("Auto lower");
@@ -68,6 +70,7 @@ public class Scoring extends Page {
                                 teamNumberDisplay.getPanel(),
                                 matchNameDisplay.getPanel(),
                                 matchNumberDisplay.getPanel(),
+                                allianceSelector.getPanel(),
                                 taxi.getPanel(),
                                 autoLower.getPanel(),
                                 autoUpper.getPanel(),

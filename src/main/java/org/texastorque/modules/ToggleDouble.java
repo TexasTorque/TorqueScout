@@ -29,25 +29,25 @@ public class ToggleDouble extends Module {
         init();
     }
 
+    Button on = new Button();
+    Button off = new Button();
+
     @Override
     public void init() {
-        // panel.setStyle("-fx-background-color: black;");
-        panel.setPrefSize(230, 60);
-
-        Button on = new Button();
-        Button off = new Button();
         Label label = new Label(name);
+        panel.setPrefSize(320, 60);
 
         on.setFont(LayoutUtils.getStandardFont(14));
         off.setFont(LayoutUtils.getStandardFont(14));
- 
-        label.setPrefSize(100, 50);
+
+        label.setPrefSize(130, 50);
         label.setLayoutX(10);
+        label.setFont(LayoutUtils.getStandardFont(18));
 
         on.setText("✓");
         on.setPrefSize(50, 50);
-        on.setLayoutX(120);
-        on.setStyle("-fx-background-color: green;");
+        on.setLayoutX(240);
+        on.setStyle("-fx-background-color: blue;");
 
         off.setText("✗");
         off.setPrefSize(50, 50);
@@ -58,6 +58,8 @@ public class ToggleDouble extends Module {
 
         on.setOnAction((event) -> {
             value = true;
+            off.setText("✗");
+            on.setText("✓");
         });
 
         on.onMouseReleasedProperty().set(e -> {
@@ -70,6 +72,8 @@ public class ToggleDouble extends Module {
 
         off.setOnAction((event) -> {
             value = false;
+            on.setText("✗");
+            off.setText("✓");
         });
 
         off.onMouseReleasedProperty().set(e -> {
@@ -93,7 +97,11 @@ public class ToggleDouble extends Module {
         return panel;
     }
 
-    public boolean getValue() {
-        return value;
+    public String getValue() {
+        if (value == false) {
+            return "Blue";
+        } else {
+            return "Red";
+        }
     }
 }
