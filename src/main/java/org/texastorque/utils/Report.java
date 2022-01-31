@@ -15,10 +15,9 @@ import java.time.format.DateTimeFormatter;
 
 public class Report {
 
-    public static final DateTimeFormatter dateTimeFormatter = 
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public static final String header = "dateTime,teamNumber,matchName,matchNumber,"
+    public static final String header = "dateTime,teamNumber,matchName,matchNumber,alliance"
             + "taxi,autoLower,autoUpper,autoMissed,autoIntaken,"
             + "teleopLower,teleopUpper,teleopMissed,teleopIntaken,climb,comment";
 
@@ -33,6 +32,7 @@ public class Report {
     public final int teamNumber;
     public final String matchName;
     public final int matchNumber;
+    public final String alliance;
 
     public final boolean taxi;
 
@@ -56,6 +56,7 @@ public class Report {
             int teamNumber,
             String matchName,
             int matchNumber,
+            String alliance,
             boolean taxi,
             int autoLower,
             int autoUpper,
@@ -70,6 +71,7 @@ public class Report {
         this.teamNumber = teamNumber;
         this.matchName = matchName;
         this.matchNumber = matchNumber;
+        this.alliance = alliance;
         this.taxi = taxi;
         this.autoLower = autoLower;
         this.autoUpper = autoUpper;
@@ -89,11 +91,20 @@ public class Report {
     }
 
     public String titleString() {
-        return String.format("%s: %d in %s(%d)",
+        return String.format("%s: %d in %s(%d) in Alliance %s",
                 // new SimpleDateFormat("yyyy-MM-dd").format(date),
                 date.format(dateTimeFormatter),
-                teamNumber, matchName, matchNumber);
+                teamNumber, matchName, matchNumber, alliance);
     }
+    /*
+     * public String toCSV() {
+     * return String.format("%s,%d,%s,%d,%s,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s",
+     * getDateTimeString(), teamNumber, matchName, matchNumber, alliance, taxi,
+     * autoLower, autoUpper, autoMissed, autoIntaken,
+     * teleopLower, teleopUpper, teleopMissed, teleopIntaken,
+     * climb, comment);
+     * }
+     */
 
     public String toCSV() {
         return String.format("%s,%d,%s,%d,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s",

@@ -55,7 +55,7 @@ public class Hub extends Page {
 
         back.setFont(LayoutUtils.getStandardFont(24));
 
-        //table.setItems(entries);
+        // table.setItems(entries);
         table.getItems().addAll(entries);
 
         TableColumn<Entry, String> taxiColumn = (TableColumn<Entry, String>) Entry.createColumn("taxi");
@@ -63,9 +63,8 @@ public class Hub extends Page {
             return v1.length() >= v2.length() ? 1 : -1;
         });
 
-
-        TableColumn<Entry, String> autoAccuracyColumn = (TableColumn<Entry, String>) 
-                Entry.createColumn("autoAccuracy", "A Accuracy");
+        TableColumn<Entry, String> autoAccuracyColumn = (TableColumn<Entry, String>) Entry.createColumn("autoAccuracy",
+                "A Accuracy");
 
         autoAccuracyColumn.setComparator((String v1, String v2) -> {
             try {
@@ -75,9 +74,8 @@ public class Hub extends Page {
             }
         });
 
-        TableColumn<Entry, String> teleopAccuracyColumn = (TableColumn<Entry, String>) 
-                Entry.createColumn("teleopAccuracy", "T Accuracy");
-
+        TableColumn<Entry, String> teleopAccuracyColumn = (TableColumn<Entry, String>) Entry
+                .createColumn("teleopAccuracy", "T Accuracy");
 
         teleopAccuracyColumn.setComparator((String v1, String v2) -> {
             try {
@@ -96,6 +94,7 @@ public class Hub extends Page {
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
                 Entry.createColumn("matchNumber", "Match #"),
+                // Entry.createColumn("alliance", "Alliance"),
                 taxiColumn,
 
                 Entry.createColumn("autoLower", "A Lower"),
@@ -116,8 +115,7 @@ public class Hub extends Page {
 
                 climbColumn,
                 Entry.createColumn("totalScore"),
-                Entry.createColumn("comment")
-        );
+                Entry.createColumn("comment"));
 
         final VBox vbox = new VBox();
         vbox.setSpacing(5);

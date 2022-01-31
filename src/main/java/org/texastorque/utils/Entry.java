@@ -20,12 +20,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Entry {
-    public final static Integer[] climbScores = {0, 4, 6, 10, 15};
-    public final static String[] climbNames = {"None", "Low", "Mid", "High", "Transversal"};
+    public final static Integer[] climbScores = { 0, 4, 6, 10, 15 };
+    public final static String[] climbNames = { "None", "Low", "Mid", "High", "Transversal" };
 
     public static int valueOfClimb(String climb) {
-        for (int i = 0; i < climbNames.length; i++) 
-            if (climbNames[i].equals(climb)) 
+        for (int i = 0; i < climbNames.length; i++)
+            if (climbNames[i].equals(climb))
                 return climbScores[i];
         return 0;
     }
@@ -33,6 +33,7 @@ public class Entry {
     public final Integer teamNumber;
     public final String matchName;
     public final Integer matchNumber;
+    public final String alliance;
     public final Integer climb;
 
     public final boolean taxi;
@@ -63,6 +64,7 @@ public class Entry {
             Integer teamNumber,
             String matchName,
             Integer matchNumber,
+            String alliance,
             boolean taxi,
             Integer autoLower,
             Integer autoUpper,
@@ -78,6 +80,7 @@ public class Entry {
         this.teamNumber = teamNumber;
         this.matchName = matchName;
         this.matchNumber = matchNumber;
+        this.alliance = alliance;
         this.taxi = taxi;
         this.autoLower = autoLower;
         this.autoUpper = autoUpper;
@@ -91,19 +94,19 @@ public class Entry {
         this.comment = comment;
         this.date = date;
 
-        this.autoScore = (taxi ? 2 : 0) + autoLower * 2 + autoUpper * 4; 
+        this.autoScore = (taxi ? 2 : 0) + autoLower * 2 + autoUpper * 4;
         this.teleopScore = climbScores[climb] + teleopLower + teleopUpper * 2;
         this.totalScore = this.autoScore + this.teleopScore;
 
         this.autoAccuracy = Math.min(100, Math.max(0, Math.round(
                 (this.autoLower + this.autoUpper + 0.)
-                / (this.autoLower + this.autoUpper + this.autoMissed) 
-                * 100)));
-                
+                        / (this.autoLower + this.autoUpper + this.autoMissed)
+                        * 100)));
+
         this.teleopAccuracy = Math.min(100, Math.max(0, Math.round(
                 (this.teleopLower + this.teleopUpper + 0.)
-                / (this.teleopLower + this.teleopUpper + this.teleopMissed) 
-                * 100)));
+                        / (this.teleopLower + this.teleopUpper + this.teleopMissed)
+                        * 100)));
 
         this.totalAccuracy = (this.autoAccuracy + this.teleopAccuracy) / 2;
     }
@@ -118,6 +121,10 @@ public class Entry {
 
     public Integer getMatchNumber() {
         return matchNumber;
+    }
+
+    public String getAlliance() {
+        return alliance;
     }
 
     public String getTaxi() {
@@ -212,23 +219,40 @@ public class Entry {
         } catch (Exception e) {
             dateTime = LocalDateTime.parse("2022-1-8T11:00:00");
         }
-
+        /*
+         * return new Entry(
+         * Integer.parseInt(parts[1]),
+         * parts[2],
+         * Integer.parseInt(parts[3]),
+         * parts[4].equals("true"),
+         * Integer.parseInt(parts[5]),
+         * Integer.parseInt(parts[6]),
+         * Integer.parseInt(parts[7]),
+         * Integer.parseInt(parts[8]),
+         * Integer.parseInt(parts[9]),
+         * Integer.parseInt(parts[10]),
+         * Integer.parseInt(parts[11]),
+         * Integer.parseInt(parts[12]),
+         * Integer.parseInt(parts[13]),
+         * parts[14],
+         * dateTime);
+         */
         return new Entry(
-            Integer.parseInt(parts[1]),
-            parts[2],
-            Integer.parseInt(parts[3]),
-            parts[4].equals("true"),
-            Integer.parseInt(parts[5]),
-            Integer.parseInt(parts[6]),
-            Integer.parseInt(parts[7]),
-            Integer.parseInt(parts[8]),
-            Integer.parseInt(parts[9]),
-            Integer.parseInt(parts[10]),
-            Integer.parseInt(parts[11]),
-            Integer.parseInt(parts[12]), 
-            Integer.parseInt(parts[13]),
-            parts[14],
-            dateTime
-        );
+                Integer.parseInt(parts[1]),
+                parts[2],
+                Integer.parseInt(parts[3]),
+                parts[4],
+                parts[5].equals("true"),
+                Integer.parseInt(parts[6]),
+                Integer.parseInt(parts[7]),
+                Integer.parseInt(parts[8]),
+                Integer.parseInt(parts[9]),
+                Integer.parseInt(parts[10]),
+                Integer.parseInt(parts[11]),
+                Integer.parseInt(parts[12]),
+                Integer.parseInt(parts[13]),
+                Integer.parseInt(parts[14]),
+                parts[15],
+                dateTime);
     }
 }

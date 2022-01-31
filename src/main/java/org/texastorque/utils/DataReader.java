@@ -30,7 +30,6 @@ public class DataReader {
 
     public DataReader() {
         directoryChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        //directoryChooser.setInitialDirectory(new File("/Users/justuslanguell/TexasTorque/TorqueScout/tests"));
     }
 
     public boolean loadEntries(Stage s) {

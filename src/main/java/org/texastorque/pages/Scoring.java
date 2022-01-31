@@ -98,6 +98,7 @@ public class Scoring extends Page {
 
         int teamNumber = DataUtils.toInteger(teamNumberDisplay.getValue());
         int matchNumber = DataUtils.toInteger(matchNumberDisplay.getValue());
+        String alliance = allianceSelector.getValue();
 
         if (teamNumber == -1 || matchNumber == -1) {
             NoticeUtils.displayError("Error Reading Entry", "Invalid team number or match number");
@@ -108,6 +109,7 @@ public class Scoring extends Page {
                 teamNumber,
                 matchNameDisplay.getValue(),
                 matchNumber,
+                alliance,
                 taxi.getValue(),
                 autoLower.getValue(),
                 autoUpper.getValue(),
