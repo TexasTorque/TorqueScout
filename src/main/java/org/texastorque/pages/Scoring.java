@@ -47,11 +47,19 @@ public class Scoring extends Page {
     private TextBox comments = new TextBox("Comments", "");
 
     private Button submit = new Button("Submit");
+    private Button back = new Button("Back");
 
     public Scoring() {
-        submit.setPrefSize(300, 75);
+        submit.setPrefSize(200, 50);
         submit.setLayoutX(20);
         submit.setLayoutY(15);
+
+        back.setPrefSize(200, 50);
+        back.setLayoutX(20);
+        back.setLayoutY(100);
+
+        submit.setFont(LayoutUtils.getStandardFont(18));
+        back.setFont(LayoutUtils.getStandardFont(18));
 
         panel.setPrefSize(1200, 1200);
         panel.getChildren().addAll(
@@ -73,7 +81,7 @@ public class Scoring extends Page {
                                         teleopMissed.getPanel(),
                                         teleopIntaken.getPanel(),
                                         climb.getPanel(),
-                                        LayoutUtils.wrapInPane(submit)),
+                                        LayoutUtils.bundleIntoHBox(back, submit)),
                                 new LayoutUtils.Padding(0, 0, 0, 40))));
     }
 
@@ -112,6 +120,10 @@ public class Scoring extends Page {
 
     public Button getSubmit() {
         return submit;
+    }
+
+    public Button getBack() {
+        return back;
     }
 
     @Override

@@ -28,6 +28,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -45,12 +46,14 @@ public class Hub extends Page {
     }
 
     private TableView<Entry> table = new TableView<Entry>();
-    final Label label = new Label("TorqueScout Hub");
+    final Label label = new Label("TorqueScout");
+    private Button back = new Button("Back");
 
     public Hub(ObservableList<Entry> entries) {
-        label.setFont(new Font("Arial", 50));
+        label.setFont(LayoutUtils.getStandardFont(44));
         table.setEditable(false);
-        
+
+        back.setFont(LayoutUtils.getStandardFont(24));
 
         //table.setItems(entries);
         table.getItems().addAll(entries);
@@ -119,7 +122,7 @@ public class Hub extends Page {
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(label, table);
+        vbox.getChildren().addAll(label, table, back);
 
         TableColumn<Entry, ?> scoreColumn = table.getColumns().get(16);
         scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
@@ -127,6 +130,10 @@ public class Hub extends Page {
 
         panel.getChildren().add(vbox);
 
+    }
+
+    public Button getBackButton() {
+        return back;
     }
 
 }

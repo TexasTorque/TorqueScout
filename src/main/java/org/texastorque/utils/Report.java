@@ -15,6 +15,9 @@ import java.time.format.DateTimeFormatter;
 
 public class Report {
 
+    public static final DateTimeFormatter dateTimeFormatter = 
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     public static final String header = "dateTime,teamNumber,matchName,matchNumber,"
             + "taxi,autoLower,autoUpper,autoMissed,autoIntaken,"
             + "teleopLower,teleopUpper,teleopMissed,teleopIntaken,climb,comment";
@@ -82,17 +85,13 @@ public class Report {
     }
 
     public String getDateTimeString() {
-        return getDateTimeString("yyyy-MM-dd HH:mm:ss");
-    }
-
-    public String getDateTimeString(String formatString) {
-        return date.format(DateTimeFormatter.ofPattern(formatString));
+        return date.format(dateTimeFormatter);
     }
 
     public String titleString() {
         return String.format("%s: %d in %s(%d)",
                 // new SimpleDateFormat("yyyy-MM-dd").format(date),
-                date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+                date.format(dateTimeFormatter),
                 teamNumber, matchName, matchNumber);
     }
 

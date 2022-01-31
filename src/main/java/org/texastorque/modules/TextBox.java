@@ -10,6 +10,7 @@
 package org.texastorque.modules;
 
 import org.texastorque.components.FadeButton;
+import org.texastorque.utils.LayoutUtils;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -36,11 +37,11 @@ public class TextBox extends Module {
         // label.setText(name);
         // label.setPrefSize(300, 40);
         // label.setLayoutX(10);
-        // label.setFont(new Font(18));
+        // label.setFont(LayoutUtils.getStandardFont(18));
         // label.setLayoutY(10);
 
         textArea.setPrefSize(320, 160);
-        textArea.setFont(new Font(14));
+        textArea.setFont(LayoutUtils.getStandardFont(14));
         textArea.setLayoutX(10);
         // textArea.setLayoutY(50);
         textArea.setLayoutY(10);

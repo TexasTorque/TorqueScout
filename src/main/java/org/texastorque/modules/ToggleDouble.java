@@ -9,6 +9,8 @@
  */
 package org.texastorque.modules;
 
+import org.texastorque.utils.LayoutUtils;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -36,6 +38,9 @@ public class ToggleDouble extends Module {
         Button off = new Button();
         Label label = new Label(name);
 
+        on.setFont(LayoutUtils.getStandardFont(14));
+        off.setFont(LayoutUtils.getStandardFont(14));
+ 
         label.setPrefSize(100, 50);
         label.setLayoutX(10);
 

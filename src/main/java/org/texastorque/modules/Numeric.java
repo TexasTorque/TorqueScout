@@ -10,6 +10,7 @@
 package org.texastorque.modules;
 
 import org.texastorque.components.FadeButton;
+import org.texastorque.utils.LayoutUtils;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -58,7 +59,7 @@ public class Numeric extends Module {
         label.setText(name);
         label.setPrefSize(130, 50);
         label.setLayoutX(10);
-        label.setFont(new Font(18));
+        label.setFont(LayoutUtils.getStandardFont(18));
         label.setLayoutY(topMargin);
 
         add.setText("+");
@@ -69,7 +70,7 @@ public class Numeric extends Module {
 
         count.setPrefSize(50, 50);
         count.setLayoutX(210);
-        count.setFont(new Font(18));
+        count.setFont(LayoutUtils.getStandardFont(18));
         count.setEditable(false);
         count.setLayoutY(topMargin);
 

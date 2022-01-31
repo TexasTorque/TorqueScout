@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import org.texastorque.components.FadeButton;
+import org.texastorque.utils.LayoutUtils;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -38,7 +39,7 @@ public class DisjointToggles extends Module {
     @Override
     protected void init() {
         Label label = new Label(name);
-        label.setFont(new Font(18));
+        label.setFont(LayoutUtils.getStandardFont(18));
         label.setPrefSize(350, 50);
         label.setLayoutX(50);
         label.setLayoutY(5);

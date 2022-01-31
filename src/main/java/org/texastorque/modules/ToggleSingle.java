@@ -9,6 +9,8 @@
  */
 package org.texastorque.modules;
 
+import org.texastorque.utils.LayoutUtils;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -36,12 +38,14 @@ public class ToggleSingle extends Module {
     public void init() {
         final double topMargin = 5;
 
+        button.setFont(LayoutUtils.getStandardFont(14));
+
         panel.setPrefSize(320, 60);
 
         label.setText(name);
         label.setPrefSize(130, 50);
         label.setLayoutX(10);
-        label.setFont(new Font(18));
+        label.setFont(LayoutUtils.getStandardFont(18));
         label.setLayoutY(topMargin);
 
         button.setPrefSize(170, 50);

@@ -16,19 +16,25 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 public class DataReader {
     String path;
 
+    ObservableList<Entry> entries;
+
     DirectoryChooser directoryChooser = new DirectoryChooser();
 
     public DataReader() {
         directoryChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        //directoryChooser.setInitialDirectory(new File("/Users/justuslanguell/TexasTorque/TorqueScout/tests"));
     }
 
-    public boolean getDataSet(Stage s) {
+    public boolean loadEntries(Stage s) {
+        entries = FXCollections.observableArrayList();
         try {
             File selectedDirectory = directoryChooser.showDialog(s);
 
@@ -42,13 +48,20 @@ public class DataReader {
                 }
             }
 
-            System.out.println(content);
-            
+            String[] lines = content.split("\n");
+            for (String line : lines)
+                if (!line.isEmpty())
+                    entries.add(Entry.fromCSV(line));
+
             return true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             NoticeUtils.displayError("Data Reader Error", "Could not read data directory");
             return false;
         }
+    }
+
+    public ObservableList<Entry> getEntries() {
+        return entries;
     }
 
 }

@@ -10,6 +10,7 @@
 package org.texastorque.modules;
 
 import org.texastorque.components.FadeButton;
+import org.texastorque.utils.LayoutUtils;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -49,12 +50,12 @@ public class ValueDisplay extends Module {
         label.setText(name);
         label.setPrefSize(130, 50);
         label.setLayoutX(10);
-        label.setFont(new Font(18));
+        label.setFont(LayoutUtils.getStandardFont(18));
         label.setLayoutY(topMargin);
 
         display.setPrefSize(180, 50);
         display.setLayoutX(140);
-        display.setFont(new Font(18));
+        display.setFont(LayoutUtils.getStandardFont(18));
         display.setLayoutY(topMargin);
 
         panel.getChildren().addAll(label, display);

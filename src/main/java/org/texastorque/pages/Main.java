@@ -45,7 +45,7 @@ public class Main extends Page {
     // return p;}
     // for (Report report : reports) {
     // Label l = new Label(report.titleString());
-    // l.setFont(new Font(16));
+    // l.setFont(LayoutUtils.getStandardFont(16));
     // p.getChildren().add(l);
     // }
     // return p;
@@ -71,10 +71,12 @@ public class Main extends Page {
 
     public Main(ArrayList<Report> reports) {
         Label title = new Label("TorqueScout Client");
-        title.setFont(new Font(36));
+        title.setFont(LayoutUtils.getStandardFont(36));
         title.setPrefSize(600, 50);
         title.setLayoutX(20);
         title.setLayoutY(20);
+
+
 
         Label description = new Label(
                 "TorqueScout Client is a program to collect match\n" +
@@ -83,21 +85,24 @@ public class Main extends Page {
                         "exports a single CSV file, designed to be used in\n" +
                         "TorqueScout Hub, which is used to perform\n" +
                         "data analysis and inform scouting decisions.");
-        description.setFont(new Font(14));
+        description.setFont(LayoutUtils.getStandardFont(14));
         description.setPrefSize(600, 150);
         description.setLayoutX(20);
 
         newReport.setPrefSize(300, 75);
         newReport.setLayoutX(20);
         newReport.setLayoutY(40);
+        newReport.setFont(LayoutUtils.getStandardFont(18));
 
         exportReports.setPrefSize(300, 75);
         exportReports.setLayoutX(20);
         exportReports.setLayoutY(60);
+        exportReports.setFont(LayoutUtils.getStandardFont(18));
 
         launchHub.setPrefSize(300, 75);
         launchHub.setLayoutX(20);
         launchHub.setLayoutY(60);
+        launchHub.setFont(LayoutUtils.getStandardFont(18));
 
         this.reports = reports;
 

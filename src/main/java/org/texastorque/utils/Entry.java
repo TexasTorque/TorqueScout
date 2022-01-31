@@ -1,7 +1,19 @@
+/**
+ * Copyright (C) 2021-2022 TexasTorque - All Rights Reserved.
+ *
+ * This file is part of TorqueScout which is proprietary software.
+ * TorqueScout is not available for modification or distribution without express consent from TexasTorque.
+ * See file ./license.txt or go write <jus@gtsbr.org> for full license details.
+ * 
+ * @author Justus Languell
+ */
 package org.texastorque.utils;
 
 import java.net.Authenticator;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -47,7 +59,8 @@ public class Entry {
     public final Long teleopAccuracy;
     public final Long totalAccuracy;
 
-    public Entry(Integer teamNumber,
+    public Entry(
+            Integer teamNumber,
             String matchName,
             Integer matchNumber,
             boolean taxi,
@@ -188,5 +201,34 @@ public class Entry {
         TableColumn<Entry, ?> column = new TableColumn<>(name);
         column.setCellValueFactory(new PropertyValueFactory<>(property));
         return column;
+    }
+
+    public static Entry fromCSV(String s) {
+        String[] parts = s.split(",");
+
+        LocalDateTime dateTime;
+        try {
+            dateTime = LocalDateTime.parse(parts[0], Report.dateTimeFormatter);
+        } catch (Exception e) {
+            dateTime = LocalDateTime.parse("2022-1-8T11:00:00");
+        }
+
+        return new Entry(
+            Integer.parseInt(parts[1]),
+            parts[2],
+            Integer.parseInt(parts[3]),
+            parts[4].equals("true"),
+            Integer.parseInt(parts[5]),
+            Integer.parseInt(parts[6]),
+            Integer.parseInt(parts[7]),
+            Integer.parseInt(parts[8]),
+            Integer.parseInt(parts[9]),
+            Integer.parseInt(parts[10]),
+            Integer.parseInt(parts[11]),
+            Integer.parseInt(parts[12]), 
+            Integer.parseInt(parts[13]),
+            parts[14],
+            dateTime
+        );
     }
 }
