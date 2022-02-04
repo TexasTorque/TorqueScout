@@ -14,7 +14,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -132,6 +135,10 @@ public class Entry {
         return taxi ? "Yes" : "No";
     }
 
+    public Integer getTaxiValue() {
+        return taxi ? 1 : 0;
+    }
+
     public Integer getAutoLower() {
         return autoLower;
     }
@@ -166,6 +173,10 @@ public class Entry {
 
     public String getClimb() {
         return climbNames[climb];
+    }
+
+    public Integer getClimbValue() {
+        return climb;
     }
 
     public String getComment() {
@@ -238,6 +249,30 @@ public class Entry {
             Integer.parseInt(parts[14]),
             parts[15],
             dateTime
+        );
+    }
+
+    private static final String NA = "N/A";
+
+    public static Entry fromAveraged(ObservableList<Entry> entries) {
+        boolean taxi = entries.stream().mapToInt(e -> e.getTaxiValue()).sum() / entries.size() == 1;
+
+        int autoLower = entries.stream().mapToInt(e -> e.getAutoLower()).sum() / entries.size();
+        int autoUpper = entries.stream().mapToInt(e -> e.getAutoUpper()).sum() / entries.size();
+        int autoMissed = entries.stream().mapToInt(e -> e.getAutoMissed()).sum() / entries.size();
+        int autoIntaken = entries.stream().mapToInt(e -> e.getAutoIntaken()).sum() / entries.size();
+
+        int teleopLower = entries.stream().mapToInt(e -> e.getTeleopLower()).sum() / entries.size();
+        int teleopUpper = entries.stream().mapToInt(e -> e.getTeleopUpper()).sum() / entries.size();
+        int teleopMissed = entries.stream().mapToInt(e -> e.getTeleopMissed()).sum() / entries.size();
+        int teleopIntaken = entries.stream().mapToInt(e -> e.getTeleopIntaken()).sum() / entries.size();
+
+        int climb = entries.stream().mapToInt(e -> e.getClimbValue()).sum() / entries.size();
+
+        return new Entry(entries.get(0).getTeamNumber(), NA, -1, NA, taxi,
+            autoLower, autoUpper, autoMissed, autoIntaken,
+            teleopLower, teleopUpper, teleopMissed, teleopIntaken,
+            climb, NA, entries.get(0).getDate()
         );
     }
 }
