@@ -9,8 +9,9 @@ import javafx.collections.ObservableList;
 public class DataWrapper {
 
     private ObservableList<Entry> entries;
-    private ObservableList<Entry> averages;
-    private HashMap<Integer, ObservableList<Entry>> teamEntries;
+    private ObservableList<Entry> averages = FXCollections.observableArrayList();
+    private HashMap<Integer, ObservableList<Entry>> teamEntries
+            = new HashMap<Integer, ObservableList<Entry>>();
     
     public DataWrapper(ObservableList<Entry> entries) {
         this.entries = entries;
@@ -25,13 +26,19 @@ public class DataWrapper {
             }
         }
 
-        for (Map.Entry<Integer, ObservableList<Entry>> entries : teamEntries.entrySet()) {
-            averages.add(Entry.average(entries));
-        }
-        }
+        for (Map.Entry<Integer, ObservableList<Entry>> _entries : teamEntries.entrySet())
+            averages.add(Entry.fromAveraged(_entries.getValue()));
     }
 
     public ObservableList<Entry> getEntries() {
         return entries;
+    }
+
+    public ObservableList<Entry> getAverages() {
+        return averages;
+    }
+
+    public HashMap<Integer, ObservableList<Entry>> getTeamEntries() {
+        return teamEntries;
     }
 }

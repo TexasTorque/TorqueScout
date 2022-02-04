@@ -65,4 +65,8 @@ public class DataReader {
         return entries;
     }
 
+    public DataWrapper getDataWrapper() {
+        return new DataWrapper(entries);
+    }
+
 }
