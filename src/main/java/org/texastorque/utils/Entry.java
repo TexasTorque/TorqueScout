@@ -35,6 +35,8 @@ public class Entry {
     public final Integer matchNumber;
     public final Integer climb;
 
+    public final String allianceColor;
+
     public final boolean taxi;
 
     public final Integer autoLower;
@@ -63,6 +65,7 @@ public class Entry {
             Integer teamNumber,
             String matchName,
             Integer matchNumber,
+            String allianceColor,
             boolean taxi,
             Integer autoLower,
             Integer autoUpper,
@@ -78,6 +81,7 @@ public class Entry {
         this.teamNumber = teamNumber;
         this.matchName = matchName;
         this.matchNumber = matchNumber;
+        this.allianceColor = allianceColor;
         this.taxi = taxi;
         this.autoLower = autoLower;
         this.autoUpper = autoUpper;
@@ -118,6 +122,10 @@ public class Entry {
 
     public Integer getMatchNumber() {
         return matchNumber;
+    }
+
+    public String getAllianceColor() {
+        return allianceColor;
     }
 
     public String getTaxi() {
@@ -217,8 +225,8 @@ public class Entry {
             Integer.parseInt(parts[1]),
             parts[2],
             Integer.parseInt(parts[3]),
-            parts[4].equals("true"),
-            Integer.parseInt(parts[5]),
+            parts[4],
+            parts[5].equals("true"),
             Integer.parseInt(parts[6]),
             Integer.parseInt(parts[7]),
             Integer.parseInt(parts[8]),
@@ -227,7 +235,8 @@ public class Entry {
             Integer.parseInt(parts[11]),
             Integer.parseInt(parts[12]), 
             Integer.parseInt(parts[13]),
-            parts[14],
+            Integer.parseInt(parts[14]),
+            parts[15],
             dateTime
         );
     }

@@ -42,7 +42,8 @@ public class DataReader {
 
             String[] fileNames = (new File(selectedDirectory.getAbsolutePath())).list();
             for (String fileName : fileNames) {
-                if (fileName.contains("scouting-data-")) {
+                //if (fileName.contains("scouting-data-")) {
+                if (fileName.contains(".tsr")) {
                     path = selectedDirectory.getAbsolutePath() + "/" + fileName;
                     content += Files.readString(Path.of(path)).replace(Report.header, "");
                 }

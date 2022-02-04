@@ -9,7 +9,10 @@
  */
 package org.texastorque.utils;
 
+import java.util.Optional;
+
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 
 public class NoticeUtils {
@@ -29,5 +32,14 @@ public class NoticeUtils {
         notice.setHeaderText(header);
         notice.setContentText(content);
         notice.showAndWait();
+    }
+
+
+    public static boolean displayConfirmation(String header, String content) {
+        Alert notice = new Alert(AlertType.CONFIRMATION);
+        notice.setHeaderText(header);
+        notice.setContentText(content);
+        Optional<ButtonType> result = notice.showAndWait();
+        return result.get().getText().equals("OK");
     }
 }

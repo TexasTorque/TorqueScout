@@ -32,6 +32,8 @@ public class Scoring extends Page {
     private ValueDisplay matchNameDisplay = new ValueDisplay("Match Name", "quals-0");
     private ValueDisplay matchNumberDisplay = new ValueDisplay("Match Number", 0);
 
+    private ToggleSingle allianceColor = new ToggleSingle("Alliance Color", "blue", "", "red", "");
+
     private ToggleSingle taxi = new ToggleSingle("Auto Taxi");
     private Numeric autoLower = new Numeric("Auto lower");
     private Numeric autoUpper = new Numeric("Auto upper");
@@ -68,6 +70,7 @@ public class Scoring extends Page {
                                 teamNumberDisplay.getPanel(),
                                 matchNameDisplay.getPanel(),
                                 matchNumberDisplay.getPanel(),
+                                allianceColor.getPanel(),
                                 taxi.getPanel(),
                                 autoLower.getPanel(),
                                 autoUpper.getPanel(),
@@ -81,8 +84,19 @@ public class Scoring extends Page {
                                         teleopMissed.getPanel(),
                                         teleopIntaken.getPanel(),
                                         climb.getPanel(),
-                                        LayoutUtils.bundleIntoHBox(back, submit)),
-                                new LayoutUtils.Padding(0, 0, 0, 40))));
+                                        LayoutUtils.insertPadding(
+                                            LayoutUtils.bundleIntoVBox(back),
+                                            new LayoutUtils.Padding(20, 0, 0, 0)
+                                        ),
+                                        LayoutUtils.insertPadding(
+                                            LayoutUtils.bundleIntoVBox(submit),
+                                            new LayoutUtils.Padding(20, 0, 0, 0)
+                                        )
+                                ),
+                                new LayoutUtils.Padding(0, 0, 0, 40)
+                        )
+                )
+        );
     }
 
     public Report generateReport() {
@@ -105,6 +119,7 @@ public class Scoring extends Page {
                 teamNumber,
                 matchNameDisplay.getValue(),
                 matchNumber,
+                allianceColor.getValue() ? "red" : "blue",
                 taxi.getValue(),
                 autoLower.getValue(),
                 autoUpper.getValue(),
@@ -116,6 +131,10 @@ public class Scoring extends Page {
                 teleopIntaken.getValue(),
                 climb.getValue(),
                 comments.getValue());
+    }
+
+    public boolean wantsToQuit() {
+        return NoticeUtils.displayConfirmation("Are you sure you want to leave?", "You will lose all unsaved data.");
     }
 
     public Button getSubmit() {

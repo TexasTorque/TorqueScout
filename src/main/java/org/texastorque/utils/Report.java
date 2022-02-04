@@ -19,7 +19,7 @@ public class Report {
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public static final String header = "dateTime,teamNumber,matchName,matchNumber,"
-            + "taxi,autoLower,autoUpper,autoMissed,autoIntaken,"
+            + "allianceColor,taxi,autoLower,autoUpper,autoMissed,autoIntaken,"
             + "teleopLower,teleopUpper,teleopMissed,teleopIntaken,climb,comment";
 
     public static enum Climb {
@@ -30,32 +30,35 @@ public class Report {
         TRANSVERSAL
     }
 
-    public final int teamNumber;
-    public final String matchName;
-    public final int matchNumber;
+    private final int teamNumber;
+    private final String matchName;
+    private final int matchNumber;
 
-    public final boolean taxi;
+    private String allianceColor;
 
-    public final int autoLower;
-    public final int autoUpper;
-    public final int autoMissed;
-    public final int autoIntaken;
+    private final boolean taxi;
 
-    public final int teleopLower;
-    public final int teleopUpper;
-    public final int teleopMissed;
-    public final int teleopIntaken;
+    private final int autoLower;
+    private final int autoUpper;
+    private final int autoMissed;
+    private final int autoIntaken;
 
-    public final int climb;
+    private final int teleopLower;
+    private final int teleopUpper;
+    private final int teleopMissed;
+    private final int teleopIntaken;
 
-    public final String comment;
+    private final int climb;
 
-    public final LocalDateTime date;
+    private final String comment;
+
+    private final LocalDateTime date;
 
     public Report(
             int teamNumber,
             String matchName,
             int matchNumber,
+            String allainceColor,
             boolean taxi,
             int autoLower,
             int autoUpper,
@@ -70,6 +73,7 @@ public class Report {
         this.teamNumber = teamNumber;
         this.matchName = matchName;
         this.matchNumber = matchNumber;
+        this.allianceColor = allainceColor;
         this.taxi = taxi;
         this.autoLower = autoLower;
         this.autoUpper = autoUpper;
@@ -96,8 +100,8 @@ public class Report {
     }
 
     public String toCSV() {
-        return String.format("%s,%d,%s,%d,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s",
-                getDateTimeString(), teamNumber, matchName, matchNumber, taxi,
+        return String.format("%s,%d,%s,%d,%s,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s",
+                getDateTimeString(), teamNumber, matchName, matchNumber, allianceColor, taxi,
                 autoLower, autoUpper, autoMissed, autoIntaken,
                 teleopLower, teleopUpper, teleopMissed, teleopIntaken,
                 climb, comment);

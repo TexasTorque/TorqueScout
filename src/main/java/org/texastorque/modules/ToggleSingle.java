@@ -26,7 +26,21 @@ import javafx.scene.text.FontWeight;
 public class ToggleSingle extends Module {
     private boolean value = false;
 
+    private String trueColor = "green";
+    private String trueText = "✓";
+    private String falseColor = "red";
+    private String falseText = "✗";
+
     public ToggleSingle(String name) {
+        this.name = name;
+        init();
+    }
+
+    public ToggleSingle(String name, String trueColor, String trueText, String falseColor, String falseText) {
+        setTrueColor(trueColor);
+        setTrueText(trueText);
+        setFalseColor(falseColor);
+        setFalseText(falseText);
         this.name = name;
         init();
     }
@@ -50,22 +64,43 @@ public class ToggleSingle extends Module {
 
         button.setPrefSize(170, 50);
         button.setLayoutX(150);
-        button.setText("✗");
-        button.setStyle("-fx-background-color: red;");
+        button.setText(falseText);
+        button.setStyle(colorStyle(falseColor));
         button.setLayoutY(topMargin);
 
         button.setOnAction((event) -> {
             value = !value;
             if (value) {
-                button.setText("✓");
-                button.setStyle("-fx-background-color: green;");
+                button.setText(trueText);
+                button.setStyle(colorStyle(trueColor));
             } else {
-                button.setText("✗");
-                button.setStyle("-fx-background-color: red;");
+                button.setText(falseText);
+                button.setStyle(colorStyle(falseColor));
             }
         });
 
         panel.getChildren().addAll(label, button);
+    }
+
+
+    public void setTrueColor(String trueColor) {
+        this.trueColor = trueColor;
+    }
+
+    public void setTrueText(String trueText) {
+        this.trueText = trueText;
+    }
+
+    public void setFalseColor(String falseColor) {
+        this.falseColor = falseColor;
+    }
+
+    public void setFalseText(String falseText) {
+        this.falseText = falseText;
+    }
+
+    private String colorStyle(String color) {
+        return String.format("-fx-background-color: %s;", color);
     }
 
     @Override

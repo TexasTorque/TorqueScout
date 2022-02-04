@@ -98,6 +98,8 @@ public class Hub extends Page {
                 Entry.createColumn("matchNumber", "Match #"),
                 taxiColumn,
 
+                Entry.createColumn("allianceColor", "Color"),
+
                 Entry.createColumn("autoLower", "A Lower"),
                 Entry.createColumn("autoUpper", "A Upper"),
                 Entry.createColumn("autoMissed", "A Missed"),

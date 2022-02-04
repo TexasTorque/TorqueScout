@@ -90,10 +90,11 @@ public class App extends Application {
             switchToMain();
         });
         window.getBack().setOnAction(e -> {
-            switchToMain();
+            if (window.wantsToQuit())
+                switchToMain();
         });
         switchStageScene(window.getPanel());
-        setStageSize(800, 700);
+        setStageSize(800, 750);
     }
 
     private void switchToHub() {

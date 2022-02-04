@@ -85,6 +85,7 @@ public class LayoutUtils {
     }
 
     public static Font getStandardFont(int size) {
-        return new Font("Times New Roman", size);
+        //return new Font("Times New Roman", size);
+        return new Font("Arial", size);
     }
 }
