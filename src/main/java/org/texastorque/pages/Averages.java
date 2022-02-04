@@ -57,7 +57,7 @@ public class Averages extends Page {
         back.setFont(LayoutUtils.getStandardFont(24));
 
         //table.setItems(entries);
-        table.getItems().addAll(entries.getEntries());
+        table.getItems().addAll(entries.getAverages());
 
         TableColumn<Entry, String> taxiColumn = (TableColumn<Entry, String>) Entry.createColumn("taxi");
         taxiColumn.setComparator((String v1, String v2) -> {
