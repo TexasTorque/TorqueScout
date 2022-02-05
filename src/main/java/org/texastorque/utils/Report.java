@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 public class Report {
 
     public static final DateTimeFormatter dateTimeFormatter = 
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            DateTimeFormatter.ofPattern("yyyy-MM-dd@HH:mm:ss");
 
     public static final String header = "dateTime,teamNumber,matchName,matchNumber,"
             + "allianceColor,taxi,autoLower,autoUpper,autoMissed,autoIntaken,"
@@ -101,9 +101,9 @@ public class Report {
 
     public String toCSV() {
         return String.format("%s,%d,%s,%d,%s,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s",
-                getDateTimeString(), teamNumber, matchName, matchNumber, allianceColor, taxi,
+                getDateTimeString(), teamNumber, "unused", matchNumber, allianceColor, taxi,
                 autoLower, autoUpper, autoMissed, autoIntaken,
                 teleopLower, teleopUpper, teleopMissed, teleopIntaken,
-                climb, comment);
+                climb, comment.replace(",", "，"));
     }
 }

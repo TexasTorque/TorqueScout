@@ -141,10 +141,11 @@ public class Averages extends Page {
         );
 
         final VBox vbox = new VBox();
-        vbox.setSpacing(5);
+        vbox.setSpacing(20);
         vbox.setPadding(new Insets(10, 0, 0, 10));
         table.setMinHeight(700);
-        vbox.getChildren().addAll(label, table, back, hub);
+        vbox.getChildren().addAll(label, table, 
+                LayoutUtils.bundleIntoHBox(back, hub));
 
         TableColumn<Entry, ?> scoreColumn = table.getColumns().get(18);
         scoreColumn.setSortType(TableColumn.SortType.DESCENDING);

@@ -37,6 +37,7 @@ public class DataReader {
         entries = FXCollections.observableArrayList();
         try {
             File selectedDirectory = directoryChooser.showDialog(s);
+            if (selectedDirectory == null) return false;
 
             String content = "";
 
@@ -50,11 +51,23 @@ public class DataReader {
             }
 
             String[] lines = content.split("\n");
-            for (String line : lines) 
-                if (!line.isEmpty()) {
-                    System.out.println(line);
+            for (String line : lines)
+                if (line.length() > 10)
                     entries.add(Entry.fromCSV(line));
-                }
+
+            // String[] lines = content.split("\n");
+            // for (int i = 0; i < lines.length - 1; i++) {
+            //     String line = lines[i];
+            //     if (!line.isEmpty()) {
+            //               System.out.println(line.length());
+            //         System.out.println(line);
+            //         System.out.println(fuck);
+
+            //         entries.add(Entry.fromCSV(line));
+              
+            //         fuck++;
+            //     }
+            // }
 
             return true;
         } catch (Exception e) {

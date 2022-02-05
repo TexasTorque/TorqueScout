@@ -236,12 +236,13 @@ public class Entry {
     public static Entry fromCSV(String s) {
         String[] parts = s.split(",");
 
-        LocalDateTime dateTime;
-        try {
-            dateTime = LocalDateTime.parse(parts[0], Report.dateTimeFormatter);
-        } catch (Exception e) {
-            dateTime = LocalDateTime.parse("2022-1-8T11:00:00");
-        }
+        LocalDateTime dateTime = LocalDateTime.now();
+        // try {
+        //     dateTime = LocalDateTime.parse(parts[0], Report.dateTimeFormatter);
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        //     dateTime = LocalDateTime.parse("2022-1-8T11:00:00");
+        // }
 
         return new Entry(
             Integer.parseInt(parts[1]),

@@ -101,7 +101,7 @@ public class Hub extends Page {
 
         //TableColumn<Entry, Double> climbNumbersColumn = (TableColumn<Entry, Double>) Entry.createColumn("avgClimbPoints", "Climb #");
 
-        TableColumn<Entry, Button> teamButtons = (TableColumn<Entry, Button>) Entry.createColumn("teamButton");
+        //TableColumn<Entry, Button> teamButtons = (TableColumn<Entry, Button>) Entry.createColumn("teamButton");
 
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
@@ -129,15 +129,16 @@ public class Hub extends Page {
                 climbColumn,
                 //climbNumbersColumn,
                 Entry.createColumn("totalScore"),
-                Entry.createColumn("comment"),
-                teamButtons
+                Entry.createColumn("comment")
+                //teamButtons
         );
 
         final VBox vbox = new VBox();
-        vbox.setSpacing(5);
+        vbox.setSpacing(20);
         vbox.setPadding(new Insets(10, 0, 0, 10));
         table.setMinHeight(700);
-        vbox.getChildren().addAll(label, table, back, average);
+        vbox.getChildren().addAll(label, table, 
+                LayoutUtils.bundleIntoHBox(back, average));
 
         TableColumn<Entry, ?> scoreColumn = table.getColumns().get(18);
         scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
