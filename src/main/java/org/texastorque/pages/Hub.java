@@ -62,7 +62,7 @@ public class Hub extends Page {
         back.setFont(LayoutUtils.getStandardFont(24));
         average.setFont(LayoutUtils.getStandardFont(24));
 
-        table.getItems().addAll(entries.getAverages());
+        table.getItems().addAll(entries.getEntries());
 
         TableColumn<Entry, String> taxiColumn = (TableColumn<Entry, String>) Entry.createColumn("taxi");
         taxiColumn.setComparator((String v1, String v2) -> {
