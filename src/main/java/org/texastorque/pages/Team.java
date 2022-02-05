@@ -11,8 +11,6 @@ package org.texastorque.pages;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Map;
-import java.util.Set;
 
 import org.texastorque.components.FadeButton;
 import org.texastorque.modules.DisjointToggles;
@@ -25,10 +23,10 @@ import org.texastorque.utils.LayoutUtils;
 import org.texastorque.utils.Report;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -40,9 +38,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
-public class Averages extends Page {
+public class Team extends Page {
     protected Pane panel = new Pane();
 
     @Override
@@ -54,20 +51,13 @@ public class Averages extends Page {
     final Label label = new Label("Torque Scout");
     private Button back = new Button("Back");
 
-    public Averages(DataWrapper entries, Callback<Integer, Void> callback) {
+    public Team(DataWrapper entries, int team) {
         label.setFont(LayoutUtils.getStandardFont(44));
         table.setEditable(false);
 
         back.setFont(LayoutUtils.getStandardFont(24));
 
-        //table.setItems(entries);
-        ObservableList<Entry> averages = entries.getAverages();
-        for (Entry average : averages) 
-            average.getTeamButton().setOnAction(e -> {
-                callback.call(average.getTeamNumber());
-            });
-
-        table.getItems().addAll(entries.getAverages());
+        table.getItems().addAll(entries.getTeamEntries().get(team));
 
         TableColumn<Entry, String> taxiColumn = (TableColumn<Entry, String>) Entry.createColumn("taxi");
         taxiColumn.setComparator((String v1, String v2) -> {
@@ -104,10 +94,6 @@ public class Averages extends Page {
             return Entry.valueOfClimb(v1) >= Entry.valueOfClimb(v2) ? 1 : -1;
         });
 
-        TableColumn<Entry, Double> climbNumbersColumn = (TableColumn<Entry, Double>) Entry.createColumn("avgClimbPoints", "Climb #");
-
-        TableColumn<Entry, Button> teamButtons = (TableColumn<Entry, Button>) Entry.createColumn("teamButton");
-
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
                 Entry.createColumn("matchNumber", "Match #"),
@@ -132,19 +118,19 @@ public class Averages extends Page {
                 teleopAccuracyColumn,
 
                 climbColumn,
-                climbNumbersColumn,
                 Entry.createColumn("totalScore"),
-                Entry.createColumn("comment"),
-                teamButtons
+                Entry.createColumn("comment")
         );
 
         final VBox vbox = new VBox();
-        vbox.setSpacing(5);
+        vbox.setSpacing(20);
         vbox.setPadding(new Insets(10, 0, 0, 10));
+
         table.setMinHeight(700);
+
         vbox.getChildren().addAll(label, table, back);
 
-        TableColumn<Entry, ?> scoreColumn = table.getColumns().get(18);
+        TableColumn<Entry, ?> scoreColumn = table.getColumns().get(17);
         scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
         table.getSortOrder().add(scoreColumn);
 

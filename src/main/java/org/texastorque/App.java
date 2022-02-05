@@ -16,6 +16,7 @@ import org.texastorque.pages.Averages;
 import org.texastorque.pages.Hub;
 import org.texastorque.pages.Main;
 import org.texastorque.pages.Scoring;
+import org.texastorque.pages.Team;
 import org.texastorque.utils.DataReader;
 import org.texastorque.utils.DataWriter;
 import org.texastorque.utils.Entry;
@@ -32,6 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class App extends Application {
     Stage stage;
@@ -39,12 +41,23 @@ public class App extends Application {
     DataWriter dataWriter = new DataWriter();
     DataReader dataReader = new DataReader();
 
+    public static void postPaneOnStage(Stage stage, Pane pane) {
+        stage.setScene(new Scene(pane));
+        stage.show();
+            }
+
+    public static void postPaneOnStage(Stage stage, Pane pane, int w, int h) {
+        stage.setScene(new Scene(pane));
+        stage.show();
+        stage.setWidth(w);
+        stage.setHeight(h);
+    }
+
     private void switchStageScene(Pane page) {
-        if (stage.getScene() == null) {
+        if (stage.getScene() == null)
             stage.setScene(new Scene(page, 0, 0));
-        } else {
+        else
             stage.getScene().setRoot(page);
-        }
     }
 
     @Override
@@ -75,7 +88,7 @@ public class App extends Application {
             switchToAverages();
         });
         switchStageScene(window.getPanel());
-        setStageSize(350, 700);
+        setStageSize(350, 600);
     }
 
     private void switchToScoring() {
@@ -116,7 +129,14 @@ public class App extends Application {
     private void switchToAverages() {
         if (dataReader.getEntries() == null) dataReader.loadEntries(stage);
 
-        Averages window = new Averages(dataReader.getDataWrapper());
+        Averages window = new Averages(dataReader.getDataWrapper(), new Callback<Integer, Void>() {
+            @Override
+            public Void call(Integer team) {
+                switchToTeam(team);
+                return null;
+            }
+        });
+
         window.getBackButton().setOnAction(e -> {
             switchToMain();
         });
@@ -124,6 +144,18 @@ public class App extends Application {
         switchStageScene(window.getPanel());
         //setStageSize(1200, 1200);
         stage.setMaximized(true);
+    }
+
+    private void switchToTeam(Integer team) {
+        Team window = new Team(dataReader.getDataWrapper(), team);
+
+        window.getBackButton().setOnAction(e -> {
+            switchToAverages();
+        });
+
+        switchStageScene(window.getPanel());
+        //setStageSize(1200, 1200);
+        stage.setMaximized(true); 
     }
 
     private void setStageSize(int w, int h) {

@@ -35,7 +35,7 @@ public class DataReader {
 
     public boolean loadEntries(Stage s) {
         entries = FXCollections.observableArrayList();
-        //try {
+        try {
             File selectedDirectory = directoryChooser.showDialog(s);
 
             String content = "";
@@ -45,12 +45,7 @@ public class DataReader {
                 //if (fileName.contains("scouting-data-")) {
                 if (fileName.contains(".tsr")) {
                     path = selectedDirectory.getAbsolutePath() + "/" + fileName;
-                    try{
                     content += Files.readString(Path.of(path)).replace(Report.header, "");
-                    }catch(IOException e){
-                        System.out.println("Could not read file: " + path);
-                        return false;
-                    }
                 }
             }
 
@@ -60,10 +55,10 @@ public class DataReader {
                     entries.add(Entry.fromCSV(line));
 
             return true;
-        // } catch (Exception e) {
-        //     NoticeUtils.displayError("Data Reader Error", "Could not read data directory");
-        //     return false;
-        // }
+        } catch (Exception e) {
+            NoticeUtils.displayError("Data Reader Error", "Could not read data directory");
+            return false;
+        }
     }
 
     public ObservableList<Entry> getEntries() {

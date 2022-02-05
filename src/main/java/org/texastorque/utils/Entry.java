@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class Entry {
     public final static Integer[] climbScores = {0, 4, 6, 10, 15};
@@ -63,6 +64,16 @@ public class Entry {
     public final Long autoAccuracy;
     public final Long teleopAccuracy;
     public final Long totalAccuracy;
+
+    private Double avgClimbPoints = 0.;
+
+    public void setAvgClimbPoints(double points) {
+        this.avgClimbPoints = points;
+    }
+
+    public Double getAvgClimbPoints() {
+        return DataUtils.round(avgClimbPoints, 2);
+    }
 
     public Entry(
             Integer teamNumber,
@@ -267,12 +278,22 @@ public class Entry {
         int teleopMissed = entries.stream().mapToInt(e -> e.getTeleopMissed()).sum() / entries.size();
         int teleopIntaken = entries.stream().mapToInt(e -> e.getTeleopIntaken()).sum() / entries.size();
 
-        int climb = entries.stream().mapToInt(e -> e.getClimbValue()).sum() / entries.size();
+        double climb = entries.stream().mapToInt(e -> e.getClimbValue()).sum() / (entries.size() + 0.);
 
-        return new Entry(entries.get(0).getTeamNumber(), NA, -1, NA, taxi,
+        Entry entry = new Entry(entries.get(0).getTeamNumber(), NA, -1, NA, taxi,
             autoLower, autoUpper, autoMissed, autoIntaken,
             teleopLower, teleopUpper, teleopMissed, teleopIntaken,
-            climb, NA, entries.get(0).getDate()
+            (int) Math.round(climb), NA, entries.get(0).getDate()
         );
+
+        entry.setAvgClimbPoints(climb);
+
+        return entry;
+    }
+
+    Button view = new Button("View");
+
+    public Button getTeamButton() {
+        return view;
     }
 }

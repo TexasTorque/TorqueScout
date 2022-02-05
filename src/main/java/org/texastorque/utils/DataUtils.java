@@ -59,4 +59,7 @@ public class DataUtils {
             .collect(Collectors.joining(" "));
     }
 
+    public static double round(double num, int dec) {
+        return (int) Math.round((num * Math.pow(10, dec))) / Math.pow(10, dec);
+    }
 }
