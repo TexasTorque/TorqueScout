@@ -52,13 +52,15 @@ public class Averages extends Page {
 
     private TableView<Entry> table = new TableView<Entry>();
     final Label label = new Label("Torque Scout");
-    private Button back = new Button("Back");
+    private Button back = new Button("Back to home");
+    private Button hub = new Button("View all entries");
 
     public Averages(DataWrapper entries, Callback<Integer, Void> callback) {
         label.setFont(LayoutUtils.getStandardFont(44));
         table.setEditable(false);
 
         back.setFont(LayoutUtils.getStandardFont(24));
+        hub.setFont(LayoutUtils.getStandardFont(24));
 
         //table.setItems(entries);
         ObservableList<Entry> averages = entries.getAverages();
@@ -142,7 +144,7 @@ public class Averages extends Page {
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
         table.setMinHeight(700);
-        vbox.getChildren().addAll(label, table, back);
+        vbox.getChildren().addAll(label, table, back, hub);
 
         TableColumn<Entry, ?> scoreColumn = table.getColumns().get(18);
         scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
@@ -154,6 +156,10 @@ public class Averages extends Page {
 
     public Button getBackButton() {
         return back;
+    }
+
+    public Button getHubButton() {
+        return hub;
     }
 
 }

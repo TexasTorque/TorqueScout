@@ -114,11 +114,15 @@ public class App extends Application {
     }
 
     private void switchToHub() {
-        if (!dataReader.loadEntries(stage)) return;
+        if (dataReader.getEntries() == null) dataReader.loadEntries(stage);
 
-        Hub window = new Hub(dataReader.getEntries());
+        Hub window = new Hub(dataReader.getDataWrapper());
+
         window.getBackButton().setOnAction(e -> {
             switchToMain();
+        });
+        window.getAveragesButton().setOnAction(e -> {
+            switchToAverages();
         });
 
         switchStageScene(window.getPanel());
@@ -140,6 +144,10 @@ public class App extends Application {
         window.getBackButton().setOnAction(e -> {
             switchToMain();
         });
+        window.getHubButton().setOnAction(e -> {
+            switchToHub();
+        });
+
 
         switchStageScene(window.getPanel());
         //setStageSize(1200, 1200);

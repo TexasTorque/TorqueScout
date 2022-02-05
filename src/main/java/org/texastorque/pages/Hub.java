@@ -11,12 +11,15 @@ package org.texastorque.pages;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Map;
+import java.util.Set;
 
 import org.texastorque.components.FadeButton;
 import org.texastorque.modules.DisjointToggles;
 import org.texastorque.modules.Numeric;
 import org.texastorque.modules.ToggleSingle;
 import org.texastorque.modules.TextBox;
+import org.texastorque.utils.DataWrapper;
 import org.texastorque.utils.Entry;
 import org.texastorque.utils.LayoutUtils;
 import org.texastorque.utils.Report;
@@ -25,6 +28,7 @@ import javafx.scene.layout.Pane;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -36,6 +40,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class Hub extends Page {
     protected Pane panel = new Pane();
@@ -46,17 +51,18 @@ public class Hub extends Page {
     }
 
     private TableView<Entry> table = new TableView<Entry>();
-    final Label label = new Label("TorqueScout");
-    private Button back = new Button("Back");
+    final Label label = new Label("Torque Scout");
+    private Button back = new Button("Back to home");
+    private Button average = new Button("View averages");
 
-    public Hub(ObservableList<Entry> entries) {
+    public Hub(DataWrapper entries) {
         label.setFont(LayoutUtils.getStandardFont(44));
         table.setEditable(false);
 
         back.setFont(LayoutUtils.getStandardFont(24));
+        average.setFont(LayoutUtils.getStandardFont(24));
 
-        //table.setItems(entries);
-        table.getItems().addAll(entries);
+        table.getItems().addAll(entries.getAverages());
 
         TableColumn<Entry, String> taxiColumn = (TableColumn<Entry, String>) Entry.createColumn("taxi");
         taxiColumn.setComparator((String v1, String v2) -> {
@@ -93,6 +99,10 @@ public class Hub extends Page {
             return Entry.valueOfClimb(v1) >= Entry.valueOfClimb(v2) ? 1 : -1;
         });
 
+        //TableColumn<Entry, Double> climbNumbersColumn = (TableColumn<Entry, Double>) Entry.createColumn("avgClimbPoints", "Climb #");
+
+        TableColumn<Entry, Button> teamButtons = (TableColumn<Entry, Button>) Entry.createColumn("teamButton");
+
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
                 Entry.createColumn("matchNumber", "Match #"),
@@ -117,16 +127,19 @@ public class Hub extends Page {
                 teleopAccuracyColumn,
 
                 climbColumn,
+                //climbNumbersColumn,
                 Entry.createColumn("totalScore"),
-                Entry.createColumn("comment")
+                Entry.createColumn("comment"),
+                teamButtons
         );
 
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(label, table, back);
+        table.setMinHeight(700);
+        vbox.getChildren().addAll(label, table, back, average);
 
-        TableColumn<Entry, ?> scoreColumn = table.getColumns().get(16);
+        TableColumn<Entry, ?> scoreColumn = table.getColumns().get(18);
         scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
         table.getSortOrder().add(scoreColumn);
 
@@ -136,6 +149,10 @@ public class Hub extends Page {
 
     public Button getBackButton() {
         return back;
+    }
+
+    public Button getAveragesButton() {
+        return average;
     }
 
 }
