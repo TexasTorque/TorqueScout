@@ -14,6 +14,7 @@ import org.texastorque.utils.LayoutUtils;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -50,6 +51,7 @@ public class ToggleSingle extends Module {
 
     @Override
     public void init() {
+        label.setTextFill(Color.WHITE);
         final double topMargin = 5;
 
         button.setFont(LayoutUtils.getStandardFont(14));
@@ -81,7 +83,6 @@ public class ToggleSingle extends Module {
 
         panel.getChildren().addAll(label, button);
     }
-
 
     public void setTrueColor(String trueColor) {
         this.trueColor = trueColor;

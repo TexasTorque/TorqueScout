@@ -24,6 +24,9 @@ import org.texastorque.utils.Entry;
 import org.texastorque.utils.LayoutUtils;
 import org.texastorque.utils.Report;
 
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -38,6 +41,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -56,15 +60,16 @@ public class Averages extends Page {
     private Button hub = new Button("View all entries");
 
     public Averages(DataWrapper entries, Callback<Integer, Void> callback) {
+        label.setTextFill(Color.WHITE);
         label.setFont(LayoutUtils.getStandardFont(44));
         table.setEditable(false);
 
         back.setFont(LayoutUtils.getStandardFont(24));
         hub.setFont(LayoutUtils.getStandardFont(24));
 
-        //table.setItems(entries);
+        // table.setItems(entries);
         ObservableList<Entry> averages = entries.getAverages();
-        for (Entry average : averages) 
+        for (Entry average : averages)
             average.getTeamButton().setOnAction(e -> {
                 callback.call(average.getTeamNumber());
             });
@@ -76,9 +81,8 @@ public class Averages extends Page {
             return v1.length() >= v2.length() ? 1 : -1;
         });
 
-
-        TableColumn<Entry, String> autoAccuracyColumn = (TableColumn<Entry, String>) 
-                Entry.createColumn("autoAccuracy", "A Accuracy");
+        TableColumn<Entry, String> autoAccuracyColumn = (TableColumn<Entry, String>) Entry.createColumn("autoAccuracy",
+                "A Accuracy");
 
         autoAccuracyColumn.setComparator((String v1, String v2) -> {
             try {
@@ -88,9 +92,8 @@ public class Averages extends Page {
             }
         });
 
-        TableColumn<Entry, String> teleopAccuracyColumn = (TableColumn<Entry, String>) 
-                Entry.createColumn("teleopAccuracy", "T Accuracy");
-
+        TableColumn<Entry, String> teleopAccuracyColumn = (TableColumn<Entry, String>) Entry
+                .createColumn("teleopAccuracy", "T Accuracy");
 
         teleopAccuracyColumn.setComparator((String v1, String v2) -> {
             try {
@@ -106,7 +109,8 @@ public class Averages extends Page {
             return Entry.valueOfClimb(v1) >= Entry.valueOfClimb(v2) ? 1 : -1;
         });
 
-        TableColumn<Entry, Double> climbNumbersColumn = (TableColumn<Entry, Double>) Entry.createColumn("avgClimbPoints", "Climb #");
+        TableColumn<Entry, Double> climbNumbersColumn = (TableColumn<Entry, Double>) Entry
+                .createColumn("avgClimbPoints", "Climb #");
 
         TableColumn<Entry, Button> teamButtons = (TableColumn<Entry, Button>) Entry.createColumn("teamButton");
 
@@ -137,14 +141,13 @@ public class Averages extends Page {
                 climbNumbersColumn,
                 Entry.createColumn("totalScore"),
                 Entry.createColumn("comment"),
-                teamButtons
-        );
+                teamButtons);
 
         final VBox vbox = new VBox();
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        table.setMinHeight(700);
-        vbox.getChildren().addAll(label, table, 
+        // stable.setMinHeight(700);
+        vbox.getChildren().addAll(label, table,
                 LayoutUtils.bundleIntoHBox(back, hub));
 
         TableColumn<Entry, ?> scoreColumn = table.getColumns().get(18);
@@ -152,6 +155,7 @@ public class Averages extends Page {
         table.getSortOrder().add(scoreColumn);
 
         panel.getChildren().add(vbox);
+        panel.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
     }
 

@@ -24,6 +24,9 @@ import org.texastorque.utils.Entry;
 import org.texastorque.utils.LayoutUtils;
 import org.texastorque.utils.Report;
 
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -38,6 +41,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -51,11 +55,12 @@ public class Hub extends Page {
     }
 
     private TableView<Entry> table = new TableView<Entry>();
-    final Label label = new Label("Torque Scout");
+    Label label = new Label("Torque Scout");
     private Button back = new Button("Back to home");
     private Button average = new Button("View averages");
 
     public Hub(DataWrapper entries) {
+        label.setTextFill(Color.WHITE);
         label.setFont(LayoutUtils.getStandardFont(44));
         table.setEditable(false);
 
@@ -69,9 +74,8 @@ public class Hub extends Page {
             return v1.length() >= v2.length() ? 1 : -1;
         });
 
-
-        TableColumn<Entry, String> autoAccuracyColumn = (TableColumn<Entry, String>) 
-                Entry.createColumn("autoAccuracy", "A Accuracy");
+        TableColumn<Entry, String> autoAccuracyColumn = (TableColumn<Entry, String>) Entry.createColumn("autoAccuracy",
+                "A Accuracy");
 
         autoAccuracyColumn.setComparator((String v1, String v2) -> {
             try {
@@ -81,9 +85,8 @@ public class Hub extends Page {
             }
         });
 
-        TableColumn<Entry, String> teleopAccuracyColumn = (TableColumn<Entry, String>) 
-                Entry.createColumn("teleopAccuracy", "T Accuracy");
-
+        TableColumn<Entry, String> teleopAccuracyColumn = (TableColumn<Entry, String>) Entry
+                .createColumn("teleopAccuracy", "T Accuracy");
 
         teleopAccuracyColumn.setComparator((String v1, String v2) -> {
             try {
@@ -99,9 +102,11 @@ public class Hub extends Page {
             return Entry.valueOfClimb(v1) >= Entry.valueOfClimb(v2) ? 1 : -1;
         });
 
-        //TableColumn<Entry, Double> climbNumbersColumn = (TableColumn<Entry, Double>) Entry.createColumn("avgClimbPoints", "Climb #");
+        // TableColumn<Entry, Double> climbNumbersColumn = (TableColumn<Entry, Double>)
+        // Entry.createColumn("avgClimbPoints", "Climb #");
 
-        //TableColumn<Entry, Button> teamButtons = (TableColumn<Entry, Button>) Entry.createColumn("teamButton");
+        // TableColumn<Entry, Button> teamButtons = (TableColumn<Entry, Button>)
+        // Entry.createColumn("teamButton");
 
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
@@ -127,17 +132,17 @@ public class Hub extends Page {
                 teleopAccuracyColumn,
 
                 climbColumn,
-                //climbNumbersColumn,
+                // climbNumbersColumn,
                 Entry.createColumn("totalScore"),
                 Entry.createColumn("comment")
-                //teamButtons
+        // teamButtons
         );
 
         final VBox vbox = new VBox();
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        table.setMinHeight(700);
-        vbox.getChildren().addAll(label, table, 
+        // table.setMinHeight(700);
+        vbox.getChildren().addAll(label, table,
                 LayoutUtils.bundleIntoHBox(back, average));
 
         TableColumn<Entry, ?> scoreColumn = table.getColumns().get(18);
@@ -145,6 +150,7 @@ public class Hub extends Page {
         table.getSortOrder().add(scoreColumn);
 
         panel.getChildren().add(vbox);
+        panel.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
     }
 

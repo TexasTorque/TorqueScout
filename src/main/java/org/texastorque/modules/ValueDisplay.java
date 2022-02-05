@@ -15,6 +15,7 @@ import org.texastorque.utils.LayoutUtils;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class ValueDisplay extends Module {
@@ -43,6 +44,7 @@ public class ValueDisplay extends Module {
 
     @Override
     protected void init() {
+        label.setTextFill(Color.WHITE);
         final double topMargin = 5;
 
         panel.setPrefSize(320, 60);

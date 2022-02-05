@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class DisjointToggles extends Module {
@@ -44,6 +45,8 @@ public class DisjointToggles extends Module {
         label.setLayoutX(50);
         label.setLayoutY(5);
         label.setPadding(new javafx.geometry.Insets(0, 0, 0, 180));
+        label.setTextFill(Color.WHITE);
+        ;
 
         panel.getChildren().addAll(label);
         for (String local : names) {

@@ -44,7 +44,7 @@ public class App extends Application {
     public static void postPaneOnStage(Stage stage, Pane pane) {
         stage.setScene(new Scene(pane));
         stage.show();
-            }
+    }
 
     public static void postPaneOnStage(Stage stage, Pane pane, int w, int h) {
         stage.setScene(new Scene(pane));
@@ -110,11 +110,12 @@ public class App extends Application {
                 switchToMain();
         });
         switchStageScene(window.getPanel());
-        setStageSize(800, 750);
+        setStageSize(800, 600);
     }
 
     private void switchToHub() {
-        if (dataReader.getEntries() == null) dataReader.loadEntries(stage);
+        if (dataReader.getEntries() == null)
+            dataReader.loadEntries(stage);
 
         Hub window = new Hub(dataReader.getDataWrapper());
 
@@ -126,12 +127,13 @@ public class App extends Application {
         });
 
         switchStageScene(window.getPanel());
-        //setStageSize(1200, 1200);
+        // setStageSize(1200, 1200);
         stage.setMaximized(true);
     }
 
     private void switchToAverages() {
-        if (dataReader.getEntries() == null) dataReader.loadEntries(stage);
+        if (dataReader.getEntries() == null)
+            dataReader.loadEntries(stage);
 
         Averages window = new Averages(dataReader.getDataWrapper(), new Callback<Integer, Void>() {
             @Override
@@ -148,9 +150,8 @@ public class App extends Application {
             switchToHub();
         });
 
-
         switchStageScene(window.getPanel());
-        //setStageSize(1200, 1200);
+        // setStageSize(1200, 1200);
         stage.setMaximized(true);
     }
 
@@ -162,8 +163,8 @@ public class App extends Application {
         });
 
         switchStageScene(window.getPanel());
-        //setStageSize(1200, 1200);
-        stage.setMaximized(true); 
+        // setStageSize(1200, 1200);
+        stage.setMaximized(true);
     }
 
     private void setStageSize(int w, int h) {

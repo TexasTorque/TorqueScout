@@ -20,6 +20,12 @@ import org.texastorque.utils.NoticeUtils;
 import org.texastorque.utils.LayoutUtils;
 import org.texastorque.utils.Report;
 
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.geometry.Insets;
+
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
@@ -44,7 +50,7 @@ public class Scoring extends Page {
     private Numeric teleopUpper = new Numeric("Teleop upper");
     private Numeric teleopMissed = new Numeric("Teleop missed");
     private Numeric teleopIntaken = new Numeric("Teleop intaken");
-    private DisjointToggles climb = new DisjointToggles("Climb level", "Low", "Mid", "High", "Transversal");
+    private DisjointToggles climb = new DisjointToggles("Climb Level", "Low", "Mid", "High", "Transversal");
 
     private TextBox comments = new TextBox("Comments", "");
 
@@ -85,18 +91,13 @@ public class Scoring extends Page {
                                         teleopIntaken.getPanel(),
                                         climb.getPanel(),
                                         LayoutUtils.insertPadding(
-                                            LayoutUtils.bundleIntoVBox(back),
-                                            new LayoutUtils.Padding(20, 0, 0, 0)
-                                        ),
+                                                LayoutUtils.bundleIntoVBox(back),
+                                                new LayoutUtils.Padding(20, 0, 0, 0)),
                                         LayoutUtils.insertPadding(
-                                            LayoutUtils.bundleIntoVBox(submit),
-                                            new LayoutUtils.Padding(20, 0, 0, 0)
-                                        )
-                                ),
-                                new LayoutUtils.Padding(0, 0, 0, 40)
-                        )
-                )
-        );
+                                                LayoutUtils.bundleIntoVBox(submit),
+                                                new LayoutUtils.Padding(20, 0, 0, 0))),
+                                new LayoutUtils.Padding(0, 0, 0, 40))));
+        panel.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     public Report generateReport() {

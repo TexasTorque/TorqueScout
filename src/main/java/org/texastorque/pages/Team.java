@@ -22,6 +22,12 @@ import org.texastorque.utils.Entry;
 import org.texastorque.utils.LayoutUtils;
 import org.texastorque.utils.Report;
 
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.geometry.Insets;
+
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.application.Application;
@@ -64,9 +70,8 @@ public class Team extends Page {
             return v1.length() >= v2.length() ? 1 : -1;
         });
 
-
-        TableColumn<Entry, String> autoAccuracyColumn = (TableColumn<Entry, String>) 
-                Entry.createColumn("autoAccuracy", "A Accuracy");
+        TableColumn<Entry, String> autoAccuracyColumn = (TableColumn<Entry, String>) Entry.createColumn("autoAccuracy",
+                "A Accuracy");
 
         autoAccuracyColumn.setComparator((String v1, String v2) -> {
             try {
@@ -76,9 +81,8 @@ public class Team extends Page {
             }
         });
 
-        TableColumn<Entry, String> teleopAccuracyColumn = (TableColumn<Entry, String>) 
-                Entry.createColumn("teleopAccuracy", "T Accuracy");
-
+        TableColumn<Entry, String> teleopAccuracyColumn = (TableColumn<Entry, String>) Entry
+                .createColumn("teleopAccuracy", "T Accuracy");
 
         teleopAccuracyColumn.setComparator((String v1, String v2) -> {
             try {
@@ -119,14 +123,13 @@ public class Team extends Page {
 
                 climbColumn,
                 Entry.createColumn("totalScore"),
-                Entry.createColumn("comment")
-        );
+                Entry.createColumn("comment"));
 
         final VBox vbox = new VBox();
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(10, 0, 0, 10));
 
-        table.setMinHeight(700);
+        // table.setMinHeight(700);
 
         vbox.getChildren().addAll(label, table, back);
 
@@ -135,6 +138,7 @@ public class Team extends Page {
         table.getSortOrder().add(scoreColumn);
 
         panel.getChildren().add(vbox);
+        panel.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
     }
 

@@ -19,6 +19,11 @@ import org.texastorque.modules.TextBox;
 import org.texastorque.utils.LayoutUtils;
 import org.texastorque.utils.Report;
 
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -41,11 +46,13 @@ public class Main extends Page {
         title.setPrefSize(600, 50);
         title.setLayoutX(20);
         title.setLayoutY(20);
+        title.setTextFill(Color.WHITE);
 
         Label description = new Label("Texas Torque FRC Scouting Utility");
         description.setFont(LayoutUtils.getStandardFont(14));
         description.setPrefSize(600, 30);
         description.setLayoutX(20);
+        description.setTextFill(Color.WHITE);
 
         newReport.setPrefSize(300, 75);
         newReport.setLayoutX(20);
@@ -63,7 +70,7 @@ public class Main extends Page {
         launchHub.setLayoutX(20);
         launchHub.setFont(LayoutUtils.getStandardFont(18));
 
-        //panel.setPrefSize(350, 1200);
+        // panel.setPrefSize(350, 1200);
         panel.getChildren().addAll(
                 LayoutUtils.bundleIntoVBox(
                         LayoutUtils.insertPadding(
@@ -84,8 +91,9 @@ public class Main extends Page {
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(launchHub),
                                 new LayoutUtils.Padding(20, 0, 0, 0))
-                                
+
                 ));
+        panel.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     public Button getNewReport() {
