@@ -9,7 +9,7 @@ See file ./license.txt or go write <jus@gtsbr.org> for full license details. -->
 
     <groupId>org.texastorque</groupId>
     <artifactId>TorqueScout</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>TorqueScout</name>
@@ -59,6 +59,38 @@ See file ./license.txt or go write <jus@gtsbr.org> for full license details. -->
                     <mainClass>TorqueScout/org.texastorque.App</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <name>TorqueScout</name>
+                    <appVersion>1.0.0</appVersion>
+                    <vendor>org.texastorque</vendor>
+                    <destination>dist</destination>
+                    <module>TorqueScout/org.texastorque.App</module>
+                    <runtimeImage>target/TorqueScout</runtimeImage>            
+                    <icon>logo.png</icon>
+                    <javaOptions>
+                        <option>-Dfile.encoding=UTF-8</option>
+                    </javaOptions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>mac</id>
+                        <configuration>
+                            <icon>logo.png</icon>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>win</id>
+                        <configuration>
+                            <icon>logo.png</icon>
+                            <winMenu>true</winMenu>
+                        </configuration>
+                    </execution>
+                </executions>
+              </plugin>
         </plugins>
     </build>
 

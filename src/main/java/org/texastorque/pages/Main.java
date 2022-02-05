@@ -36,7 +36,7 @@ public class Main extends Page {
     private Button launchHub = new Button("Launch Hub");
 
     public Main() {
-        Label title = new Label("TorqueScout");
+        Label title = new Label("Torque Scout");
         title.setFont(LayoutUtils.getStandardFont(36));
         title.setPrefSize(600, 50);
         title.setLayoutX(20);

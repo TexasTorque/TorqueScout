@@ -50,13 +50,16 @@ public class DataReader {
             }
 
             String[] lines = content.split("\n");
-            for (String line : lines)
-                if (!line.isEmpty())
+            for (String line : lines) 
+                if (!line.isEmpty()) {
+                    System.out.println(line);
                     entries.add(Entry.fromCSV(line));
+                }
 
             return true;
         } catch (Exception e) {
             NoticeUtils.displayError("Data Reader Error", "Could not read data directory");
+            e.printStackTrace();
             return false;
         }
     }
