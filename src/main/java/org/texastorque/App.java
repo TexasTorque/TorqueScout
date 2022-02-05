@@ -36,7 +36,6 @@ import javafx.stage.Stage;
 public class App extends Application {
     Stage stage;
 
-    ArrayList<Report> reports = new ArrayList<Report>();
     DataWriter dataWriter = new DataWriter();
     DataReader dataReader = new DataReader();
 
@@ -62,15 +61,17 @@ public class App extends Application {
     }
 
     private void switchToMain() {
-        Main window = new Main(reports);
+        Main window = new Main();
         window.getNewReport().setOnAction(e -> {
             switchToScoring();
         });
         window.getExportReports().setOnAction(e -> {
             dataWriter.export(stage);
         });
+        window.getLoadReports().setOnAction(e -> {
+            dataReader.loadEntries(stage);
+        });
         window.getLaunchHub().setOnAction(e -> {
-            //switchToHub();
             switchToAverages();
         });
         switchStageScene(window.getPanel());
@@ -113,7 +114,7 @@ public class App extends Application {
     }
 
     private void switchToAverages() {
-        if (!dataReader.loadEntries(stage)) return;
+        if (dataReader.getEntries() == null) dataReader.loadEntries(stage);
 
         Averages window = new Averages(dataReader.getDataWrapper());
         window.getBackButton().setOnAction(e -> {

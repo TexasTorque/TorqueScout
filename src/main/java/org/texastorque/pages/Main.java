@@ -32,98 +32,58 @@ public class Main extends Page {
 
     private Button newReport = new Button("New Report");
     private Button exportReports = new Button("Export Reports");
+    private Button loadReports = new Button("Load Reports");
     private Button launchHub = new Button("Launch Hub");
 
-    ArrayList<Report> reports = null;
-
-    // private TableView table = new TableView();
-
-    // public Pane makeLabelsPane() {
-    // Pane p = new VBox();
-    // p.setPrefSize(600, 600);
-    // if (reports == null) { System.out.println("reports is null");
-    // return p;}
-    // for (Report report : reports) {
-    // Label l = new Label(report.titleString());
-    // l.setFont(LayoutUtils.getStandardFont(16));
-    // p.getChildren().add(l);
-    // }
-    // return p;
-    // }
-
-    // public Pane makeTablesPane() {
-    // table.setEditable(true);
-
-    // TableColumn dateTimeCol = new TableColumn("Date&Time");
-    // TableColumn teamNumberCol = new TableColumn("Team Number");
-    // TableColumn matchNameCol = new TableColumn("Match Name");
-    // TableColumn matchNumberCol = new TableColumn("Match Number");
-
-    // table.getColumns().addAll(dateTimeCol, teamNumberCol, matchNameCol,
-    // matchNumberCol);
-
-    // final VBox vbox = new VBox();
-    // vbox.setSpacing(5);
-    // vbox.setPrefSize(600, 600);
-    // vbox.getChildren().addAll(table);
-    // return vbox;
-    // }
-
-    public Main(ArrayList<Report> reports) {
-        Label title = new Label("TorqueScout Client");
+    public Main() {
+        Label title = new Label("TorqueScout");
         title.setFont(LayoutUtils.getStandardFont(36));
         title.setPrefSize(600, 50);
         title.setLayoutX(20);
         title.setLayoutY(20);
 
-
-
-        Label description = new Label(
-                "TorqueScout Client is a program to collect match\n" +
-                        "information for scouting analysis. The client\n" +
-                        "provides a dashboard to collect match data, and\n" +
-                        "exports a single CSV file, designed to be used in\n" +
-                        "TorqueScout Hub, which is used to perform\n" +
-                        "data analysis and inform scouting decisions.");
+        Label description = new Label("Texas Torque FRC Scouting Utility");
         description.setFont(LayoutUtils.getStandardFont(14));
-        description.setPrefSize(600, 150);
+        description.setPrefSize(600, 30);
         description.setLayoutX(20);
 
         newReport.setPrefSize(300, 75);
         newReport.setLayoutX(20);
-        newReport.setLayoutY(40);
         newReport.setFont(LayoutUtils.getStandardFont(18));
 
         exportReports.setPrefSize(300, 75);
         exportReports.setLayoutX(20);
-        exportReports.setLayoutY(60);
         exportReports.setFont(LayoutUtils.getStandardFont(18));
+
+        loadReports.setPrefSize(300, 75);
+        loadReports.setLayoutX(20);
+        loadReports.setFont(LayoutUtils.getStandardFont(18));
 
         launchHub.setPrefSize(300, 75);
         launchHub.setLayoutX(20);
-        launchHub.setLayoutY(60);
         launchHub.setFont(LayoutUtils.getStandardFont(18));
-
-        this.reports = reports;
 
         //panel.setPrefSize(350, 1200);
         panel.getChildren().addAll(
                 LayoutUtils.bundleIntoVBox(
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(title),
-                                new LayoutUtils.Padding(0, 0, 0, 40)),
+                                new LayoutUtils.Padding(20, 20, 0, 0)),
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(description),
-                                new LayoutUtils.Padding(0, 0, 0, 40)),
+                                new LayoutUtils.Padding(20, 0, 0, 0)),
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(newReport),
-                                new LayoutUtils.Padding(0, 0, 0, 0)),
+                                new LayoutUtils.Padding(20, 0, 0, 0)),
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(exportReports),
-                                new LayoutUtils.Padding(20, 20, 00, 20)),
+                                new LayoutUtils.Padding(20, 0, 0, 0)),
+                        LayoutUtils.insertPadding(
+                                LayoutUtils.wrapInPane(loadReports),
+                                new LayoutUtils.Padding(20, 0, 0, 0)),
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(launchHub),
-                                new LayoutUtils.Padding(00, 20, 00, 20))
+                                new LayoutUtils.Padding(20, 0, 0, 0))
                                 
                 ));
     }
@@ -134,6 +94,10 @@ public class Main extends Page {
 
     public Button getExportReports() {
         return exportReports;
+    }
+
+    public Button getLoadReports() {
+        return loadReports;
     }
 
     public Button getLaunchHub() {
