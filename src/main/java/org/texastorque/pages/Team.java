@@ -62,6 +62,8 @@ public class Team extends Page {
         table.setEditable(false);
 
         back.setFont(LayoutUtils.getStandardFont(24));
+        back.setTextFill(Color.WHITE);
+        back.setStyle("-fx-text-fill: black");
 
         table.getItems().addAll(entries.getTeamEntries().get(team));
 

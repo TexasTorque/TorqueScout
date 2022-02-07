@@ -94,6 +94,14 @@ public class Main extends Page {
 
                 ));
         panel.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        newReport.setTextFill(Color.WHITE);
+        newReport.setStyle("-fx-text-fill: black");
+        exportReports.setTextFill(Color.WHITE);
+        exportReports.setStyle("-fx-text-fill: black");
+        loadReports.setTextFill(Color.WHITE);
+        loadReports.setStyle("-fx-text-fill: black");
+        launchHub.setTextFill(Color.WHITE);
+        launchHub.setStyle("-fx-text-fill: black");
     }
 
     public Button getNewReport() {

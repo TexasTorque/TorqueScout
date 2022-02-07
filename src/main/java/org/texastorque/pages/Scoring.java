@@ -68,6 +68,10 @@ public class Scoring extends Page {
 
         submit.setFont(LayoutUtils.getStandardFont(18));
         back.setFont(LayoutUtils.getStandardFont(18));
+        back.setTextFill(Color.WHITE);
+        back.setStyle("-fx-text-fill: black");
+        submit.setTextFill(Color.WHITE);
+        submit.setStyle("-fx-text-fill: black");
 
         panel.setPrefSize(1200, 1200);
         panel.getChildren().addAll(

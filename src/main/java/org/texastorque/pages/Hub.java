@@ -66,6 +66,10 @@ public class Hub extends Page {
 
         back.setFont(LayoutUtils.getStandardFont(24));
         average.setFont(LayoutUtils.getStandardFont(24));
+        back.setTextFill(Color.WHITE);
+        back.setStyle("-fx-text-fill: black");
+        average.setTextFill(Color.WHITE);
+        average.setStyle("-fx-text-fill: black");
 
         table.getItems().addAll(entries.getEntries());
 

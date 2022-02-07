@@ -66,6 +66,10 @@ public class Averages extends Page {
 
         back.setFont(LayoutUtils.getStandardFont(24));
         hub.setFont(LayoutUtils.getStandardFont(24));
+        back.setTextFill(Color.WHITE);
+        back.setStyle("-fx-text-fill: black");
+        hub.setTextFill(Color.WHITE);
+        hub.setStyle("-fx-text-fill: black");
 
         // table.setItems(entries);
         ObservableList<Entry> averages = entries.getAverages();
