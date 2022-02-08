@@ -109,4 +109,9 @@ public class Numeric extends Module {
     public int getValue() {
         return value;
     }
+
+    public void increment() {
+        this.value += 1;
+        this.count.setText(String.format("%d", value));
+    }
 }
