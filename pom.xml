@@ -60,37 +60,24 @@ See file ./license.txt or go write <jus@gtsbr.org> for full license details. -->
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.panteleyev</groupId>
-                <artifactId>jpackage-maven-plugin</artifactId>
-                <version>1.4.0</version>
-                <configuration>
-                    <name>TorqueScout</name>
-                    <appVersion>1.0.0</appVersion>
-                    <vendor>org.texastorque</vendor>
-                    <destination>dist</destination>
-                    <module>TorqueScout/org.texastorque.App</module>
-                    <runtimeImage>target/TorqueScout</runtimeImage>            
-                    <icon>logo.png</icon>
-                    <javaOptions>
-                        <option>-Dfile.encoding=UTF-8</option>
-                    </javaOptions>
-                </configuration>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
-                        <id>mac</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
                         <configuration>
-                            <icon>logo.png</icon>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>win</id>
-                        <configuration>
-                            <icon>logo.png</icon>
-                            <winMenu>true</winMenu>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>org.texastorque.Main</mainClass>
+                                </transformer>
+                            </transformers>
                         </configuration>
                     </execution>
                 </executions>
-              </plugin>
+            </plugin>
         </plugins>
     </build>
 
