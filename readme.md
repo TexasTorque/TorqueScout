@@ -17,7 +17,8 @@ To compile and execute the development application, run:
 `java -jar .\target\TorqueScout-1.0.0.jar` to execute JAR
 
 `TorqueScout-1.0.0.jar` runs standalone (tested with Java 16 SE)
-https://drive.google.com/file/d/1EHjj3KXQCD2eKivbDu614zc0oZFsY0FF/view?usp=sharing
+
+[Can be accessed here](https://drive.google.com/file/d/1EHjj3KXQCD2eKivbDu614zc0oZFsY0FF/view?usp=sharing)
 
 ### Build Distribution with Sustom JRE
 
