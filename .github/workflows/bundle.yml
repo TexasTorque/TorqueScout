@@ -1,0 +1,35 @@
+name: Bundle
+
+on:
+  push:
+    branches: ['release']
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:    
+    - uses: actions/checkout@v2
+    
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+
+    - name: Build artifact
+      run: mvn package
+    
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: target/TorqueScout*
+        tag_name: 1.0.${{ github.run_number }}
+
+    
+              
+      
