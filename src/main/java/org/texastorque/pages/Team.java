@@ -131,8 +131,6 @@ public class Team extends Page {
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(10, 0, 0, 10));
 
-        // table.setMinHeight(700);
-
         vbox.getChildren().addAll(label, table, back);
 
         TableColumn<Entry, ?> scoreColumn = table.getColumns().get(17);
