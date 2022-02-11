@@ -30,20 +30,19 @@ public class DataReader {
 
     public DataReader() {
         directoryChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        //directoryChooser.setInitialDirectory(new File("/Users/justuslanguell/TexasTorque/TorqueScout/tests"));
     }
 
     public boolean loadEntries(Stage s) {
         entries = FXCollections.observableArrayList();
         try {
             File selectedDirectory = directoryChooser.showDialog(s);
-            if (selectedDirectory == null) return false;
+            if (selectedDirectory == null)
+                return false;
 
             String content = "";
 
             String[] fileNames = (new File(selectedDirectory.getAbsolutePath())).list();
             for (String fileName : fileNames) {
-                //if (fileName.contains("scouting-data-")) {
                 if (fileName.contains(".tsr")) {
                     path = selectedDirectory.getAbsolutePath() + "/" + fileName;
                     content += Files.readString(Path.of(path)).replace(Report.header, "");
@@ -54,20 +53,6 @@ public class DataReader {
             for (String line : lines)
                 if (line.length() > 10)
                     entries.add(Entry.fromCSV(line));
-
-            // String[] lines = content.split("\n");
-            // for (int i = 0; i < lines.length - 1; i++) {
-            //     String line = lines[i];
-            //     if (!line.isEmpty()) {
-            //               System.out.println(line.length());
-            //         System.out.println(line);
-            //         System.out.println(fuck);
-
-            //         entries.add(Entry.fromCSV(line));
-              
-            //         fuck++;
-            //     }
-            // }
 
             return true;
         } catch (Exception e) {

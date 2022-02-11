@@ -106,12 +106,6 @@ public class Hub extends Page {
             return Entry.valueOfClimb(v1) >= Entry.valueOfClimb(v2) ? 1 : -1;
         });
 
-        // TableColumn<Entry, Double> climbNumbersColumn = (TableColumn<Entry, Double>)
-        // Entry.createColumn("avgClimbPoints", "Climb #");
-
-        // TableColumn<Entry, Button> teamButtons = (TableColumn<Entry, Button>)
-        // Entry.createColumn("teamButton");
-
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
                 Entry.createColumn("matchNumber", "Match #"),

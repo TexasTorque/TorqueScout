@@ -71,7 +71,6 @@ public class Averages extends Page {
         hub.setTextFill(Color.WHITE);
         hub.setStyle("-fx-text-fill: black");
 
-        // table.setItems(entries);
         ObservableList<Entry> averages = entries.getAverages();
         for (Entry average : averages)
             average.getTeamButton().setOnAction(e -> {
@@ -118,12 +117,14 @@ public class Averages extends Page {
 
         TableColumn<Entry, Button> teamButtons = (TableColumn<Entry, Button>) Entry.createColumn("teamButton");
 
+        TableColumn<Entry, Integer> score = (TableColumn<Entry, Integer>) Entry.createColumn("totalScore");
+
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
-                Entry.createColumn("matchNumber", "Match #"),
+                // Entry.createColumn("matchNumber", "Match #"),
                 taxiColumn,
 
-                Entry.createColumn("allianceColor", "Color"),
+                // Entry.createColumn("allianceColor", "Color"),
 
                 Entry.createColumn("autoLower", "A Lower"),
                 Entry.createColumn("autoUpper", "A Upper"),
@@ -141,20 +142,19 @@ public class Averages extends Page {
                 Entry.createColumn("teleopScore", "T Score"),
                 teleopAccuracyColumn,
 
-                climbColumn,
+                // climbColumn,
                 climbNumbersColumn,
-                Entry.createColumn("totalScore"),
-                Entry.createColumn("comment"),
+                score,
+                // Entry.createColumn("comment"),
                 teamButtons);
 
         final VBox vbox = new VBox();
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        // stable.setMinHeight(700);
         vbox.getChildren().addAll(label, table,
                 LayoutUtils.bundleIntoHBox(back, hub));
 
-        TableColumn<Entry, ?> scoreColumn = table.getColumns().get(18);
+        TableColumn<Entry, ?> scoreColumn = score;
         scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
         table.getSortOrder().add(scoreColumn);
 
