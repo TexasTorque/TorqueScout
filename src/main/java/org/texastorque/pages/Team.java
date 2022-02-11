@@ -59,6 +59,7 @@ public class Team extends Page {
 
     public Team(DataWrapper entries, int team) {
         label.setFont(LayoutUtils.getStandardFont(44));
+        label.setTextFill(Color.WHITE);
         table.setEditable(false);
 
         back.setFont(LayoutUtils.getStandardFont(24));
