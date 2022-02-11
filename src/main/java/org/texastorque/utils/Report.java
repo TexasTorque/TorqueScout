@@ -15,8 +15,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Report {
 
-    public static final DateTimeFormatter dateTimeFormatter = 
-            DateTimeFormatter.ofPattern("yyyy-MM-dd@HH:mm:ss");
+    public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd@HH:mm:ss");
 
     public static final String header = "dateTime,teamNumber,matchName,matchNumber,"
             + "allianceColor,taxi,autoLower,autoUpper,autoMissed,autoIntaken,"
@@ -27,7 +26,7 @@ public class Report {
         LOW,
         MEDIUM,
         HIGH,
-        TRANSVERSAL
+        TRAVERSAL
     }
 
     private final int teamNumber;

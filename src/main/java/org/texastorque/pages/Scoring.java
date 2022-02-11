@@ -51,7 +51,7 @@ public class Scoring extends Page {
     private Numeric teleopUpper = new Numeric("Teleop upper");
     private Numeric teleopMissed = new Numeric("Teleop missed");
     private Numeric teleopIntaken = new Numeric("Teleop intaken");
-    private DisjointToggles climb = new DisjointToggles("Climb Level", "Low", "Mid", "High", "Transversal");
+    private DisjointToggles climb = new DisjointToggles("Climb Level", "Low", "Mid", "High", "Traversal");
 
     private TextBox comments = new TextBox("Comments", "");
 

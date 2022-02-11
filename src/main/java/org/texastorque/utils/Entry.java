@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 
 public class Entry {
     public final static Integer[] climbScores = { 0, 4, 6, 10, 15 };
-    public final static String[] climbNames = { "None", "Low", "Mid", "High", "Transversal" };
+    public final static String[] climbNames = { "None", "Low", "Mid", "High", "Traversal" };
 
     public static int valueOfClimb(String climb) {
         for (int i = 0; i < climbNames.length; i++)
