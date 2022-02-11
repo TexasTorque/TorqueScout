@@ -43,7 +43,6 @@ public class Entry {
 
     public final boolean taxi;
 
-    // public final Double percenttaxi;
     public final Integer autoLower;
     public final Integer autoUpper;
     public final Integer autoMissed;
@@ -82,7 +81,6 @@ public class Entry {
             Integer matchNumber,
             String allianceColor,
             boolean taxi,
-            // Double acctaxi,
             Integer autoLower,
             Integer autoUpper,
             Integer autoMissed,
@@ -99,7 +97,6 @@ public class Entry {
         this.matchNumber = matchNumber;
         this.allianceColor = allianceColor;
         this.taxi = taxi;
-        // this.percenttaxi = acctaxi;
         this.autoLower = autoLower;
         this.autoUpper = autoUpper;
         this.autoMissed = autoMissed;
@@ -152,12 +149,6 @@ public class Entry {
     public Integer getTaxiValue() {
         return taxi ? 1 : 0;
     }
-
-    /*
-     * public Double getPercentTaxi() {
-     * return percenttaxi;
-     * }
-     */
 
     public Integer getAutoLower() {
         return autoLower;
@@ -246,14 +237,20 @@ public class Entry {
         String[] parts = s.split(",");
 
         LocalDateTime dateTime = LocalDateTime.now();
-        /*
+        // try {
+        // dateTime = LocalDateTime.parse(parts[0], Report.dateTimeFormatter);
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // dateTime = LocalDateTime.parse("2022-1-8T11:00:00");
+        // }
+
         return new Entry(
                 Integer.parseInt(parts[1]),
                 parts[2],
                 Integer.parseInt(parts[3]),
                 parts[4],
                 parts[5].equals("true"),
-                Double.parseDouble(parts[6]),
+                Integer.parseInt(parts[6]),
                 Integer.parseInt(parts[7]),
                 Integer.parseInt(parts[8]),
                 Integer.parseInt(parts[9]),
@@ -262,16 +259,15 @@ public class Entry {
                 Integer.parseInt(parts[12]),
                 Integer.parseInt(parts[13]),
                 Integer.parseInt(parts[14]),
-                Integer.parseInt(parts[15]),
-                parts[16],
+                parts[15],
                 dateTime);
-    } */
+    }
 
     private static final String NA = "N/A";
 
     public static Entry fromAveraged(ObservableList<Entry> entries) {
         boolean taxi = entries.stream().mapToInt(e -> e.getTaxiValue()).sum() / entries.size() == 1;
-        //double percenttaxi = entries.stream().mapToInt(e -> e.getTaxiValue()).sum() / entries.size();
+
         int autoLower = entries.stream().mapToInt(e -> e.getAutoLower()).sum() / entries.size();
         int autoUpper = entries.stream().mapToInt(e -> e.getAutoUpper()).sum() / entries.size();
         int autoMissed = entries.stream().mapToInt(e -> e.getAutoMissed()).sum() / entries.size();
@@ -284,7 +280,7 @@ public class Entry {
 
         double climb = entries.stream().mapToInt(e -> e.getClimbValue()).sum() / (entries.size() + 0.);
 
-        Entry entry = new Entry(entries.get(0).getTeamNumber(), NA, -1, NA, taxi, /*percenttaxi*/,
+        Entry entry = new Entry(entries.get(0).getTeamNumber(), NA, -1, NA, taxi,
                 autoLower, autoUpper, autoMissed, autoIntaken,
                 teleopLower, teleopUpper, teleopMissed, teleopIntaken,
                 (int) Math.round(climb), NA, entries.get(0).getDate());

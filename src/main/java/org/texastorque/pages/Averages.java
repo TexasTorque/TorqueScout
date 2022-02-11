@@ -78,18 +78,11 @@ public class Averages extends Page {
             });
 
         table.getItems().addAll(entries.getAverages());
-        /*
-         * TableColumn<Entry, String> percentTaxiColumn = (TableColumn<Entry, String>)
-         * Entry.createColumn("Taxi Accuracy");
-         * percentTaxiColumn.setComparator((String v1, String v2) -> {
-         * try {
-         * return Integer.parseInt(v1.replace("%", "")) >=
-         * Integer.parseInt(v2.replace("%", "")) ? 1 : -1;
-         * } catch (Exception e) {
-         * return 0;
-         * }
-         * });
-         */
+
+        TableColumn<Entry, String> taxiColumn = (TableColumn<Entry, String>) Entry.createColumn("taxi");
+        taxiColumn.setComparator((String v1, String v2) -> {
+            return v1.length() >= v2.length() ? 1 : -1;
+        });
 
         TableColumn<Entry, String> autoAccuracyColumn = (TableColumn<Entry, String>) Entry.createColumn("autoAccuracy",
                 "A Accuracy");
@@ -128,7 +121,10 @@ public class Averages extends Page {
 
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
-                percentTaxiColumn,
+                // Entry.createColumn("matchNumber", "Match #"),
+                taxiColumn,
+
+                // Entry.createColumn("allianceColor", "Color"),
 
                 Entry.createColumn("autoLower", "A Lower"),
                 Entry.createColumn("autoUpper", "A Upper"),
@@ -146,8 +142,10 @@ public class Averages extends Page {
                 Entry.createColumn("teleopScore", "T Score"),
                 teleopAccuracyColumn,
 
+                // climbColumn,
                 climbNumbersColumn,
                 score,
+                // Entry.createColumn("comment"),
                 teamButtons);
 
         final VBox vbox = new VBox();
