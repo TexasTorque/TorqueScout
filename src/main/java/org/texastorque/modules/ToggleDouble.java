@@ -31,7 +31,6 @@ public class ToggleDouble extends Module {
 
     @Override
     public void init() {
-        // panel.setStyle("-fx-background-color: black;");
         panel.setPrefSize(230, 60);
 
         Button on = new Button();
@@ -40,7 +39,7 @@ public class ToggleDouble extends Module {
 
         on.setFont(LayoutUtils.getStandardFont(14));
         off.setFont(LayoutUtils.getStandardFont(14));
- 
+
         label.setPrefSize(100, 50);
         label.setLayoutX(10);
 

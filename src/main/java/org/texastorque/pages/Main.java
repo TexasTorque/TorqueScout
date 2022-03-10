@@ -9,15 +9,7 @@
  */
 package org.texastorque.pages;
 
-import java.util.ArrayList;
-
-import org.texastorque.components.FadeButton;
-import org.texastorque.modules.DisjointToggles;
-import org.texastorque.modules.Numeric;
-import org.texastorque.modules.ToggleSingle;
-import org.texastorque.modules.TextBox;
 import org.texastorque.utils.LayoutUtils;
-import org.texastorque.utils.Report;
 
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -26,11 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 
 public class Main extends Page {
     protected Pane panel = new Pane();
@@ -70,7 +58,6 @@ public class Main extends Page {
         launchHub.setLayoutX(20);
         launchHub.setFont(LayoutUtils.getStandardFont(18));
 
-        // panel.setPrefSize(350, 1200);
         panel.getChildren().addAll(
                 LayoutUtils.bundleIntoVBox(
                         LayoutUtils.insertPadding(

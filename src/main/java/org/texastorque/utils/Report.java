@@ -9,7 +9,6 @@
  */
 package org.texastorque.utils;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -93,7 +92,6 @@ public class Report {
 
     public String titleString() {
         return String.format("%s: %d in %s(%d)",
-                // new SimpleDateFormat("yyyy-MM-dd").format(date),
                 date.format(dateTimeFormatter),
                 teamNumber, matchName, matchNumber);
     }

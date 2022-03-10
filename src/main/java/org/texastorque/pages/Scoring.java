@@ -9,7 +9,6 @@
  */
 package org.texastorque.pages;
 
-import org.texastorque.components.FadeButton;
 import org.texastorque.modules.DisjointToggles;
 import org.texastorque.modules.Numeric;
 import org.texastorque.modules.TextBox;
@@ -135,7 +134,7 @@ public class Scoring extends Page {
         int teamNumber = DataUtils.toInteger(teamNumberDisplay.getValue());
         int matchNumber = DataUtils.toInteger(matchNumberDisplay.getValue());
 
-        if (teamNumber == -1 || matchNumber == -1) {
+        if (teamNumber < 0 || matchNumber < 0) {
             NoticeUtils.displayError("Error Reading Entry", "Invalid team number or match number");
             return null;
         }

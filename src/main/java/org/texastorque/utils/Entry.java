@@ -9,19 +9,12 @@
  */
 package org.texastorque.utils;
 
-import java.net.Authenticator;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 public class Entry {
     public final static Integer[] climbScores = { 0, 4, 6, 10, 15 };
@@ -237,12 +230,6 @@ public class Entry {
         String[] parts = s.split(",");
 
         LocalDateTime dateTime = LocalDateTime.now();
-        // try {
-        // dateTime = LocalDateTime.parse(parts[0], Report.dateTimeFormatter);
-        // } catch (Exception e) {
-        // e.printStackTrace();
-        // dateTime = LocalDateTime.parse("2022-1-8T11:00:00");
-        // }
 
         return new Entry(
                 Integer.parseInt(parts[1]),

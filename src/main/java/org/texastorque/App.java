@@ -9,9 +9,6 @@
  */
 package org.texastorque;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 import org.texastorque.pages.Averages;
 import org.texastorque.pages.Hub;
 import org.texastorque.pages.Main;
@@ -19,18 +16,11 @@ import org.texastorque.pages.Scoring;
 import org.texastorque.pages.Team;
 import org.texastorque.utils.DataReader;
 import org.texastorque.utils.DataWriter;
-import org.texastorque.utils.Entry;
 import org.texastorque.utils.NoticeUtils;
 import org.texastorque.utils.Report;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -127,7 +117,6 @@ public class App extends Application {
         });
 
         switchStageScene(window.getPanel());
-        // setStageSize(1200, 1200);
         stage.setMaximized(true);
     }
 
@@ -151,7 +140,6 @@ public class App extends Application {
         });
 
         switchStageScene(window.getPanel());
-        // setStageSize(1200, 1200);
         stage.setMaximized(true);
     }
 
@@ -163,7 +151,6 @@ public class App extends Application {
         });
 
         switchStageScene(window.getPanel());
-        // setStageSize(1200, 1200);
         stage.setMaximized(true);
     }
 
