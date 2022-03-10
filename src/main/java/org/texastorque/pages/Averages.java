@@ -60,11 +60,6 @@ public class Averages extends Page {
 
         table.getItems().addAll(entries.getAverages());
 
-        TableColumn<Entry, String> taxiColumn = (TableColumn<Entry, String>) Entry.createColumn("taxi");
-        taxiColumn.setComparator((String v1, String v2) -> {
-            return v1.length() >= v2.length() ? 1 : -1;
-        });
-
         TableColumn<Entry, String> autoAccuracyColumn = (TableColumn<Entry, String>) Entry.createColumn("autoAccuracy",
                 "A Accuracy");
 
@@ -102,16 +97,12 @@ public class Averages extends Page {
 
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
-                taxiColumn,
-
                 Entry.createColumn("autoLower", "A Lower"),
                 Entry.createColumn("autoUpper", "A Upper"),
                 Entry.createColumn("autoMissed", "A Missed"),
                 Entry.createColumn("autoIntaken", "A Intaken"),
-
                 Entry.createColumn("autoScore", "A Score"),
                 autoAccuracyColumn,
-
                 Entry.createColumn("teleopLower", "T Lower"),
                 Entry.createColumn("teleopUpper", "T Upper"),
                 Entry.createColumn("teleopMissed", "T Missed"),
