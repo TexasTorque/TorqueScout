@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 import javafx.stage.DirectoryChooser;
@@ -51,8 +50,8 @@ public class DataWriter {
         try {
             String content = Files.readString(Path.of(path));
             File selectedDirectory = directoryChooser.showDialog(s);
-            Path exportPath = Path.of(selectedDirectory.getAbsolutePath() + "/" + "" //"scouting-data-" 
-                    + System.getProperty("user.name") + ".tsr"); // .csv
+            Path exportPath = Path.of(selectedDirectory.getAbsolutePath() + "/" + ""
+                    + System.getProperty("user.name") + ".tsr");
             Files.writeString(exportPath, content);
             NoticeUtils.displayInfo("Data Exported Success", "Successfully exported scouting report");
             return true;

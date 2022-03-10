@@ -9,15 +9,7 @@
  */
 package org.texastorque.pages;
 
-import java.util.ArrayList;
-
-import org.texastorque.components.FadeButton;
-import org.texastorque.modules.DisjointToggles;
-import org.texastorque.modules.Numeric;
-import org.texastorque.modules.ToggleSingle;
-import org.texastorque.modules.TextBox;
 import org.texastorque.utils.LayoutUtils;
-import org.texastorque.utils.Report;
 
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -26,11 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 
 public class Main extends Page {
     protected Pane panel = new Pane();
@@ -39,6 +27,7 @@ public class Main extends Page {
     private Button exportReports = new Button("Export Reports");
     private Button loadReports = new Button("Load Reports");
     private Button launchHub = new Button("Launch Hub");
+    private Button reset = new Button("Reset Database");
 
     public Main() {
         Label title = new Label("Torque Scout");
@@ -70,7 +59,10 @@ public class Main extends Page {
         launchHub.setLayoutX(20);
         launchHub.setFont(LayoutUtils.getStandardFont(18));
 
-        // panel.setPrefSize(350, 1200);
+        reset.setPrefSize(300, 75);
+        reset.setLayoutX(20);
+        reset.setFont(LayoutUtils.getStandardFont(18));
+
         panel.getChildren().addAll(
                 LayoutUtils.bundleIntoVBox(
                         LayoutUtils.insertPadding(
@@ -90,6 +82,9 @@ public class Main extends Page {
                                 new LayoutUtils.Padding(20, 0, 0, 0)),
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(launchHub),
+                                new LayoutUtils.Padding(20, 0, 0, 0)),
+                        LayoutUtils.insertPadding(
+                                LayoutUtils.wrapInPane(reset),
                                 new LayoutUtils.Padding(20, 0, 0, 0))
 
                 ));
@@ -102,6 +97,8 @@ public class Main extends Page {
         loadReports.setStyle("-fx-text-fill: black");
         launchHub.setTextFill(Color.WHITE);
         launchHub.setStyle("-fx-text-fill: black");
+        reset.setTextFill(Color.WHITE);
+        reset.setStyle("-fx-text-fill: black");
     }
 
     public Button getNewReport() {
@@ -118,6 +115,10 @@ public class Main extends Page {
 
     public Button getLaunchHub() {
         return launchHub;
+    }
+
+    public Button getReset() {
+        return reset;
     }
 
     @Override
