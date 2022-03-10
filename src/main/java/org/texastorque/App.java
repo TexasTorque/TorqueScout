@@ -78,7 +78,7 @@ public class App extends Application {
             switchToAverages();
         });
         switchStageScene(window.getPanel());
-        setStageSize(350, 600);
+        stage.setMaximized(true);
     }
 
     private void switchToScoring() {
@@ -100,7 +100,7 @@ public class App extends Application {
                 switchToMain();
         });
         switchStageScene(window.getPanel());
-        setStageSize(800, 600);
+        stage.setMaximized(true);
     }
 
     private void switchToHub() {

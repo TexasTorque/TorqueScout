@@ -27,6 +27,7 @@ public class Main extends Page {
     private Button exportReports = new Button("Export Reports");
     private Button loadReports = new Button("Load Reports");
     private Button launchHub = new Button("Launch Hub");
+    private Button reset = new Button("Reset Database");
 
     public Main() {
         Label title = new Label("Torque Scout");
@@ -58,6 +59,10 @@ public class Main extends Page {
         launchHub.setLayoutX(20);
         launchHub.setFont(LayoutUtils.getStandardFont(18));
 
+        reset.setPrefSize(300, 75);
+        reset.setLayoutX(20);
+        reset.setFont(LayoutUtils.getStandardFont(18));
+
         panel.getChildren().addAll(
                 LayoutUtils.bundleIntoVBox(
                         LayoutUtils.insertPadding(
@@ -77,6 +82,9 @@ public class Main extends Page {
                                 new LayoutUtils.Padding(20, 0, 0, 0)),
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(launchHub),
+                                new LayoutUtils.Padding(20, 0, 0, 0)),
+                        LayoutUtils.insertPadding(
+                                LayoutUtils.wrapInPane(reset),
                                 new LayoutUtils.Padding(20, 0, 0, 0))
 
                 ));
@@ -89,6 +97,8 @@ public class Main extends Page {
         loadReports.setStyle("-fx-text-fill: black");
         launchHub.setTextFill(Color.WHITE);
         launchHub.setStyle("-fx-text-fill: black");
+        reset.setTextFill(Color.WHITE);
+        reset.setStyle("-fx-text-fill: black");
     }
 
     public Button getNewReport() {
@@ -105,6 +115,10 @@ public class Main extends Page {
 
     public Button getLaunchHub() {
         return launchHub;
+    }
+
+    public Button getReset() {
+        return reset;
     }
 
     @Override
