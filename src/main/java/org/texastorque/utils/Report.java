@@ -16,7 +16,7 @@ public class Report {
 
     public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd@HH:mm:ss");
 
-    public static final String header = "dateTime,teamNumber,matchName,matchNumber,"
+    public static final String header = "dateTime,teamNumber,scouterName,matchNumber,"
             + "allianceColor,taxi,autoLower,autoUpper,autoMissed,autoIntaken,"
             + "teleopLower,teleopUpper,teleopMissed,teleopIntaken,climb,comment";
 
@@ -29,7 +29,7 @@ public class Report {
     }
 
     private final int teamNumber;
-    private final String matchName;
+    private final String scouterName;
     private final int matchNumber;
 
     private String allianceColor;
@@ -54,7 +54,7 @@ public class Report {
 
     public Report(
             int teamNumber,
-            String matchName,
+            String scouterName,
             int matchNumber,
             String allainceColor,
             boolean taxi,
@@ -69,7 +69,7 @@ public class Report {
             int climb,
             String comment) {
         this.teamNumber = teamNumber;
-        this.matchName = matchName;
+        this.scouterName = scouterName;
         this.matchNumber = matchNumber;
         this.allianceColor = allainceColor;
         this.taxi = taxi;
@@ -93,12 +93,12 @@ public class Report {
     public String titleString() {
         return String.format("%s: %d in %s(%d)",
                 date.format(dateTimeFormatter),
-                teamNumber, matchName, matchNumber);
+                teamNumber, scouterName, matchNumber);
     }
 
     public String toCSV() {
         return String.format("%s,%d,%s,%d,%s,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s",
-                getDateTimeString(), teamNumber, "unused", matchNumber, allianceColor, taxi,
+                getDateTimeString(), teamNumber, scouterName, matchNumber, allianceColor, taxi,
                 autoLower, autoUpper, autoMissed, autoIntaken,
                 teleopLower, teleopUpper, teleopMissed, teleopIntaken,
                 climb, comment.replace(",", "，"));

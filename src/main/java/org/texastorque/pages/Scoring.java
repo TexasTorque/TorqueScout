@@ -35,7 +35,7 @@ public class Scoring extends Page {
     protected Pane panel = new Pane();
 
     private ValueDisplay teamNumberDisplay = new ValueDisplay("Team Number", 0000);
-    private ValueDisplay matchNameDisplay = new ValueDisplay("Match Name", "quals-0");
+    private ValueDisplay scouterNameDisplay = new ValueDisplay("Scouter Name", "");
     private ValueDisplay matchNumberDisplay = new ValueDisplay("Match Number", 0);
 
     private ToggleSingle allianceColor = new ToggleSingle("Alliance Color", "blue", "", "red", "");
@@ -78,7 +78,7 @@ public class Scoring extends Page {
                 LayoutUtils.bundleIntoHBox(
                         LayoutUtils.bundleIntoVBox(
                                 teamNumberDisplay.getPanel(),
-                                matchNameDisplay.getPanel(),
+                                scouterNameDisplay.getPanel(),
                                 matchNumberDisplay.getPanel(),
                                 allianceColor.getPanel(),
                                 taxi.getPanel(),
@@ -141,7 +141,7 @@ public class Scoring extends Page {
 
         return new Report(
                 teamNumber,
-                matchNameDisplay.getValue(),
+                scouterNameDisplay.getValue(),
                 matchNumber,
                 allianceColor.getValue() ? "red" : "blue",
                 taxi.getValue(),

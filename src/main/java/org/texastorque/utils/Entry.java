@@ -28,7 +28,7 @@ public class Entry {
     }
 
     public final Integer teamNumber;
-    public final String matchName;
+    public final String scouterName;
     public final Integer matchNumber;
     public final Integer climb;
 
@@ -70,7 +70,7 @@ public class Entry {
 
     public Entry(
             Integer teamNumber,
-            String matchName,
+            String scouterName,
             Integer matchNumber,
             String allianceColor,
             boolean taxi,
@@ -86,7 +86,7 @@ public class Entry {
             String comment,
             LocalDateTime date) {
         this.teamNumber = teamNumber;
-        this.matchName = matchName;
+        this.scouterName = scouterName;
         this.matchNumber = matchNumber;
         this.allianceColor = allianceColor;
         this.taxi = taxi;
@@ -123,8 +123,8 @@ public class Entry {
         return teamNumber;
     }
 
-    public String getMatchName() {
-        return matchName;
+    public String getScouterName() {
+        return scouterName;
     }
 
     public Integer getMatchNumber() {
