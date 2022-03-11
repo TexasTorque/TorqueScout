@@ -84,6 +84,7 @@ public class Team extends Page {
 
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
+                Entry.createColumn("scouterName", "Scouter"),
                 Entry.createColumn("matchNumber", "Match #"),
                 taxiColumn,
 
