@@ -61,7 +61,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setTitle("TorqueScout");
+        stage.setTitle("Torque Scout");
         stage.setScene(null);
         this.stage = stage;
         stage.show();
