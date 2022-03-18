@@ -141,7 +141,7 @@ public class Scoring extends Page {
         return new Entry(
                 teamNumber,
                 matchNumber,
-                (allianceColor.getValue() ? "red" : "blue"),
+                (allianceColor.getValue() ? "Red" : "Blue"),
                 taxi.getValue(),
                 autoLower.getValue(),
                 autoUpper.getValue(),

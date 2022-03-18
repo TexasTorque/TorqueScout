@@ -42,6 +42,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class Team extends Page {
@@ -57,12 +58,13 @@ public class Team extends Page {
     private Button back = new Button("Back");
 
     public Team(DataWrapper entries, int team) {
+        label.setTextFill(Color.WHITE);
         label.setFont(LayoutUtils.getStandardFont(44));
         table.setEditable(false);
 
         back.setFont(LayoutUtils.getStandardFont(24));
         back.setTextFill(Color.WHITE);
-        back.setStyle("-fx-text-fill: black");
+        back.setStyle("-fx-text-fill: black;");
 
         table.getItems().addAll(entries.getTeamEntries().get(team));
 
@@ -124,13 +126,15 @@ public class Team extends Page {
 
                 climbColumn,
                 Entry.createColumn("totalScore"),
-                Entry.createColumn("comment"));
+                Entry.createColumn("comment")
+        );
+
+        table.setMinHeight(Screen.getPrimary().getBounds().getHeight() * .7);
+        table.setMinWidth(Screen.getPrimary().getBounds().getWidth() * .6);
 
         final VBox vbox = new VBox();
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-
-        // table.setMinHeight(700);
 
         vbox.getChildren().addAll(label, table, back);
 

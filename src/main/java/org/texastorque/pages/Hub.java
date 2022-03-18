@@ -42,6 +42,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -140,6 +141,9 @@ public class Hub extends Page {
                 Entry.createColumn("comment")
         // teamButtons
         );
+
+        table.setMinHeight(Screen.getPrimary().getBounds().getHeight() * .7);
+        table.setMinWidth(Screen.getPrimary().getBounds().getWidth() * .6);
 
         final VBox vbox = new VBox();
         vbox.setSpacing(20);

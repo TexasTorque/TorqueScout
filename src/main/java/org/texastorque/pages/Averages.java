@@ -25,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.util.Callback;
 
 public class Averages extends Page {
@@ -128,10 +129,12 @@ public class Averages extends Page {
                 Entry.createColumn("comment"),
                 teamButtons);
 
+        table.setMinHeight(Screen.getPrimary().getBounds().getHeight() * .7);
+        table.setMinWidth(Screen.getPrimary().getBounds().getWidth() * .6);
+
         final VBox vbox = new VBox();
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        // stable.setMinHeight(700);
         vbox.getChildren().addAll(label, table,
                 LayoutUtils.bundleIntoHBox(back, hub));
 
