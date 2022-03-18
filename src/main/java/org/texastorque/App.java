@@ -21,7 +21,6 @@ import org.texastorque.utils.DataReader;
 import org.texastorque.utils.DataWriter;
 import org.texastorque.utils.Entry;
 import org.texastorque.utils.NoticeUtils;
-import org.texastorque.utils.Report;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -75,13 +74,13 @@ public class App extends Application {
 
     private void switchToMain() {
         Main window = new Main();
-        window.getNewReport().setOnAction(e -> {
+        window.getNewEntry().setOnAction(e -> {
             switchToScoring();
         });
-        window.getExportReports().setOnAction(e -> {
+        window.getExportEntries().setOnAction(e -> {
             dataWriter.export(stage);
         });
-        window.getLoadReports().setOnAction(e -> {
+        window.getLoadEntries().setOnAction(e -> {
             dataReader.loadEntries(stage);
         });
         window.getLaunchHub().setOnAction(e -> {
@@ -94,14 +93,14 @@ public class App extends Application {
     private void switchToScoring() {
         Scoring window = new Scoring();
         window.getSubmit().setOnAction(e -> {
-            Report report = window.generateReport();
-            if (report == null)
+            Entry entry = window.generateEntry();
+            if (entry == null)
                 return;
 
-            if (!dataWriter.writeReport(report))
+            if (!dataWriter.writeEntry(entry))
                 return;
 
-            NoticeUtils.displayInfo("Report Success", "Report successfully logged.");
+            NoticeUtils.displayInfo("Entry Success", "Entry successfully logged.");
 
             switchToMain();
         });

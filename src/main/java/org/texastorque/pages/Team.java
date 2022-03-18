@@ -20,7 +20,6 @@ import org.texastorque.modules.TextBox;
 import org.texastorque.utils.DataWrapper;
 import org.texastorque.utils.Entry;
 import org.texastorque.utils.LayoutUtils;
-import org.texastorque.utils.Report;
 
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;

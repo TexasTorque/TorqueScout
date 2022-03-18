@@ -43,10 +43,9 @@ public class DataReader {
 
             String[] fileNames = (new File(selectedDirectory.getAbsolutePath())).list();
             for (String fileName : fileNames) {
-                //if (fileName.contains("scouting-data-")) {
                 if (fileName.contains(".tsr")) {
                     path = selectedDirectory.getAbsolutePath() + "/" + fileName;
-                    content += Files.readString(Path.of(path)).replace(Report.header, "");
+                    content += Files.readString(Path.of(path)).replace(Entry.header, "");
                 }
             }
 
@@ -54,20 +53,6 @@ public class DataReader {
             for (String line : lines)
                 if (line.length() > 10)
                     entries.add(Entry.fromCSV(line));
-
-            // String[] lines = content.split("\n");
-            // for (int i = 0; i < lines.length - 1; i++) {
-            //     String line = lines[i];
-            //     if (!line.isEmpty()) {
-            //               System.out.println(line.length());
-            //         System.out.println(line);
-            //         System.out.println(fuck);
-
-            //         entries.add(Entry.fromCSV(line));
-              
-            //         fuck++;
-            //     }
-            // }
 
             return true;
         } catch (Exception e) {

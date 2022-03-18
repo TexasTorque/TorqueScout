@@ -83,13 +83,11 @@ public class Numeric extends Module {
         sub.setLayoutY(topMargin);
 
         add.setOnAction((event) -> {
-            value = Math.max(value + increment, min);
-            count.setText(String.format("%d", value));
+            increment();
         });
 
         sub.setOnAction((event) -> {
-            value = Math.max(value - increment, min);
-            count.setText(String.format("%d", value));
+            decrement();
         });
 
         panel.getChildren().addAll(label, add, count, sub);
@@ -111,7 +109,12 @@ public class Numeric extends Module {
     }
 
     public void increment() {
-        this.value += 1;
-        this.count.setText(String.format("%d", value));
+        value = Math.max(value + increment, min);
+        count.setText(String.format("%d", value));
+    }
+
+    public void decrement() {
+        value = Math.max(value - increment, min);
+        count.setText(String.format("%d", value));
     }
 }

@@ -16,9 +16,9 @@ import org.texastorque.modules.TextBox;
 import org.texastorque.modules.ToggleSingle;
 import org.texastorque.modules.ValueDisplay;
 import org.texastorque.utils.DataUtils;
+import org.texastorque.utils.Entry;
 import org.texastorque.utils.NoticeUtils;
 import org.texastorque.utils.LayoutUtils;
-import org.texastorque.utils.Report;
 
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -103,28 +103,28 @@ public class Scoring extends Page {
                                                 new LayoutUtils.Padding(20, 0, 0, 0))),
                                 new LayoutUtils.Padding(0, 0, 0, 40))));
         panel.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-        panel.setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.COMMA) {
-                autoLower.increment();
-            } else if (e.getCode() == KeyCode.PERIOD) {
-                autoUpper.increment();
-            } else if (e.getCode() == KeyCode.SLASH) {
-                autoMissed.increment();
-            } else if (e.getCode() == KeyCode.OPEN_BRACKET) {
-                teleopLower.increment();
-            } else if (e.getCode() == KeyCode.CLOSE_BRACKET) {
-                teleopUpper.increment();
-            } else if (e.getCode() == KeyCode.BACK_SLASH) {
-                teleopMissed.increment();
-            } else if (e.getCode() == KeyCode.SEMICOLON) {
-                autoIntaken.increment();
-            } else if (e.getCode() == KeyCode.QUOTE) {
-                teleopIntaken.increment();
-            }
-        });
+        // panel.setOnKeyPressed(e -> {
+        //     if (e.getCode() == KeyCode.COMMA) {
+        //         autoLower.increment();
+        //     } else if (e.getCode() == KeyCode.PERIOD) {
+        //         autoUpper.increment();
+        //     } else if (e.getCode() == KeyCode.SLASH) {
+        //         autoMissed.increment();
+        //     } else if (e.getCode() == KeyCode.OPEN_BRACKET) {
+        //         teleopLower.increment();
+        //     } else if (e.getCode() == KeyCode.CLOSE_BRACKET) {
+        //         teleopUpper.increment();
+        //     } else if (e.getCode() == KeyCode.BACK_SLASH) {
+        //         teleopMissed.increment();
+        //     } else if (e.getCode() == KeyCode.SEMICOLON) {
+        //         autoIntaken.increment();
+        //     } else if (e.getCode() == KeyCode.QUOTE) {
+        //         teleopIntaken.increment();
+        //     }
+        // });
     }
 
-    public Report generateReport() {
+    public Entry generateEntry() {
         if (!checked) {
             NoticeUtils.displayInfo("Double Check Entries", "Submitting is permanent, "
                     + "please double check your entries at least once before you submit.");
@@ -140,11 +140,10 @@ public class Scoring extends Page {
             return null;
         }
 
-        return new Report(
+        return new Entry(
                 teamNumber,
-                matchNameDisplay.getValue(),
                 matchNumber,
-                allianceColor.getValue() ? "red" : "blue",
+                (allianceColor.getValue() ? "red" : "blue"),
                 taxi.getValue(),
                 autoLower.getValue(),
                 autoUpper.getValue(),

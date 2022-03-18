@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 import javafx.stage.DirectoryChooser;
@@ -33,13 +32,13 @@ public class DataWriter {
         Files.write(Path.of(path), (s.replace("\n", " ") + " \n").getBytes(), StandardOpenOption.APPEND);
     }
 
-    public boolean writeReport(Report report) {
+    public boolean writeEntry(Entry entry) {
         try {
             if (!Files.exists(Path.of(path))) {
                 Files.createFile(Path.of(path));
-                appendString(Report.header);
+                appendString(Entry.header);
             }
-            appendString(report.toCSV());
+            appendString(entry.toCSV());
             return true;
         } catch (IOException e) {
             NoticeUtils.displayError("Data Writer Error", "Could not write entry to local database");
@@ -54,7 +53,7 @@ public class DataWriter {
             Path exportPath = Path.of(selectedDirectory.getAbsolutePath() + "/" + "" //"scouting-data-" 
                     + System.getProperty("user.name") + ".tsr"); // .csv
             Files.writeString(exportPath, content);
-            NoticeUtils.displayInfo("Data Exported Success", "Successfully exported scouting report");
+            NoticeUtils.displayInfo("Data Exported Success", "Successfully exported scouting entry");
             return true;
         } catch (IOException e) {
             NoticeUtils.displayError("Data Exporter Error", "Could not export data");
