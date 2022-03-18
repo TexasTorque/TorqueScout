@@ -45,18 +45,12 @@ public class App extends Application {
         stage.show();
     }
 
-    public static void postPaneOnStage(Stage stage, Pane pane, int w, int h) {
-        stage.setScene(new Scene(pane));
-        stage.show();
-        stage.setWidth(w);
-        stage.setHeight(h);
-    }
-
     private void switchStageScene(Pane page) {
         if (stage.getScene() == null)
             stage.setScene(new Scene(page, 0, 0));
         else
             stage.getScene().setRoot(page);
+        stage.setMaximized(true);
     }
 
     @Override
@@ -87,7 +81,6 @@ public class App extends Application {
             switchToAverages();
         });
         switchStageScene(window.getPanel());
-        setStageSize(350, 600);
     }
 
     private void switchToScoring() {
@@ -109,7 +102,6 @@ public class App extends Application {
                 switchToMain();
         });
         switchStageScene(window.getPanel());
-        setStageSize(800, 600);
     }
 
     private void switchToHub() {
@@ -126,8 +118,6 @@ public class App extends Application {
         });
 
         switchStageScene(window.getPanel());
-        // setStageSize(1200, 1200);
-        stage.setMaximized(true);
     }
 
     private void switchToAverages() {
@@ -150,8 +140,6 @@ public class App extends Application {
         });
 
         switchStageScene(window.getPanel());
-        // setStageSize(1200, 1200);
-        stage.setMaximized(true);
     }
 
     private void switchToTeam(Integer team) {
@@ -162,8 +150,6 @@ public class App extends Application {
         });
 
         switchStageScene(window.getPanel());
-        // setStageSize(1200, 1200);
-        stage.setMaximized(true);
     }
 
     private void setStageSize(int w, int h) {
