@@ -5,7 +5,7 @@ from random import randint
 def randomBool():
     return randint(0, 1) == 1
 
-for n in range(1, 3):
+for n in range(1, 7):
     f = open("user" + str(n) + ".tsr", 'w')
     content = ""
     for i in range(0, 2):
@@ -42,7 +42,7 @@ for n in range(1, 3):
                 if teleopUpper <= 0:
                     teleopUpper = 0
             climb = randint(0, 4)
-            content += f"2022-02-05@10:55:46,{team},unused,{match},{allainceColor},{taxi},{autoLower},{autoUpper},{autoMissed},{autoIntaken},{teleopLower},{teleopUpper},{teleopMissed},{teleopIntaken},{climb},comment \n"
+            content += f"{team},{match},{allainceColor},{taxi},{autoLower},{autoUpper},{autoMissed},{autoIntaken},{teleopLower},{teleopUpper},{teleopMissed},{teleopIntaken},{climb},comment \n"
     f.write(content)
 
 
