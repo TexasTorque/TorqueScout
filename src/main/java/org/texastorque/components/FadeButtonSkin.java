@@ -29,6 +29,9 @@ public class FadeButtonSkin extends ButtonSkin {
         final FadeTransition fadeIn = AnimationUtils.timedFade(control, 200, 1);
         final FadeTransition fadeOut = AnimationUtils.timedFade(control, 200, .5);
 
+        // control.setOnMouseExited(e -> fadeOut.playFromStart());
+        // control.setOnMouseEntered(e -> fadeIn.playFromStart());
+
         control.onMousePressedProperty().set(e -> {
             fadeOut.playFromStart();
         });

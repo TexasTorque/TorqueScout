@@ -9,6 +9,10 @@
  */
 package org.texastorque.utils;
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -61,5 +65,16 @@ public class DataUtils {
 
     public static double round(double num, int dec) {
         return (int) Math.round((num * Math.pow(10, dec))) / Math.pow(10, dec);
+    }
+
+    public static String sha256String(String text) {
+        try {
+            return String.format("%064x", new BigInteger(1, 
+                    MessageDigest.getInstance("SHA-256")
+                    .digest(text.getBytes(StandardCharsets.UTF_8))));
+        } catch (NoSuchAlgorithmException e) {
+            System.err.println("SHA-256 algorithm not found.");
+            return "";
+        }
     }
 }

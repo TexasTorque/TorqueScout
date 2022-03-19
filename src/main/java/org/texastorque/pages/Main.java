@@ -9,6 +9,13 @@
  */
 package org.texastorque.pages;
 
+import java.util.ArrayList;
+
+import org.texastorque.components.FadeButton;
+import org.texastorque.modules.DisjointToggles;
+import org.texastorque.modules.Numeric;
+import org.texastorque.modules.ToggleSingle;
+import org.texastorque.modules.TextBox;
 import org.texastorque.utils.LayoutUtils;
 
 import javafx.scene.layout.Background;
@@ -18,16 +25,20 @@ import javafx.scene.paint.Color;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 public class Main extends Page {
     protected Pane panel = new Pane();
 
-    private Button newReport = new Button("New Report");
-    private Button exportReports = new Button("Export Reports");
-    private Button loadReports = new Button("Load Reports");
+    private Button newEntry = new Button("New Entry");
+    private Button exportEntries = new Button("Export Entries");
+    private Button loadEntries = new Button("Load Entries");
     private Button launchHub = new Button("Launch Hub");
-    private Button reset = new Button("Reset Database");
+    private Button clearDatabase = new Button("Clear Data");
 
     public Main() {
         Label title = new Label("Torque Scout");
@@ -43,26 +54,27 @@ public class Main extends Page {
         description.setLayoutX(20);
         description.setTextFill(Color.WHITE);
 
-        newReport.setPrefSize(300, 75);
-        newReport.setLayoutX(20);
-        newReport.setFont(LayoutUtils.getStandardFont(18));
+        newEntry.setPrefSize(300, 75);
+        newEntry.setLayoutX(20);
+        newEntry.setFont(LayoutUtils.getStandardFont(18));
 
-        exportReports.setPrefSize(300, 75);
-        exportReports.setLayoutX(20);
-        exportReports.setFont(LayoutUtils.getStandardFont(18));
+        exportEntries.setPrefSize(300, 75);
+        exportEntries.setLayoutX(20);
+        exportEntries.setFont(LayoutUtils.getStandardFont(18));
 
-        loadReports.setPrefSize(300, 75);
-        loadReports.setLayoutX(20);
-        loadReports.setFont(LayoutUtils.getStandardFont(18));
+        loadEntries.setPrefSize(300, 75);
+        loadEntries.setLayoutX(20);
+        loadEntries.setFont(LayoutUtils.getStandardFont(18));
 
         launchHub.setPrefSize(300, 75);
         launchHub.setLayoutX(20);
         launchHub.setFont(LayoutUtils.getStandardFont(18));
 
-        reset.setPrefSize(300, 75);
-        reset.setLayoutX(20);
-        reset.setFont(LayoutUtils.getStandardFont(18));
+        clearDatabase.setPrefSize(300, 75);
+        clearDatabase.setLayoutX(20);
+        clearDatabase.setFont(LayoutUtils.getStandardFont(18));
 
+        // panel.setPrefSize(350, 1200);
         panel.getChildren().addAll(
                 LayoutUtils.bundleIntoVBox(
                         LayoutUtils.insertPadding(
@@ -72,53 +84,58 @@ public class Main extends Page {
                                 LayoutUtils.wrapInPane(description),
                                 new LayoutUtils.Padding(20, 0, 0, 0)),
                         LayoutUtils.insertPadding(
-                                LayoutUtils.wrapInPane(newReport),
+                                LayoutUtils.wrapInPane(newEntry),
                                 new LayoutUtils.Padding(20, 0, 0, 0)),
                         LayoutUtils.insertPadding(
-                                LayoutUtils.wrapInPane(exportReports),
+                                LayoutUtils.wrapInPane(exportEntries),
                                 new LayoutUtils.Padding(20, 0, 0, 0)),
                         LayoutUtils.insertPadding(
-                                LayoutUtils.wrapInPane(loadReports),
+                                LayoutUtils.wrapInPane(loadEntries),
                                 new LayoutUtils.Padding(20, 0, 0, 0)),
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(launchHub),
                                 new LayoutUtils.Padding(20, 0, 0, 0)),
                         LayoutUtils.insertPadding(
-                                LayoutUtils.wrapInPane(reset),
+                                LayoutUtils.wrapInPane(clearDatabase),
                                 new LayoutUtils.Padding(20, 0, 0, 0))
-
                 ));
+
         panel.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-        newReport.setTextFill(Color.WHITE);
-        newReport.setStyle("-fx-text-fill: black");
-        exportReports.setTextFill(Color.WHITE);
-        exportReports.setStyle("-fx-text-fill: black");
-        loadReports.setTextFill(Color.WHITE);
-        loadReports.setStyle("-fx-text-fill: black");
+
+        newEntry.setTextFill(Color.WHITE);
+        newEntry.setStyle("-fx-text-fill: black");
+
+        exportEntries.setTextFill(Color.WHITE);
+        exportEntries.setStyle("-fx-text-fill: black");
+
+        loadEntries.setTextFill(Color.WHITE);
+        loadEntries.setStyle("-fx-text-fill: black");
+
         launchHub.setTextFill(Color.WHITE);
         launchHub.setStyle("-fx-text-fill: black");
-        reset.setTextFill(Color.WHITE);
-        reset.setStyle("-fx-text-fill: black");
+
+        clearDatabase.setTextFill(Color.WHITE);
+        clearDatabase.setStyle("-fx-text-fill: black");
     }
 
-    public Button getNewReport() {
-        return newReport;
+    public Button getNewEntry() {
+        return newEntry;
     }
 
-    public Button getExportReports() {
-        return exportReports;
+    public Button getExportEntries() {
+        return exportEntries;
     }
 
-    public Button getLoadReports() {
-        return loadReports;
+    public Button getLoadEntries() {
+        return loadEntries;
     }
 
     public Button getLaunchHub() {
         return launchHub;
     }
 
-    public Button getReset() {
-        return reset;
+    public Button getClearDatabase() {
+        return clearDatabase;
     }
 
     @Override

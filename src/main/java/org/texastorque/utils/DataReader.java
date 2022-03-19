@@ -10,8 +10,11 @@
 package org.texastorque.utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,14 +30,14 @@ public class DataReader {
 
     public DataReader() {
         directoryChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        // directoryChooser.setInitialDirectory(new File("/Users/justuslanguell/TexasTorque/TorqueScout/test"));
     }
 
     public boolean loadEntries(Stage s) {
         entries = FXCollections.observableArrayList();
         try {
             File selectedDirectory = directoryChooser.showDialog(s);
-            if (selectedDirectory == null)
-                return false;
+            if (selectedDirectory == null) return false;
 
             String content = "";
 
@@ -42,7 +45,7 @@ public class DataReader {
             for (String fileName : fileNames) {
                 if (fileName.contains(".tsr")) {
                     path = selectedDirectory.getAbsolutePath() + "/" + fileName;
-                    content += Files.readString(Path.of(path)).replace(Report.header, "");
+                    content += Files.readString(Path.of(path)).replace(Entry.header, "");
                 }
             }
 

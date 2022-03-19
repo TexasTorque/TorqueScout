@@ -25,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.util.Callback;
 
 public class Averages extends Page {
@@ -52,6 +53,7 @@ public class Averages extends Page {
         hub.setTextFill(Color.WHITE);
         hub.setStyle("-fx-text-fill: black");
 
+        // table.setItems(entries);
         ObservableList<Entry> averages = entries.getAverages();
         for (Entry average : averages)
             average.getTeamButton().setOnAction(e -> {
@@ -59,6 +61,11 @@ public class Averages extends Page {
             });
 
         table.getItems().addAll(entries.getAverages());
+
+        TableColumn<Entry, String> taxiColumn = (TableColumn<Entry, String>) Entry.createColumn("taxi");
+        taxiColumn.setComparator((String v1, String v2) -> {
+            return v1.length() >= v2.length() ? 1 : -1;
+        });
 
         TableColumn<Entry, String> autoAccuracyColumn = (TableColumn<Entry, String>) Entry.createColumn("autoAccuracy",
                 "A Accuracy");
@@ -93,16 +100,21 @@ public class Averages extends Page {
 
         TableColumn<Entry, Button> teamButtons = (TableColumn<Entry, Button>) Entry.createColumn("teamButton");
 
-        TableColumn<Entry, Integer> score = (TableColumn<Entry, Integer>) Entry.createColumn("totalScore");
-
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
+                Entry.createColumn("matchNumber", "Match #"),
+                taxiColumn,
+
+                Entry.createColumn("allianceColor", "Color"),
+
                 Entry.createColumn("autoLower", "A Lower"),
                 Entry.createColumn("autoUpper", "A Upper"),
                 Entry.createColumn("autoMissed", "A Missed"),
                 Entry.createColumn("autoIntaken", "A Intaken"),
+
                 Entry.createColumn("autoScore", "A Score"),
                 autoAccuracyColumn,
+
                 Entry.createColumn("teleopLower", "T Lower"),
                 Entry.createColumn("teleopUpper", "T Upper"),
                 Entry.createColumn("teleopMissed", "T Missed"),
@@ -111,9 +123,14 @@ public class Averages extends Page {
                 Entry.createColumn("teleopScore", "T Score"),
                 teleopAccuracyColumn,
 
+                climbColumn,
                 climbNumbersColumn,
-                score,
+                Entry.createColumn("totalScore"),
+                Entry.createColumn("comment"),
                 teamButtons);
+
+        table.setMinHeight(Screen.getPrimary().getBounds().getHeight() * .7);
+        table.setMinWidth(Screen.getPrimary().getBounds().getWidth() * .6);
 
         final VBox vbox = new VBox();
         vbox.setSpacing(20);
@@ -121,7 +138,7 @@ public class Averages extends Page {
         vbox.getChildren().addAll(label, table,
                 LayoutUtils.bundleIntoHBox(back, hub));
 
-        TableColumn<Entry, ?> scoreColumn = score;
+        TableColumn<Entry, ?> scoreColumn = table.getColumns().get(18);
         scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
         table.getSortOrder().add(scoreColumn);
 

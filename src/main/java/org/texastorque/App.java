@@ -9,23 +9,35 @@
  */
 package org.texastorque;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 import org.texastorque.pages.Averages;
 import org.texastorque.pages.Hub;
 import org.texastorque.pages.Main;
 import org.texastorque.pages.Scoring;
 import org.texastorque.pages.Team;
 import org.texastorque.utils.DataReader;
+import org.texastorque.utils.DataUtils;
 import org.texastorque.utils.DataWriter;
+import org.texastorque.utils.Entry;
 import org.texastorque.utils.NoticeUtils;
-import org.texastorque.utils.Report;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class App extends Application {
+    public static String ADMIN_PASSWORD_HASH = "be363cd40ae7a86b2615cf6e1ac3641f9c2d25d357feb44846fba86c68a02b4c";
+
     Stage stage;
 
     DataWriter dataWriter = new DataWriter();
@@ -36,23 +48,17 @@ public class App extends Application {
         stage.show();
     }
 
-    public static void postPaneOnStage(Stage stage, Pane pane, int w, int h) {
-        stage.setScene(new Scene(pane));
-        stage.show();
-        stage.setWidth(w);
-        stage.setHeight(h);
-    }
-
     private void switchStageScene(Pane page) {
         if (stage.getScene() == null)
             stage.setScene(new Scene(page, 0, 0));
         else
             stage.getScene().setRoot(page);
+        stage.setMaximized(true);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setTitle("TorqueScout");
+        stage.setTitle("Torque Scout");
         stage.setScene(null);
         this.stage = stage;
         stage.show();
@@ -65,33 +71,38 @@ public class App extends Application {
 
     private void switchToMain() {
         Main window = new Main();
-        window.getNewReport().setOnAction(e -> {
+        window.getNewEntry().setOnAction(e -> {
             switchToScoring();
         });
-        window.getExportReports().setOnAction(e -> {
+        window.getExportEntries().setOnAction(e -> {
             dataWriter.export(stage);
         });
-        window.getLoadReports().setOnAction(e -> {
+        window.getLoadEntries().setOnAction(e -> {
             dataReader.loadEntries(stage);
         });
         window.getLaunchHub().setOnAction(e -> {
             switchToAverages();
         });
+        window.getClearDatabase().setOnAction(e -> {
+            String password = NoticeUtils.promptPassword("Admin Password", "Please enter the admin password to clear the database.");
+            if (DataUtils.sha256String(password).equals(ADMIN_PASSWORD_HASH))
+                dataWriter.clearDatabase();
+        });
+        
         switchStageScene(window.getPanel());
-        stage.setMaximized(true);
     }
 
     private void switchToScoring() {
         Scoring window = new Scoring();
         window.getSubmit().setOnAction(e -> {
-            Report report = window.generateReport();
-            if (report == null)
+            Entry entry = window.generateEntry();
+            if (entry == null)
                 return;
 
-            if (!dataWriter.writeReport(report))
+            if (!dataWriter.writeEntry(entry))
                 return;
 
-            NoticeUtils.displayInfo("Report Success", "Report successfully logged.");
+            NoticeUtils.displayInfo("Entry Success", "Entry successfully logged.");
 
             switchToMain();
         });
@@ -100,7 +111,6 @@ public class App extends Application {
                 switchToMain();
         });
         switchStageScene(window.getPanel());
-        stage.setMaximized(true);
     }
 
     private void switchToHub() {
@@ -117,7 +127,6 @@ public class App extends Application {
         });
 
         switchStageScene(window.getPanel());
-        stage.setMaximized(true);
     }
 
     private void switchToAverages() {
@@ -140,7 +149,6 @@ public class App extends Application {
         });
 
         switchStageScene(window.getPanel());
-        stage.setMaximized(true);
     }
 
     private void switchToTeam(Integer team) {
@@ -151,7 +159,6 @@ public class App extends Application {
         });
 
         switchStageScene(window.getPanel());
-        stage.setMaximized(true);
     }
 
     private void setStageSize(int w, int h) {

@@ -32,9 +32,9 @@ public class TextBox extends Module {
 
     @Override
     protected void init() {
-        panel.setPrefSize(300, 300);
+        panel.setPrefSize(300, 320);
 
-        textArea.setPrefSize(320, 160);
+        textArea.setPrefSize(320, 180);
         textArea.setFont(LayoutUtils.getStandardFont(14));
         textArea.setLayoutX(10);
         textArea.setLayoutY(10);

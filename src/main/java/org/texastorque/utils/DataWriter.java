@@ -32,16 +32,26 @@ public class DataWriter {
         Files.write(Path.of(path), (s.replace("\n", " ") + " \n").getBytes(), StandardOpenOption.APPEND);
     }
 
-    public boolean writeReport(Report report) {
+    public boolean writeEntry(Entry entry) {
         try {
             if (!Files.exists(Path.of(path))) {
                 Files.createFile(Path.of(path));
-                appendString(Report.header);
+                appendString(Entry.header);
             }
-            appendString(report.toCSV());
+            appendString(entry.toCSV());
             return true;
         } catch (IOException e) {
             NoticeUtils.displayError("Data Writer Error", "Could not write entry to local database");
+            return false;
+        }
+    }
+
+    public boolean clearDatabase() {
+        try {
+            Files.deleteIfExists(Path.of(path));
+            return true;
+        } catch (IOException e) {
+            NoticeUtils.displayError("Data Writer Error", "Could not clear local database");
             return false;
         }
     }
@@ -50,10 +60,10 @@ public class DataWriter {
         try {
             String content = Files.readString(Path.of(path));
             File selectedDirectory = directoryChooser.showDialog(s);
-            Path exportPath = Path.of(selectedDirectory.getAbsolutePath() + "/" + ""
-                    + System.getProperty("user.name") + ".tsr");
+            Path exportPath = Path.of(selectedDirectory.getAbsolutePath() + "/" + "" //"scouting-data-" 
+                    + System.getProperty("user.name") + ".tsr"); // .csv
             Files.writeString(exportPath, content);
-            NoticeUtils.displayInfo("Data Exported Success", "Successfully exported scouting report");
+            NoticeUtils.displayInfo("Data Exported Success", "Successfully exported scouting entry");
             return true;
         } catch (IOException e) {
             NoticeUtils.displayError("Data Exporter Error", "Could not export data");

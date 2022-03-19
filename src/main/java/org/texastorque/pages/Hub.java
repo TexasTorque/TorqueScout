@@ -9,6 +9,16 @@
  */
 package org.texastorque.pages;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.Set;
+
+import org.texastorque.components.FadeButton;
+import org.texastorque.modules.DisjointToggles;
+import org.texastorque.modules.Numeric;
+import org.texastorque.modules.ToggleSingle;
+import org.texastorque.modules.TextBox;
 import org.texastorque.utils.DataWrapper;
 import org.texastorque.utils.Entry;
 import org.texastorque.utils.LayoutUtils;
@@ -17,13 +27,24 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class Hub extends Page {
     protected Pane panel = new Pane();
@@ -85,6 +106,12 @@ public class Hub extends Page {
             return Entry.valueOfClimb(v1) >= Entry.valueOfClimb(v2) ? 1 : -1;
         });
 
+        // TableColumn<Entry, Double> climbNumbersColumn = (TableColumn<Entry, Double>)
+        // Entry.createColumn("avgClimbPoints", "Climb #");
+
+        // TableColumn<Entry, Button> teamButtons = (TableColumn<Entry, Button>)
+        // Entry.createColumn("teamButton");
+
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
                 Entry.createColumn("matchNumber", "Match #"),
@@ -109,12 +136,19 @@ public class Hub extends Page {
                 teleopAccuracyColumn,
 
                 climbColumn,
+                // climbNumbersColumn,
                 Entry.createColumn("totalScore"),
-                Entry.createColumn("comment"));
+                Entry.createColumn("comment")
+        // teamButtons
+        );
+
+        table.setMinHeight(Screen.getPrimary().getBounds().getHeight() * .7);
+        table.setMinWidth(Screen.getPrimary().getBounds().getWidth() * .6);
 
         final VBox vbox = new VBox();
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(10, 0, 0, 10));
+        // table.setMinHeight(700);
         vbox.getChildren().addAll(label, table,
                 LayoutUtils.bundleIntoHBox(back, average));
 

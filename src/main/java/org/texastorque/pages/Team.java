@@ -9,6 +9,14 @@
  */
 package org.texastorque.pages;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+
+import org.texastorque.components.FadeButton;
+import org.texastorque.modules.DisjointToggles;
+import org.texastorque.modules.Numeric;
+import org.texastorque.modules.ToggleSingle;
+import org.texastorque.modules.TextBox;
 import org.texastorque.utils.DataWrapper;
 import org.texastorque.utils.Entry;
 import org.texastorque.utils.LayoutUtils;
@@ -20,11 +28,22 @@ import javafx.scene.paint.Color;
 import javafx.geometry.Insets;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 public class Team extends Page {
     protected Pane panel = new Pane();
@@ -39,13 +58,13 @@ public class Team extends Page {
     private Button back = new Button("Back");
 
     public Team(DataWrapper entries, int team) {
-        label.setFont(LayoutUtils.getStandardFont(44));
         label.setTextFill(Color.WHITE);
+        label.setFont(LayoutUtils.getStandardFont(44));
         table.setEditable(false);
 
         back.setFont(LayoutUtils.getStandardFont(24));
         back.setTextFill(Color.WHITE);
-        back.setStyle("-fx-text-fill: black");
+        back.setStyle("-fx-text-fill: black;");
 
         table.getItems().addAll(entries.getTeamEntries().get(team));
 
@@ -84,7 +103,6 @@ public class Team extends Page {
 
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
-                Entry.createColumn("scouterName", "Scouter"),
                 Entry.createColumn("matchNumber", "Match #"),
                 taxiColumn,
 
@@ -108,7 +126,11 @@ public class Team extends Page {
 
                 climbColumn,
                 Entry.createColumn("totalScore"),
-                Entry.createColumn("comment"));
+                Entry.createColumn("comment")
+        );
+
+        table.setMinHeight(Screen.getPrimary().getBounds().getHeight() * .7);
+        table.setMinWidth(Screen.getPrimary().getBounds().getWidth() * .6);
 
         final VBox vbox = new VBox();
         vbox.setSpacing(20);
