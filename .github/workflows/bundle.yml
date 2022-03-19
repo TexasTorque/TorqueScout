@@ -34,7 +34,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: target/TorqueScout*
-        tag_name: 2.0.${{ GITHUB_RUN_NUMBER_WITH_OFFSET }}
+        tag_name: 2.0.${{ $GITHUB_RUN_NUMBER_WITH_OFFSET }}
         
 
     
