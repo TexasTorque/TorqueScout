@@ -23,20 +23,8 @@ jobs:
 
     - name: Build artifact
       run: mvn package
-      
-    - name: Get offset run number
-      env:
-          NUM: ${{ github.run_number }}
-      run: |
-          echo ::set-env name=GITHUB_RUN_NUMBER_WITH_OFFSET::$(($NUM-14))
-    
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         files: target/TorqueScout*
-        tag_name: 2.0.${{ $GITHUB_RUN_NUMBER_WITH_OFFSET }}
         
-
-    
-              
-      
