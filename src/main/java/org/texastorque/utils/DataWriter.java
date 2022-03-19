@@ -46,6 +46,16 @@ public class DataWriter {
         }
     }
 
+    public boolean clearDatabase() {
+        try {
+            Files.deleteIfExists(Path.of(path));
+            return true;
+        } catch (IOException e) {
+            NoticeUtils.displayError("Data Writer Error", "Could not clear local database");
+            return false;
+        }
+    }
+
     public boolean export(Stage s) {
         try {
             String content = Files.readString(Path.of(path));

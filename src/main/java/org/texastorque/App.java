@@ -18,6 +18,7 @@ import org.texastorque.pages.Main;
 import org.texastorque.pages.Scoring;
 import org.texastorque.pages.Team;
 import org.texastorque.utils.DataReader;
+import org.texastorque.utils.DataUtils;
 import org.texastorque.utils.DataWriter;
 import org.texastorque.utils.Entry;
 import org.texastorque.utils.NoticeUtils;
@@ -35,6 +36,8 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class App extends Application {
+    public static String ADMIN_PASSWORD_HASH = "be363cd40ae7a86b2615cf6e1ac3641f9c2d25d357feb44846fba86c68a02b4c";
+
     Stage stage;
 
     DataWriter dataWriter = new DataWriter();
@@ -80,6 +83,12 @@ public class App extends Application {
         window.getLaunchHub().setOnAction(e -> {
             switchToAverages();
         });
+        window.getClearDatabase().setOnAction(e -> {
+            String password = NoticeUtils.promptPassword("Admin Password", "Please enter the admin password to clear the database.");
+            if (DataUtils.sha256String(password).equals(ADMIN_PASSWORD_HASH))
+                dataWriter.clearDatabase();
+        });
+        
         switchStageScene(window.getPanel());
     }
 

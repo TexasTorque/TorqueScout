@@ -38,6 +38,7 @@ public class Main extends Page {
     private Button exportEntries = new Button("Export Entries");
     private Button loadEntries = new Button("Load Entries");
     private Button launchHub = new Button("Launch Hub");
+    private Button clearDatabase = new Button("Clear Data");
 
     public Main() {
         Label title = new Label("Torque Scout");
@@ -69,6 +70,10 @@ public class Main extends Page {
         launchHub.setLayoutX(20);
         launchHub.setFont(LayoutUtils.getStandardFont(18));
 
+        clearDatabase.setPrefSize(300, 75);
+        clearDatabase.setLayoutX(20);
+        clearDatabase.setFont(LayoutUtils.getStandardFont(18));
+
         // panel.setPrefSize(350, 1200);
         panel.getChildren().addAll(
                 LayoutUtils.bundleIntoVBox(
@@ -89,18 +94,28 @@ public class Main extends Page {
                                 new LayoutUtils.Padding(20, 0, 0, 0)),
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(launchHub),
+                                new LayoutUtils.Padding(20, 0, 0, 0)),
+                        LayoutUtils.insertPadding(
+                                LayoutUtils.wrapInPane(clearDatabase),
                                 new LayoutUtils.Padding(20, 0, 0, 0))
-
                 ));
+
         panel.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+
         newEntry.setTextFill(Color.WHITE);
         newEntry.setStyle("-fx-text-fill: black");
+
         exportEntries.setTextFill(Color.WHITE);
         exportEntries.setStyle("-fx-text-fill: black");
+
         loadEntries.setTextFill(Color.WHITE);
         loadEntries.setStyle("-fx-text-fill: black");
+
         launchHub.setTextFill(Color.WHITE);
         launchHub.setStyle("-fx-text-fill: black");
+
+        clearDatabase.setTextFill(Color.WHITE);
+        clearDatabase.setStyle("-fx-text-fill: black");
     }
 
     public Button getNewEntry() {
@@ -117,6 +132,10 @@ public class Main extends Page {
 
     public Button getLaunchHub() {
         return launchHub;
+    }
+
+    public Button getClearDatabase() {
+        return clearDatabase;
     }
 
     @Override
