@@ -85,8 +85,11 @@ public class App extends Application {
         });
         window.getClearDatabase().setOnAction(e -> {
             String password = NoticeUtils.promptPassword("Admin Password", "Please enter the admin password to clear the database.");
-            if (DataUtils.sha256String(password).equals(ADMIN_PASSWORD_HASH))
+            if (DataUtils.sha256String(password).equals(ADMIN_PASSWORD_HASH)) {
                 dataWriter.clearDatabase();
+                NoticeUtils.displayInfo("Successfully cleared the database", "The database has been successfully cleared");
+            } else
+                NoticeUtils.displayInfo("Authentication failure", "Authentication failed. Please try again.");
         });
         
         switchStageScene(window.getPanel());
