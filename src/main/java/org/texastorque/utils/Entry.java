@@ -79,11 +79,11 @@ public class Entry {
         this.autoLower = autoLower;
         this.autoUpper = autoUpper;
         this.autoMissed = autoMissed;
-        this.autoIntaken = autoIntaken;
+        this.autoIntaken = 0;
         this.teleopLower = teleopLower;
         this.teleopUpper = teleopUpper;
         this.teleopMissed = teleopMissed;
-        this.teleopIntaken = teleopIntaken;
+        this.teleopIntaken = 0;
         this.climb = climb;
         this.comment = comment;
 
@@ -118,8 +118,8 @@ public class Entry {
     public String toCSV() {
         return String.format("%d,%d,%s,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s",
                 teamNumber, matchNumber, allianceColor, taxi,
-                autoLower, autoUpper, autoMissed, autoIntaken,
-                teleopLower, teleopUpper, teleopMissed, teleopIntaken,
+                autoLower, autoUpper, autoMissed, 0,
+                teleopLower, teleopUpper, teleopMissed, 0,
                 climb, comment.replace(",", "，"));
     }
 

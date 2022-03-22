@@ -44,12 +44,10 @@ public class Scoring extends Page {
     private Numeric autoLower = new Numeric("Auto lower");
     private Numeric autoUpper = new Numeric("Auto upper");
     private Numeric autoMissed = new Numeric("Auto missed");
-    private Numeric autoIntaken = new Numeric("Auto intaken");
 
     private Numeric teleopLower = new Numeric("Teleop lower");
     private Numeric teleopUpper = new Numeric("Teleop upper");
     private Numeric teleopMissed = new Numeric("Teleop missed");
-    private Numeric teleopIntaken = new Numeric("Teleop intaken");
     private DisjointToggles climb = new DisjointToggles("Climb Level", "Low", "Mid", "High", "Transversal");
 
     private TextBox comments = new TextBox("Comments", "");
@@ -84,14 +82,12 @@ public class Scoring extends Page {
                                 autoLower.getPanel(),
                                 autoUpper.getPanel(),
                                 autoMissed.getPanel(),
-                                autoIntaken.getPanel(),
                                 comments.getPanel()),
                         LayoutUtils.insertPadding(
                                 LayoutUtils.bundleIntoVBox(
                                         teleopLower.getPanel(),
                                         teleopUpper.getPanel(),
                                         teleopMissed.getPanel(),
-                                        teleopIntaken.getPanel(),
                                         climb.getPanel(),
                                         LayoutUtils.insertPadding(
                                                 LayoutUtils.bundleIntoVBox(back),
@@ -146,11 +142,11 @@ public class Scoring extends Page {
                 autoLower.getValue(),
                 autoUpper.getValue(),
                 autoMissed.getValue(),
-                autoIntaken.getValue(),
+                0,
                 teleopLower.getValue(),
                 teleopUpper.getValue(),
                 teleopMissed.getValue(),
-                teleopIntaken.getValue(),
+                0,
                 climb.getValue(),
                 comments.getValue());
     }
