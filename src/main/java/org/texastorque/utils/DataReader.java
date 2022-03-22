@@ -29,8 +29,11 @@ public class DataReader {
     DirectoryChooser directoryChooser = new DirectoryChooser();
 
     public DataReader() {
-        directoryChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        // directoryChooser.setInitialDirectory(new File("/Users/justuslanguell/TexasTorque/TorqueScout/test"));
+        String homeDirectory = System.getProperty("user.home");
+        if (homeDirectory.equals("/Users/justuslanguell"))
+            directoryChooser.setInitialDirectory(new File("/Users/justuslanguell/TexasTorque/TorqueScout/test"));
+        else
+            directoryChooser.setInitialDirectory(new File(homeDirectory));
     }
 
     public boolean loadEntries(Stage s) {

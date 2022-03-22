@@ -101,6 +101,8 @@ public class Team extends Page {
             return Entry.valueOfClimb(v1) >= Entry.valueOfClimb(v2) ? 1 : -1;
         });
 
+        TableColumn<Entry, Integer> scoreColumn = (TableColumn<Entry, Integer>) Entry.createColumn("totalScore");
+
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
                 Entry.createColumn("matchNumber", "Match #"),
@@ -111,7 +113,6 @@ public class Team extends Page {
                 Entry.createColumn("autoLower", "A Lower"),
                 Entry.createColumn("autoUpper", "A Upper"),
                 Entry.createColumn("autoMissed", "A Missed"),
-                Entry.createColumn("autoIntaken", "A Intaken"),
 
                 Entry.createColumn("autoScore", "A Score"),
                 autoAccuracyColumn,
@@ -119,13 +120,12 @@ public class Team extends Page {
                 Entry.createColumn("teleopLower", "T Lower"),
                 Entry.createColumn("teleopUpper", "T Upper"),
                 Entry.createColumn("teleopMissed", "T Missed"),
-                Entry.createColumn("teleopIntaken", "T Intaken"),
 
                 Entry.createColumn("teleopScore", "T Score"),
                 teleopAccuracyColumn,
 
                 climbColumn,
-                Entry.createColumn("totalScore"),
+                scoreColumn,
                 Entry.createColumn("comment")
         );
 
@@ -138,7 +138,6 @@ public class Team extends Page {
 
         vbox.getChildren().addAll(label, table, back);
 
-        TableColumn<Entry, ?> scoreColumn = table.getColumns().get(17);
         scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
         table.getSortOrder().add(scoreColumn);
 

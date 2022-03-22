@@ -112,6 +112,8 @@ public class Hub extends Page {
         // TableColumn<Entry, Button> teamButtons = (TableColumn<Entry, Button>)
         // Entry.createColumn("teamButton");
 
+        TableColumn<Entry, Integer> scoreColumn = (TableColumn<Entry, Integer>) Entry.createColumn("totalScore");
+
         table.getColumns().addAll(
                 Entry.createColumn("teamNumber", "Team #"),
                 Entry.createColumn("matchNumber", "Match #"),
@@ -122,7 +124,6 @@ public class Hub extends Page {
                 Entry.createColumn("autoLower", "A Lower"),
                 Entry.createColumn("autoUpper", "A Upper"),
                 Entry.createColumn("autoMissed", "A Missed"),
-                Entry.createColumn("autoIntaken", "A Intaken"),
 
                 Entry.createColumn("autoScore", "A Score"),
                 autoAccuracyColumn,
@@ -130,14 +131,13 @@ public class Hub extends Page {
                 Entry.createColumn("teleopLower", "T Lower"),
                 Entry.createColumn("teleopUpper", "T Upper"),
                 Entry.createColumn("teleopMissed", "T Missed"),
-                Entry.createColumn("teleopIntaken", "T Intaken"),
 
                 Entry.createColumn("teleopScore", "T Score"),
                 teleopAccuracyColumn,
 
                 climbColumn,
                 // climbNumbersColumn,
-                Entry.createColumn("totalScore"),
+                scoreColumn,
                 Entry.createColumn("comment")
         // teamButtons
         );
@@ -152,7 +152,6 @@ public class Hub extends Page {
         vbox.getChildren().addAll(label, table,
                 LayoutUtils.bundleIntoHBox(back, average));
 
-        TableColumn<Entry, ?> scoreColumn = table.getColumns().get(18);
         scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
         table.getSortOrder().add(scoreColumn);
 
