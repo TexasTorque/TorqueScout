@@ -9,9 +9,6 @@
  */
 package org.texastorque;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 import org.texastorque.pages.Averages;
 import org.texastorque.pages.Hub;
 import org.texastorque.pages.Main;
@@ -24,13 +21,7 @@ import org.texastorque.utils.Entry;
 import org.texastorque.utils.NoticeUtils;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;

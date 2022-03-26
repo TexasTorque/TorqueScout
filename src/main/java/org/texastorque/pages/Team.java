@@ -125,6 +125,7 @@ public class Team extends Page {
                 teleopAccuracyColumn,
 
                 climbColumn,
+                Entry.createColumn("climbTime", "Climb Time"),
                 scoreColumn,
                 Entry.createColumn("comment")
         );

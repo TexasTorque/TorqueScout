@@ -49,6 +49,7 @@ public class Scoring extends Page {
     private Numeric teleopUpper = new Numeric("Teleop upper");
     private Numeric teleopMissed = new Numeric("Teleop missed");
     private DisjointToggles climb = new DisjointToggles("Climb Level", "Low", "Mid", "High", "Transversal");
+    private Numeric climbTime = new Numeric("Climb Time", 5);
 
     private TextBox comments = new TextBox("Comments", "");
 
@@ -89,6 +90,7 @@ public class Scoring extends Page {
                                         teleopUpper.getPanel(),
                                         teleopMissed.getPanel(),
                                         climb.getPanel(),
+                                        climbTime.getPanel(),
                                         LayoutUtils.insertPadding(
                                                 LayoutUtils.bundleIntoVBox(back),
                                                 new LayoutUtils.Padding(20, 0, 0, 0)),
@@ -148,6 +150,7 @@ public class Scoring extends Page {
                 teleopMissed.getValue(),
                 0,
                 climb.getValue(),
+                climbTime.getValue(),
                 comments.getValue());
     }
 

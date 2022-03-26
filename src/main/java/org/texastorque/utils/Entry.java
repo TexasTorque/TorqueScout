@@ -31,7 +31,6 @@ public class Entry {
 
     public final Integer teamNumber;
     public final Integer matchNumber;
-    public final Integer climb;
 
     public final String allianceColor;
 
@@ -47,6 +46,9 @@ public class Entry {
     public final Integer teleopMissed;
     public final Integer teleopIntaken;
 
+    public final Integer climb;
+    public final Integer climbTime;
+ 
     public final String comment;
 
     public final Integer autoScore;
@@ -71,6 +73,7 @@ public class Entry {
             Integer teleopMissed,
             Integer teleopIntaken,
             Integer climb,
+            Integer climbTime,
             String comment) {
         this.teamNumber = teamNumber;
         this.matchNumber = matchNumber;
@@ -85,6 +88,7 @@ public class Entry {
         this.teleopMissed = teleopMissed;
         this.teleopIntaken = 0;
         this.climb = climb;
+        this.climbTime = climbTime;
         this.comment = comment;
 
         this.autoScore = (taxi ? 2 : 0) + autoLower * 2 + autoUpper * 4; 
@@ -116,11 +120,11 @@ public class Entry {
     }
 
     public String toCSV() {
-        return String.format("%d,%d,%s,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s",
+        return String.format("%d,%d,%s,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s",
                 teamNumber, matchNumber, allianceColor, taxi,
                 autoLower, autoUpper, autoMissed, 0,
                 teleopLower, teleopUpper, teleopMissed, 0,
-                climb, comment.replace(",", "，"));
+                climb, climbTime, comment.replace(",", "，"));
     }
 
     public static Entry fromCSV(String s) {
@@ -140,7 +144,8 @@ public class Entry {
             Integer.parseInt(parts[10]),
             Integer.parseInt(parts[11]),
             Integer.parseInt(parts[12]), 
-            parts[13]
+            Integer.parseInt(parts[13]), 
+            parts[14]
         );
     }
 
@@ -160,11 +165,12 @@ public class Entry {
         int teleopIntaken = entries.stream().mapToInt(e -> e.getTeleopIntaken()).sum() / entries.size();
 
         double climb = entries.stream().mapToInt(e -> e.getClimbValue()).sum() / (entries.size() + 0.);
+        int climbTime = entries.stream().mapToInt(e -> e.getClimbTime()).sum() / entries.size();
 
         Entry entry = new Entry(entries.get(0).getTeamNumber(), -1, NA, taxi,
             autoLower, autoUpper, autoMissed, autoIntaken,
             teleopLower, teleopUpper, teleopMissed, teleopIntaken,
-            (int) Math.round(climb), NA
+            (int) Math.round(climb), climbTime, NA
         );
 
         entry.setAvgClimbPoints(climb);
@@ -245,6 +251,10 @@ public class Entry {
 
     public Integer getClimbValue() {
         return climb;
+    }
+
+    public Integer getClimbTime() {
+        return climbTime;
     }
 
     public String getComment() {

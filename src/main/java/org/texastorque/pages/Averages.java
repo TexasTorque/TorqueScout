@@ -115,6 +115,7 @@ public class Averages extends Page {
                 teleopAccuracyColumn,
 
                 climbNumbersColumn,
+                Entry.createColumn("climbTime", "Climb Time"),
                 scoreColumn, 
                 teamButtons
             );

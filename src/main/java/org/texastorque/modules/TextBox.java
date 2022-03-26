@@ -34,7 +34,7 @@ public class TextBox extends Module {
     protected void init() {
         panel.setPrefSize(300, 320);
 
-        textArea.setPrefSize(320, 180);
+        textArea.setPrefSize(320, 240);
         textArea.setFont(LayoutUtils.getStandardFont(14));
         textArea.setLayoutX(10);
         textArea.setLayoutY(10);

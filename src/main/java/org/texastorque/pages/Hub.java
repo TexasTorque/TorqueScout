@@ -136,6 +136,7 @@ public class Hub extends Page {
                 teleopAccuracyColumn,
 
                 climbColumn,
+                Entry.createColumn("climbTime", "Climb Time"),
                 // climbNumbersColumn,
                 scoreColumn,
                 Entry.createColumn("comment")
