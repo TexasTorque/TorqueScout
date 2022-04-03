@@ -26,9 +26,9 @@ To compile and execute the development application, run:
 
 `mvn package` to generate JAR
 
-`java -jar .\target\TorqueScout-1.0.0.jar` to execute JAR
+`java -jar .\target\TorqueScout-1.3.1.jar` to execute JAR
 
-`TorqueScout-1.0.0.jar` runs standalone (tested with Java 16 SE)
+`TorqueScout-1.3.1.jar` runs standalone (tested with Java 16 SE)
 
 [Can be accessed here](https://drive.google.com/file/d/1EHjj3KXQCD2eKivbDu614zc0oZFsY0FF/view?usp=sharing)
 
