@@ -66,7 +66,7 @@ public class App extends Application {
             switchToScoring();
         });
         window.getExportEntries().setOnAction(e -> {
-            dataWriter.export(stage);
+            dataWriter.exportTSR(stage);
         });
         window.getLoadEntries().setOnAction(e -> {
             dataReader.loadEntries(stage);
@@ -114,11 +114,16 @@ public class App extends Application {
         Hub window = new Hub(dataReader.getDataWrapper());
 
         window.getBackButton().setOnAction(e -> {
-            switchToMain();
+            switchToAverages();
         });
         window.getAveragesButton().setOnAction(e -> {
             switchToAverages();
         });
+
+        window.getExportButton().setOnAction(e -> {
+            dataWriter.exportCSV(stage, dataReader.getDataWrapper().getEntries());
+        });
+
 
         switchStageScene(window.getPanel());
     }
@@ -138,8 +143,13 @@ public class App extends Application {
         window.getBackButton().setOnAction(e -> {
             switchToMain();
         });
+        
         window.getHubButton().setOnAction(e -> {
             switchToHub();
+        });
+
+        window.getExportButton().setOnAction(e -> {
+            dataWriter.exportCSV(stage, dataReader.getDataWrapper().getAverages());
         });
 
         switchStageScene(window.getPanel());
@@ -150,6 +160,10 @@ public class App extends Application {
 
         window.getBackButton().setOnAction(e -> {
             switchToAverages();
+        });
+
+        window.getExportButton().setOnAction(e -> {
+            dataWriter.exportCSV(stage, dataReader.getDataWrapper().getTeamEntries().get(team));
         });
 
         switchStageScene(window.getPanel());

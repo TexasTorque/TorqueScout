@@ -56,6 +56,7 @@ public class Team extends Page {
     private TableView<Entry> table = new TableView<Entry>();
     final Label label = new Label("Torque Scout");
     private Button back = new Button("Back");
+    private Button export = new Button("Export");
 
     public Team(DataWrapper entries, int team) {
         label.setTextFill(Color.WHITE);
@@ -65,6 +66,10 @@ public class Team extends Page {
         back.setFont(LayoutUtils.getStandardFont(24));
         back.setTextFill(Color.WHITE);
         back.setStyle("-fx-text-fill: black;");
+
+        export.setFont(LayoutUtils.getStandardFont(24));
+        export.setTextFill(Color.WHITE);
+        export.setStyle("-fx-text-fill: black;");
 
         table.getItems().addAll(entries.getTeamEntries().get(team));
 
@@ -137,7 +142,7 @@ public class Team extends Page {
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(10, 0, 0, 10));
 
-        vbox.getChildren().addAll(label, table, back);
+        vbox.getChildren().addAll(label, table, LayoutUtils.bundleIntoHBox(back, export));
 
         scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
         table.getSortOrder().add(scoreColumn);
@@ -149,6 +154,10 @@ public class Team extends Page {
 
     public Button getBackButton() {
         return back;
+    }
+
+    public Button getExportButton() {
+        return export;
     }
 
 }

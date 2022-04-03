@@ -18,9 +18,9 @@ public class Entry {
     public final static Integer[] climbScores = {0, 4, 6, 10, 15};
     public final static String[] climbNames = {"None", "Low", "Mid", "High", "Traversal"};
 
-    public static final String header = "teamNumber,matchNumber,"
-            + "allianceColor,taxi,autoLower,autoUpper,autoMissed,autoIntaken,"
-            + "teleopLower,teleopUpper,teleopMissed,teleopIntaken,climb,comment";
+    public static final String header = "Team Number,Match Number,"
+            + "Alliance Color,Taxi,Auto Lower,Auto Upper,Auto Missed,Auto Intaken,"
+            + "Teleop Lower,Teleop Upper,Teleop Missed,Teleop Intaken,Climb Level,Climb Time,Comment,";
 
     public static int valueOfClimb(String climb) {
         for (int i = 0; i < climbNames.length; i++) 

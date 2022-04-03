@@ -38,7 +38,7 @@ public class Scoring extends Page {
     private ValueDisplay teamNumberDisplay = new ValueDisplay("Team Number", 0000);
     private ValueDisplay matchNumberDisplay = new ValueDisplay("Match Number", 0);
 
-    private ToggleSingle allianceColor = new ToggleSingle("Alliance Color", "blue", "", "red", "");
+    private ToggleSingle allianceColor = new ToggleSingle("Alliance Color", "Blue", "", "Red", "");
 
     private ToggleSingle taxi = new ToggleSingle("Auto Taxi");
     private Numeric autoLower = new Numeric("Auto lower");

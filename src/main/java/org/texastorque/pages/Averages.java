@@ -40,6 +40,7 @@ public class Averages extends Page {
     final Label label = new Label("Torque Scout");
     private Button back = new Button("Back to home");
     private Button hub = new Button("View all entries");
+    private Button export = new Button("Export");
 
     public Averages(DataWrapper entries, Callback<Integer, Void> callback) {
         label.setTextFill(Color.WHITE);
@@ -47,13 +48,17 @@ public class Averages extends Page {
         table.setEditable(false);
 
         back.setFont(LayoutUtils.getStandardFont(24));
-        hub.setFont(LayoutUtils.getStandardFont(24));
         back.setTextFill(Color.WHITE);
         back.setStyle("-fx-text-fill: black");
+
+        hub.setFont(LayoutUtils.getStandardFont(24));
         hub.setTextFill(Color.WHITE);
         hub.setStyle("-fx-text-fill: black");
 
-        // table.setItems(entries);
+        export.setFont(LayoutUtils.getStandardFont(24));
+        export.setTextFill(Color.WHITE);
+        export.setStyle("-fx-text-fill: black");
+
         ObservableList<Entry> averages = entries.getAverages();
         for (Entry average : averages)
             average.getTeamButton().setOnAction(e -> {
@@ -127,7 +132,7 @@ public class Averages extends Page {
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(10, 0, 0, 10));
         vbox.getChildren().addAll(label, table,
-                LayoutUtils.bundleIntoHBox(back, hub));
+                LayoutUtils.bundleIntoHBox(back, hub, export));
 
         scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
         table.getSortOrder().add(scoreColumn);
@@ -143,6 +148,10 @@ public class Averages extends Page {
 
     public Button getHubButton() {
         return hub;
+    }
+
+    public Button getExportButton() {
+        return export;
     }
 
 }
