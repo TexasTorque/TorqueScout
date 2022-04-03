@@ -17,7 +17,7 @@ for n in range(1, 7):
     f = open("user" + str(n) + ".tsr", 'w')
     content = ""
     for i in range(0, 2):
-        for team in [118, 148, 254, 1477, 1678, 1690, 2910, 3310, 4414]:
+        for team in [118, 148, 254, 624, 1477, 1678, 1690, 2468, 2910, 3005, 3310, 3847, 4414, 6800]:
             match = randint(1, 35)
             allainceColor = "red" if randomBool() else "blue"
             taxi = "true" if randomBool() else "false"
@@ -49,6 +49,9 @@ for n in range(1, 7):
                 teleopUpper = teleopIntaken - teleopMissed
                 if teleopUpper <= 0:
                     teleopUpper = 0
+                    
             climb = randint(0, 4)
-            content += f"{team},{match},{allainceColor},{taxi},{autoLower},{autoUpper},{autoMissed},{autoIntaken},{teleopLower},{teleopUpper},{teleopMissed},{teleopIntaken},{climb},comment \n"
+            climbTime = randint(5,15) * climb
+            
+            content += f"{team},{match},{allainceColor},{taxi},{autoLower},{autoUpper},{autoMissed},{autoIntaken},{teleopLower},{teleopUpper},{teleopMissed},{teleopIntaken},{climb},{climbTime},comment \n"
     f.write(content)

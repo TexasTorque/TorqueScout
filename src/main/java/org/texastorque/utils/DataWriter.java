@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
+import javafx.collections.ObservableList;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
@@ -34,10 +35,8 @@ public class DataWriter {
 
     public boolean writeEntry(Entry entry) {
         try {
-            if (!Files.exists(Path.of(path))) {
+            if (!Files.exists(Path.of(path)))
                 Files.createFile(Path.of(path));
-                appendString(Entry.header);
-            }
             appendString(entry.toCSV());
             return true;
         } catch (IOException e) {
@@ -56,12 +55,12 @@ public class DataWriter {
         }
     }
 
-    public boolean export(Stage s) {
+    public boolean exportTSR(Stage s) {
         try {
             String content = Files.readString(Path.of(path));
             File selectedDirectory = directoryChooser.showDialog(s);
-            Path exportPath = Path.of(selectedDirectory.getAbsolutePath() + "/" + "" //"scouting-data-" 
-                    + System.getProperty("user.name") + ".tsr"); // .csv
+            Path exportPath = Path.of(selectedDirectory.getAbsolutePath() + "/" + "" 
+                    + System.getProperty("user.name") + ".tsr"); 
             Files.writeString(exportPath, content);
             NoticeUtils.displayInfo("Data Exported Success", "Successfully exported scouting entry");
             return true;
@@ -71,4 +70,21 @@ public class DataWriter {
         }
     }
 
+    public boolean exportCSV(Stage s, ObservableList<Entry> entries) {
+        try {
+            String name = NoticeUtils.promptString("Export Table As", "Please enter a name for the table").replaceAll("\\W+", "");;
+            File selectedDirectory = directoryChooser.showDialog(s);
+            Path exportPath = Path.of(selectedDirectory.getAbsolutePath() + "/" + name + ".csv"); 
+            StringBuilder builder = new StringBuilder();
+            builder.append(Entry.header + "\n");
+            for (Entry entry : entries)
+                builder.append(entry.toCSV() + ",\n");
+            Files.writeString(exportPath, builder.toString());
+            NoticeUtils.displayInfo("Table Exported Success", "Successfully exported table");
+            return true;
+        } catch (IOException e) {
+            NoticeUtils.displayError("Table Exporter Error", "Could not export table");
+            return false;
+        }
+    }
 }

@@ -9,7 +9,7 @@ See file ./license.txt or go write <jus@gtsbr.org> for full license details. -->
   <groupId>org.texastorque</groupId>
   <artifactId>TorqueScout</artifactId>
   <name>TorqueScout</name>
-  <version>1.0.0</version>
+  <version>1.3.1</version>
   <organization>
     <name>Texas Torque</name>
   </organization>

@@ -48,7 +48,7 @@ public class DataReader {
             for (String fileName : fileNames) {
                 if (fileName.contains(".tsr")) {
                     path = selectedDirectory.getAbsolutePath() + "/" + fileName;
-                    content += Files.readString(Path.of(path)).replace(Entry.header, "");
+                    content += Files.readString(Path.of(path));
                 }
             }
 

@@ -9,9 +9,6 @@
  */
 package org.texastorque;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 import org.texastorque.pages.Averages;
 import org.texastorque.pages.Hub;
 import org.texastorque.pages.Main;
@@ -24,13 +21,7 @@ import org.texastorque.utils.Entry;
 import org.texastorque.utils.NoticeUtils;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -75,7 +66,7 @@ public class App extends Application {
             switchToScoring();
         });
         window.getExportEntries().setOnAction(e -> {
-            dataWriter.export(stage);
+            dataWriter.exportTSR(stage);
         });
         window.getLoadEntries().setOnAction(e -> {
             dataReader.loadEntries(stage);
@@ -123,11 +114,16 @@ public class App extends Application {
         Hub window = new Hub(dataReader.getDataWrapper());
 
         window.getBackButton().setOnAction(e -> {
-            switchToMain();
+            switchToAverages();
         });
         window.getAveragesButton().setOnAction(e -> {
             switchToAverages();
         });
+
+        window.getExportButton().setOnAction(e -> {
+            dataWriter.exportCSV(stage, dataReader.getDataWrapper().getEntries());
+        });
+
 
         switchStageScene(window.getPanel());
     }
@@ -147,8 +143,13 @@ public class App extends Application {
         window.getBackButton().setOnAction(e -> {
             switchToMain();
         });
+        
         window.getHubButton().setOnAction(e -> {
             switchToHub();
+        });
+
+        window.getExportButton().setOnAction(e -> {
+            dataWriter.exportCSV(stage, dataReader.getDataWrapper().getAverages());
         });
 
         switchStageScene(window.getPanel());
@@ -159,6 +160,10 @@ public class App extends Application {
 
         window.getBackButton().setOnAction(e -> {
             switchToAverages();
+        });
+
+        window.getExportButton().setOnAction(e -> {
+            dataWriter.exportCSV(stage, dataReader.getDataWrapper().getTeamEntries().get(team));
         });
 
         switchStageScene(window.getPanel());

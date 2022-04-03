@@ -56,8 +56,9 @@ public class Hub extends Page {
 
     private TableView<Entry> table = new TableView<Entry>();
     Label label = new Label("Torque Scout");
-    private Button back = new Button("Back to home");
+    private Button back = new Button("Back");
     private Button average = new Button("View averages");
+    private Button export = new Button("Export");
 
     public Hub(DataWrapper entries) {
         label.setTextFill(Color.WHITE);
@@ -65,11 +66,16 @@ public class Hub extends Page {
         table.setEditable(false);
 
         back.setFont(LayoutUtils.getStandardFont(24));
-        average.setFont(LayoutUtils.getStandardFont(24));
         back.setTextFill(Color.WHITE);
         back.setStyle("-fx-text-fill: black");
+
+        average.setFont(LayoutUtils.getStandardFont(24));
         average.setTextFill(Color.WHITE);
         average.setStyle("-fx-text-fill: black");
+
+        export.setFont(LayoutUtils.getStandardFont(24));
+        export.setTextFill(Color.WHITE);
+        export.setStyle("-fx-text-fill: black");
 
         table.getItems().addAll(entries.getEntries());
 
@@ -136,6 +142,7 @@ public class Hub extends Page {
                 teleopAccuracyColumn,
 
                 climbColumn,
+                Entry.createColumn("climbTime", "Climb Time"),
                 // climbNumbersColumn,
                 scoreColumn,
                 Entry.createColumn("comment")
@@ -150,7 +157,7 @@ public class Hub extends Page {
         vbox.setPadding(new Insets(10, 0, 0, 10));
         // table.setMinHeight(700);
         vbox.getChildren().addAll(label, table,
-                LayoutUtils.bundleIntoHBox(back, average));
+                LayoutUtils.bundleIntoHBox(back, average, export));
 
         scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
         table.getSortOrder().add(scoreColumn);
@@ -168,4 +175,7 @@ public class Hub extends Page {
         return average;
     }
 
+    public Button getExportButton() {
+        return export;
+    }
 }
