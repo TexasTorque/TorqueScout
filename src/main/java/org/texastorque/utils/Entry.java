@@ -15,16 +15,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Entry {
-    public final static Integer[] climbScores = {0, 4, 6, 10, 15};
-    public final static String[] climbNames = {"None", "Low", "Mid", "High", "Traversal"};
+    public final static Integer[] climbScores = { 0, 4, 6, 10, 15 };
+    public final static String[] climbNames = { "None", "Low", "Mid", "High", "Traversal" };
 
     public static final String header = "Team Number,Match Number,"
             + "Alliance Color,Taxi,Auto Lower,Auto Upper,Auto Missed,Auto Intaken,"
-            + "Teleop Lower,Teleop Upper,Teleop Missed,Teleop Intaken,Climb Level,Climb Time,Comment,";
+            + "Teleop Lower,Teleop Upper,Teleop Missed,Teleop Intaken,Climb Level,Climb Time,Name,Comment,";
 
     public static int valueOfClimb(String climb) {
-        for (int i = 0; i < climbNames.length; i++) 
-            if (climbNames[i].equals(climb)) 
+        for (int i = 0; i < climbNames.length; i++)
+            if (climbNames[i].equals(climb))
                 return climbScores[i];
         return 0;
     }
@@ -48,7 +48,8 @@ public class Entry {
 
     public final Integer climb;
     public final Integer climbTime;
- 
+
+    public final String name;
     public final String comment;
 
     public final Integer autoScore;
@@ -74,6 +75,7 @@ public class Entry {
             Integer teleopIntaken,
             Integer climb,
             Integer climbTime,
+            String name,
             String comment) {
         this.teamNumber = teamNumber;
         this.matchNumber = matchNumber;
@@ -89,21 +91,22 @@ public class Entry {
         this.teleopIntaken = 0;
         this.climb = climb;
         this.climbTime = climbTime;
+        this.name = name;
         this.comment = comment;
 
-        this.autoScore = (taxi ? 2 : 0) + autoLower * 2 + autoUpper * 4; 
+        this.autoScore = (taxi ? 2 : 0) + autoLower * 2 + autoUpper * 4;
         this.teleopScore = climbScores[climb] + teleopLower + teleopUpper * 2;
         this.totalScore = this.autoScore + this.teleopScore;
 
         this.autoAccuracy = Math.min(100, Math.max(0, Math.round(
                 (this.autoLower + this.autoUpper + 0.)
-                / (this.autoLower + this.autoUpper + this.autoMissed) 
-                * 100)));
-                
+                        / (this.autoLower + this.autoUpper + this.autoMissed)
+                        * 100)));
+
         this.teleopAccuracy = Math.min(100, Math.max(0, Math.round(
                 (this.teleopLower + this.teleopUpper + 0.)
-                / (this.teleopLower + this.teleopUpper + this.teleopMissed) 
-                * 100)));
+                        / (this.teleopLower + this.teleopUpper + this.teleopMissed)
+                        * 100)));
 
         this.totalAccuracy = (this.autoAccuracy + this.teleopAccuracy) / 2;
     }
@@ -120,33 +123,33 @@ public class Entry {
     }
 
     public String toCSV() {
-        return String.format("%d,%d,%s,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s",
+        return String.format("%d,%d,%s,%b,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s,%s",
                 teamNumber, matchNumber, allianceColor, taxi,
                 autoLower, autoUpper, autoMissed, 0,
                 teleopLower, teleopUpper, teleopMissed, 0,
-                climb, climbTime, comment.replace(",", "，"));
+                climb, climbTime, name, comment.replace(",", "，"));
     }
 
     public static Entry fromCSV(String s) {
         String[] parts = s.split(",");
 
         return new Entry(
-            Integer.parseInt(parts[0]),
-            Integer.parseInt(parts[1]),
-            parts[2],
-            parts[3].equals("true"),
-            Integer.parseInt(parts[4]),
-            Integer.parseInt(parts[5]),
-            Integer.parseInt(parts[6]),
-            Integer.parseInt(parts[7]),
-            Integer.parseInt(parts[8]),
-            Integer.parseInt(parts[9]),
-            Integer.parseInt(parts[10]),
-            Integer.parseInt(parts[11]),
-            Integer.parseInt(parts[12]), 
-            Integer.parseInt(parts[13]), 
-            parts[14]
-        );
+                Integer.parseInt(parts[0]),
+                Integer.parseInt(parts[1]),
+                parts[2],
+                parts[3].equals("true"),
+                Integer.parseInt(parts[4]),
+                Integer.parseInt(parts[5]),
+                Integer.parseInt(parts[6]),
+                Integer.parseInt(parts[7]),
+                Integer.parseInt(parts[8]),
+                Integer.parseInt(parts[9]),
+                Integer.parseInt(parts[10]),
+                Integer.parseInt(parts[11]),
+                Integer.parseInt(parts[12]),
+                Integer.parseInt(parts[13]),
+                parts[14],
+                parts[15]);
     }
 
     private static final String NA = "N/A";
@@ -168,10 +171,9 @@ public class Entry {
         int climbTime = entries.stream().mapToInt(e -> e.getClimbTime()).sum() / entries.size();
 
         Entry entry = new Entry(entries.get(0).getTeamNumber(), -1, NA, taxi,
-            autoLower, autoUpper, autoMissed, autoIntaken,
-            teleopLower, teleopUpper, teleopMissed, teleopIntaken,
-            (int) Math.round(climb), climbTime, NA
-        );
+                autoLower, autoUpper, autoMissed, autoIntaken,
+                teleopLower, teleopUpper, teleopMissed, teleopIntaken,
+                (int) Math.round(climb), climbTime, NA, NA);
 
         entry.setAvgClimbPoints(climb);
         return entry;
@@ -255,6 +257,10 @@ public class Entry {
 
     public Integer getClimbTime() {
         return climbTime;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getComment() {

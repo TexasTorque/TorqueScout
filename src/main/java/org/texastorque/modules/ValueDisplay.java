@@ -9,14 +9,12 @@
  */
 package org.texastorque.modules;
 
-import org.texastorque.components.FadeButton;
 import org.texastorque.utils.LayoutUtils;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class ValueDisplay extends Module {
     private String value = "";

@@ -10,11 +10,8 @@
 package org.texastorque.utils;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,7 +37,8 @@ public class DataReader {
         entries = FXCollections.observableArrayList();
         try {
             File selectedDirectory = directoryChooser.showDialog(s);
-            if (selectedDirectory == null) return false;
+            if (selectedDirectory == null)
+                return false;
 
             String content = "";
 

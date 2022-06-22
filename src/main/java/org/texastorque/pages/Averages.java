@@ -121,9 +121,8 @@ public class Averages extends Page {
 
                 climbNumbersColumn,
                 Entry.createColumn("climbTime", "Climb Time"),
-                scoreColumn, 
-                teamButtons
-            );
+                scoreColumn,
+                teamButtons);
 
         table.setMinHeight(Screen.getPrimary().getBounds().getHeight() * .7);
         table.setMinWidth(Screen.getPrimary().getBounds().getWidth() * .6);

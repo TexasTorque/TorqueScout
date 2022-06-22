@@ -9,13 +9,6 @@
  */
 package org.texastorque.pages;
 
-import java.util.ArrayList;
-
-import org.texastorque.components.FadeButton;
-import org.texastorque.modules.DisjointToggles;
-import org.texastorque.modules.Numeric;
-import org.texastorque.modules.ToggleSingle;
-import org.texastorque.modules.TextBox;
 import org.texastorque.utils.LayoutUtils;
 
 import javafx.scene.layout.Background;
@@ -25,11 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 
 public class Main extends Page {
     protected Pane panel = new Pane();
@@ -97,8 +86,7 @@ public class Main extends Page {
                                 new LayoutUtils.Padding(20, 0, 0, 0)),
                         LayoutUtils.insertPadding(
                                 LayoutUtils.wrapInPane(clearDatabase),
-                                new LayoutUtils.Padding(20, 0, 0, 0))
-                ));
+                                new LayoutUtils.Padding(20, 0, 0, 0))));
 
         panel.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
