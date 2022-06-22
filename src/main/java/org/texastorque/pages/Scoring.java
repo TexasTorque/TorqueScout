@@ -32,6 +32,7 @@ public class Scoring extends Page {
 
     protected Pane panel = new Pane();
 
+    private ValueDisplay nameDisplay = new ValueDisplay("Name", "Name");
     private ValueDisplay teamNumberDisplay = new ValueDisplay("Team Number", 0000);
     private ValueDisplay matchNumberDisplay = new ValueDisplay("Match Number", 0);
 
@@ -73,6 +74,7 @@ public class Scoring extends Page {
         panel.getChildren().addAll(
                 LayoutUtils.bundleIntoHBox(
                         LayoutUtils.bundleIntoVBox(
+                                nameDisplay.getPanel(),
                                 teamNumberDisplay.getPanel(),
                                 matchNumberDisplay.getPanel(),
                                 allianceColor.getPanel(),
@@ -96,25 +98,6 @@ public class Scoring extends Page {
                                                 new LayoutUtils.Padding(20, 0, 0, 0))),
                                 new LayoutUtils.Padding(0, 0, 0, 40))));
         panel.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-        // panel.setOnKeyPressed(e -> {
-        // if (e.getCode() == KeyCode.COMMA) {
-        // autoLower.increment();
-        // } else if (e.getCode() == KeyCode.PERIOD) {
-        // autoUpper.increment();
-        // } else if (e.getCode() == KeyCode.SLASH) {
-        // autoMissed.increment();
-        // } else if (e.getCode() == KeyCode.OPEN_BRACKET) {
-        // teleopLower.increment();
-        // } else if (e.getCode() == KeyCode.CLOSE_BRACKET) {
-        // teleopUpper.increment();
-        // } else if (e.getCode() == KeyCode.BACK_SLASH) {
-        // teleopMissed.increment();
-        // } else if (e.getCode() == KeyCode.SEMICOLON) {
-        // autoIntaken.increment();
-        // } else if (e.getCode() == KeyCode.QUOTE) {
-        // teleopIntaken.increment();
-        // }
-        // });
     }
 
     public Entry generateEntry() {
@@ -148,6 +131,7 @@ public class Scoring extends Page {
                 0,
                 climb.getValue(),
                 climbTime.getValue(),
+                nameDisplay.getValue(),
                 comments.getValue());
     }
 

@@ -114,6 +114,7 @@ public class Team extends Page {
                 climbColumn,
                 Entry.createColumn("climbTime", "Climb Time"),
                 scoreColumn,
+                Entry.createColumn("name"),
                 Entry.createColumn("comment"));
 
         table.setMinHeight(Screen.getPrimary().getBounds().getHeight() * .7);

@@ -125,6 +125,7 @@ public class Hub extends Page {
                 Entry.createColumn("climbTime", "Climb Time"),
                 // climbNumbersColumn,
                 scoreColumn,
+                Entry.createColumn("name"),
                 Entry.createColumn("comment")
         // teamButtons
         );
