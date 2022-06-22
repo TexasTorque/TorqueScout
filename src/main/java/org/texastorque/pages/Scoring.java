@@ -9,7 +9,6 @@
  */
 package org.texastorque.pages;
 
-import org.texastorque.components.FadeButton;
 import org.texastorque.modules.DisjointToggles;
 import org.texastorque.modules.Numeric;
 import org.texastorque.modules.TextBox;
@@ -25,10 +24,8 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.geometry.Insets;
-
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.input.KeyCode;
 
 public class Scoring extends Page {
     private boolean checked = false;
@@ -100,23 +97,23 @@ public class Scoring extends Page {
                                 new LayoutUtils.Padding(0, 0, 0, 40))));
         panel.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         // panel.setOnKeyPressed(e -> {
-        //     if (e.getCode() == KeyCode.COMMA) {
-        //         autoLower.increment();
-        //     } else if (e.getCode() == KeyCode.PERIOD) {
-        //         autoUpper.increment();
-        //     } else if (e.getCode() == KeyCode.SLASH) {
-        //         autoMissed.increment();
-        //     } else if (e.getCode() == KeyCode.OPEN_BRACKET) {
-        //         teleopLower.increment();
-        //     } else if (e.getCode() == KeyCode.CLOSE_BRACKET) {
-        //         teleopUpper.increment();
-        //     } else if (e.getCode() == KeyCode.BACK_SLASH) {
-        //         teleopMissed.increment();
-        //     } else if (e.getCode() == KeyCode.SEMICOLON) {
-        //         autoIntaken.increment();
-        //     } else if (e.getCode() == KeyCode.QUOTE) {
-        //         teleopIntaken.increment();
-        //     }
+        // if (e.getCode() == KeyCode.COMMA) {
+        // autoLower.increment();
+        // } else if (e.getCode() == KeyCode.PERIOD) {
+        // autoUpper.increment();
+        // } else if (e.getCode() == KeyCode.SLASH) {
+        // autoMissed.increment();
+        // } else if (e.getCode() == KeyCode.OPEN_BRACKET) {
+        // teleopLower.increment();
+        // } else if (e.getCode() == KeyCode.CLOSE_BRACKET) {
+        // teleopUpper.increment();
+        // } else if (e.getCode() == KeyCode.BACK_SLASH) {
+        // teleopMissed.increment();
+        // } else if (e.getCode() == KeyCode.SEMICOLON) {
+        // autoIntaken.increment();
+        // } else if (e.getCode() == KeyCode.QUOTE) {
+        // teleopIntaken.increment();
+        // }
         // });
     }
 
